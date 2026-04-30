@@ -1,28 +1,21 @@
 export function About() {
   return (
-    <section id="about" className="py-32 px-8 bg-gray-50">
-      <div className="max-w-[1200px] mx-auto">
-        <div className="max-w-3xl mx-auto space-y-12">
-          <h2 className="text-5xl text-gray-900 tracking-tight leading-tight">
-            关于 米地.米立
+    <section id="about" className="bg-[#f9fbff] px-4 py-16 sm:px-6 md:px-8 md:py-20 lg:py-24">
+      <div className="mx-auto w-full max-w-[1220px]">
+        <div className="rounded-[20px] border border-[#d7e3f0] bg-gradient-to-br from-[#fdfefe] via-[#f9fcff] to-[#f8f5ef] p-7 shadow-[0_10px_24px_rgba(114,137,169,0.12)] md:p-10">
+          <h2 className="text-[30px] leading-tight text-[#2e415f] sm:text-[36px] md:text-[40px]">
+            米地米立：从真实场景出发，让 AI 变成可用的能力
           </h2>
 
-          <div className="space-y-8 text-lg leading-relaxed text-gray-600">
+          <div className="mt-6 max-w-[840px] space-y-5 text-[15px] leading-relaxed text-[#5c7393]">
+            <p>米地米立，关注 AI 时代下企业和个体的真实变化。</p>
             <p>
-              米地.米立不是一家传统意义上的大公司，也不是一个只讲趋势、不做实践的信息站。
+              “米地”，代表真实场景。AI 只有进入具体业务和日常工作，才真正产生价值。
             </p>
-
             <p>
-              它更像一个持续生长的工作体：以技术、产品、业务与长期经验为基础，连接企业需求、开源能力、个人成长与现实落地。
+              “米立”，代表个体成长。每个人都需要重新理解工具、能力与竞争力。
             </p>
-
-            <p className="text-xl text-gray-900">
-              米地.米立希望做的，不只是提供服务，更是成为一种实践样本：
-            </p>
-
-            <p>
-              一个有长期专业积累的人，如何在 AI 时代重新构建自己的价值。
-            </p>
+            <p className="text-[#42638b]">我们做两件事：帮企业落地 AI。帮个体用好 AI。</p>
           </div>
         </div>
       </div>

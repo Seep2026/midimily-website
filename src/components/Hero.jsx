@@ -1,55 +1,47 @@
+import { heroStats } from '../data/homeV2Data';
+import { HeroNetworkEffect } from './HeroNetworkEffect';
+
 export function Hero() {
   return (
-    <section id="home" className="pt-40 pb-32 px-8 bg-white">
-      <div className="max-w-[1200px] mx-auto">
-        <div className="max-w-4xl space-y-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-50 text-gray-600 text-xs rounded-md border border-gray-200">
-            <span>AI Productization</span>
-            <span className="text-gray-300">·</span>
-            <span>Business Enablement</span>
-            <span className="text-gray-300">·</span>
-            <span>OPC Practice</span>
-          </div>
-
-          <h1 className="text-6xl md:text-7xl tracking-tight text-gray-900 leading-[1.1]">
-            让 AI 真正进入<br />产品、企业与个人实践
+    <section id="hero" className="px-4 pb-16 pt-28 sm:px-6 md:px-8 md:pt-36 lg:pb-24 lg:pt-40">
+      <div className="mx-auto grid w-full max-w-[1220px] items-center gap-12 lg:grid-cols-[1.06fr_0.94fr]">
+        <div className="space-y-7">
+          <h1 className="text-[34px] leading-[1.18] tracking-tight text-[#2d3f5d] sm:text-[42px] md:text-[54px]">
+            企业的 AI 落地伙伴
+            <br />
+            个体的 AI 成长顾问
           </h1>
 
-          <p className="text-xl text-gray-500 max-w-2xl leading-relaxed">
-            专注于 AI 软件原创与二次开发、AI 在企业业务中的落地与陪跑，以及面向个体成长的经验沉淀与知识服务。
-          </p>
-
-          <p className="text-base text-gray-600 max-w-2xl leading-relaxed">
-            基于多年技术、产品、运营、管理与创业实践经验，帮助企业和个人在 AI 时代找到可落地、可持续、可沉淀的新价值路径。
-          </p>
-
-          <div className="flex flex-wrap gap-3 pt-4">
-            <button className="px-5 py-2.5 bg-gray-900 text-white text-sm rounded-md hover:bg-gray-800 transition-colors">
-              预约沟通
-            </button>
-            <button className="px-5 py-2.5 border border-gray-300 text-gray-700 text-sm rounded-md hover:border-gray-400 transition-colors">
-              添加企业微信
-            </button>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href="#business"
+              className="inline-flex min-h-11 items-center rounded-[12px] bg-[#7c92bb] px-5 text-[14px] font-medium text-white transition hover:bg-[#6f86b0]"
+            >
+              了解企业服务
+            </a>
+            <a
+              href="#individual"
+              className="inline-flex min-h-11 items-center rounded-[12px] border border-[#d2dff0] bg-white/90 px-5 text-[14px] text-[#4f6f97] transition hover:border-[#b4cae6] hover:bg-white"
+            >
+              了解个人成长
+            </a>
           </div>
 
-          <div className="flex flex-wrap gap-x-8 gap-y-4 pt-8 text-sm">
-            <div className="flex items-center gap-2">
-              <div className="w-1 h-1 rounded-full bg-gray-400" />
-              <span className="text-gray-600">26 年从业经历</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-1 h-1 rounded-full bg-gray-400" />
-              <span className="text-gray-600">大厂 + 创业实践</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-1 h-1 rounded-full bg-gray-400" />
-              <span className="text-gray-600">技术 × 产品 × 运营 × 管理</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-1 h-1 rounded-full bg-gray-400" />
-              <span className="text-gray-600">长期主义</span>
-            </div>
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            {heroStats.map((item) => (
+              <article
+                key={item.value}
+                className="rounded-[14px] border border-[#d9e3f2] bg-[#fbfdff] p-3 sm:p-4 shadow-[0_8px_18px_rgba(112,136,173,0.10)]"
+              >
+                <strong className="block text-[15px] text-[#304560] sm:text-[16px]">{item.value}</strong>
+                <span className="mt-1 block text-[12px] text-[#68809f] sm:text-[13px]">{item.label}</span>
+              </article>
+            ))}
           </div>
+        </div>
+
+        <div>
+          <HeroNetworkEffect />
         </div>
       </div>
     </section>

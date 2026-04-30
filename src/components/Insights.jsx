@@ -1,49 +1,37 @@
-export function Insights() {
-  const articles = [
-    {
-      title: '开源 AI 项目拆解与产品化机会',
-      excerpt: '从技术能力到产品价值，如何识别真正值得投入的开源项目，以及二次开发的切入点。',
-      category: '产品化',
-    },
-    {
-      title: '企业 AI 落地中的真实问题与误区',
-      excerpt: '不是每个场景都需要 AI，也不是每个 AI 方案都能落地。分享实践中的经验与教训。',
-      category: '业务实践',
-    },
-    {
-      title: '计算机人、职场人与 OPC 的 AI 时代转型',
-      excerpt: '技术背景如何成为 AI 时代的优势？如何将经验转化为可持续的个人价值？',
-      category: '个人成长',
-    },
-  ];
+import { insightCards } from '../data/homeV2Data';
 
+export function Insights() {
   return (
-    <section id="insights" className="py-32 px-8 bg-white">
-      <div className="max-w-[1200px] mx-auto">
-        <div className="mb-20">
-          <h2 className="text-5xl text-gray-900 mb-4 tracking-tight leading-tight">
-            持续记录 AI 时代的产品、业务与个体实践
+    <section id="insights" className="px-4 py-16 sm:px-6 md:px-8 md:py-20 lg:py-24">
+      <div className="mx-auto w-full max-w-[1220px]">
+        <div className="max-w-[780px] space-y-3">
+          <h2 className="text-[30px] leading-tight text-[#2e415f] sm:text-[36px] md:text-[40px]">
+            持续记录 AI 时代的企业与个体变化
           </h2>
+          <p className="text-[16px] text-[#627896]">从企业落地、工具使用到职业成长，记录 AI 时代的真实问题与方法。</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          {articles.map((article, index) => (
-            <div
-              key={index}
-              className="group cursor-pointer"
+        <div className="mt-8 grid gap-4 lg:grid-cols-3">
+          {insightCards.map((card) => (
+            <article
+              key={card.title}
+              className="rounded-[16px] border border-[#d6e1ee] bg-[#fcfeff] p-5 shadow-[0_8px_18px_rgba(110,134,168,0.10)]"
             >
-              <div className="text-xs text-gray-400 mb-4 uppercase tracking-wider">{article.category}</div>
-              <h3 className="text-lg text-gray-900 mb-3 group-hover:text-gray-600 transition-colors">{article.title}</h3>
-              <p className="text-[15px] text-gray-600 leading-relaxed">{article.excerpt}</p>
-            </div>
+              <span className="inline-flex rounded-full border border-[#cfe0f4] bg-[#f0f6fd] px-3 py-1 text-[12px] text-[#6284af]">
+                {card.category}
+              </span>
+              <h3 className="mt-3 text-[21px] leading-tight text-[#304864]">{card.title}</h3>
+              <p className="mt-3 text-[14px] leading-relaxed text-[#5f7593]">{card.body}</p>
+            </article>
           ))}
         </div>
 
-        <div>
-          <button className="px-5 py-2.5 border border-gray-300 text-sm text-gray-700 rounded-md hover:border-gray-400 transition-colors">
-            查看全部观点
-          </button>
-        </div>
+        <a
+          href="#insights"
+          className="mt-8 inline-flex min-h-11 items-center rounded-[12px] border border-[#d1dff0] bg-white/86 px-4 text-[14px] text-[#4e709a] transition hover:border-[#b6cde9] hover:bg-white"
+        >
+          查看全部观点
+        </a>
       </div>
     </section>
   );

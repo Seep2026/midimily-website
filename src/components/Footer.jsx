@@ -1,39 +1,50 @@
+import { navItems } from '../data/homeV2Data';
+import redbookMily from '../styles/redbook_mily.png';
+
 export function Footer() {
   return (
-    <footer className="py-20 px-8 bg-gray-50 border-t border-gray-200">
-      <div className="max-w-[1200px] mx-auto">
-        <div className="grid md:grid-cols-4 gap-12 mb-16">
-          <div className="md:col-span-2">
-            <div className="text-lg text-gray-900 mb-3">米地.米立</div>
-            <p className="text-[13px] text-gray-500 mb-3">AI 技术产品化、AI 在企业落地与 OPC 实践</p>
-            <p className="text-[13px] text-gray-600 leading-relaxed max-w-md">
-              专注于 AI 软件原创与二次开发、AI 在企业业务中的落地与陪跑，以及面向个体成长的经验沉淀与知识服务。
-            </p>
-          </div>
+    <footer className="border-t border-[#d8e3f0] bg-[#f5f8fd] px-4 pt-14 sm:px-6 md:px-8">
+      <div className="mx-auto grid w-full max-w-[1220px] gap-10 pb-10 md:grid-cols-3">
+        <section>
+          <h3 className="text-[24px] text-[#304864]">米地米立</h3>
+          <p className="mt-2 text-[13px] text-[#5f7a9d]">企业 AI 落地 · 个体 AI 成长</p>
+        </section>
 
-          <div>
-            <h4 className="text-sm text-gray-900 mb-4">导航</h4>
-            <ul className="space-y-2.5 text-[13px]">
-              <li><a href="#home" className="text-gray-500 hover:text-gray-900 transition-colors">首页</a></li>
-              <li><a href="#services" className="text-gray-500 hover:text-gray-900 transition-colors">服务</a></li>
-              <li><a href="#insights" className="text-gray-500 hover:text-gray-900 transition-colors">观点</a></li>
-              <li><a href="#about" className="text-gray-500 hover:text-gray-900 transition-colors">关于</a></li>
-              <li><a href="#contact" className="text-gray-500 hover:text-gray-900 transition-colors">联系</a></li>
-            </ul>
-          </div>
+        <nav>
+          <h4 className="text-[15px] text-[#324b68]">导航</h4>
+          <ul className="mt-3 grid gap-2 text-[14px] text-[#627b9b]">
+            {navItems.map((item) => (
+              <li key={item.href}>
+                <a href={item.href} className="transition-colors hover:text-[#597fae]">
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-          <div>
-            <h4 className="text-sm text-gray-900 mb-4">联系方式</h4>
-            <ul className="space-y-2.5 text-[13px] text-gray-500">
-              <li>企业微信</li>
-              <li>hello@midimily.com</li>
-            </ul>
-          </div>
-        </div>
+        <section>
+          <h4 className="text-[15px] text-[#324b68]">社交媒体</h4>
+          <ul className="mt-3 grid gap-2 text-[14px] text-[#627b9b]">
+            <li>视频号：米立AI</li>
+            <li className="flex items-center gap-2">
+              <span>小红书：</span>
+              <a
+                href="https://xhslink.com/m/7J4H4sQL4yB"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="访问米地米立小红书主页"
+                className="inline-flex rounded-md transition-opacity hover:opacity-85"
+              >
+                <img src={redbookMily} alt="小红书" className="h-8 w-auto object-contain" />
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
 
-        <div className="pt-8 border-t border-gray-200 text-[13px] text-gray-500 text-center">
-          <p>© 2026 米地.米立 Midimily. All rights reserved.</p>
-        </div>
+      <div className="border-t border-[#d8e3f0] py-4 text-center text-[13px] text-[#7591b4]">
+        © 2026 米地米立 Midimily. All rights reserved.
       </div>
     </footer>
   );

@@ -1,10 +1,10 @@
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { Services } from './components/Services';
-import { WhyMe } from './components/WhyMe';
-import { WhoFor } from './components/WhoFor';
-import { Methodology } from './components/Methodology';
-import { Collaboration } from './components/Collaboration';
+import { ServicesOverview } from './components/ServicesOverview';
+import { BusinessService } from './components/BusinessService';
+import { IndividualGrowth } from './components/IndividualGrowth';
+import { WhyMidimily } from './components/WhyMidimily';
+import { PracticeSamples } from './components/PracticeSamples';
 import { Insights } from './components/Insights';
 import { About } from './components/About';
 import { CTA } from './components/CTA';
@@ -12,15 +12,15 @@ import { Footer } from './components/Footer';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen overflow-x-hidden bg-[#fcf8f2] text-[#324967]">
       <Header />
       <main>
         <Hero />
-        <Services />
-        <WhyMe />
-        <WhoFor />
-        <Methodology />
-        <Collaboration />
+        <ServicesOverview />
+        <BusinessService />
+        <IndividualGrowth />
+        <WhyMidimily />
+        <PracticeSamples />
         <Insights />
         <About />
         <CTA />
