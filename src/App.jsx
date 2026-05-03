@@ -9,6 +9,7 @@ import { Insights } from './components/Insights';
 import { About } from './components/About';
 import { CTA } from './components/CTA';
 import { Footer } from './components/Footer';
+import { SitePet } from './components/pet/SitePet';
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
         <About />
         <CTA />
       </main>
+      <SitePet />
       <Footer />
     </div>
   );
