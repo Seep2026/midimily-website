@@ -19,7 +19,7 @@ function incrementSessionPromptCount() {
 }
 
 export function SitePet() {
-  const { closePet, expandPet, isClosed, isExpanded, isMobile } = usePetVisibility();
+  const { expandPet, isClosed, isExpanded, isMobile } = usePetVisibility();
   const [bubbleMessage, setBubbleMessage] = useState('');
   const [isContactNearby, setIsContactNearby] = useState(false);
   const promptedSectionsRef = useRef(new Set());
@@ -184,11 +184,6 @@ export function SitePet() {
     showBubble(getRandomItem(clickPetMessages), sitePetConfig.clickBubbleMs);
   };
 
-  const handleClose = () => {
-    closePet();
-    setBubbleMessage('');
-  };
-
   if (isClosed || (isMobile && !sitePetConfig.showMobileEntry)) {
     return null;
   }
@@ -214,23 +209,6 @@ export function SitePet() {
           <PetBubble message={bubbleMessage} onClose={() => setBubbleMessage('')} />
         </div>
       ) : null}
-
-      <button
-        type="button"
-        aria-label="关闭米地米立小助手"
-        onClick={handleClose}
-        className={`pointer-events-auto fixed z-[52] grid h-7 w-7 place-items-center rounded-full border border-[#cfd9ec] bg-white/90 text-[15px] leading-none text-[#6d7f98] shadow-[0_8px_18px_rgba(72,94,130,0.14)] transition hover:bg-[#f3f7fc] hover:text-[#4f6f97] ${
-          isMobile
-            ? isContactNearby
-              ? 'bottom-[124px] right-3'
-              : 'bottom-[78px] right-3'
-            : isContactNearby
-              ? 'bottom-[300px] right-6'
-              : 'bottom-[202px] right-6'
-        }`}
-      >
-        ×
-      </button>
 
       <PetWidget
         ariaLabel="米地米立动态小助手"
