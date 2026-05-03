@@ -238,7 +238,7 @@ export function SitePet() {
         atlas={codexPetAtlas}
         boundsPadding={boundsPadding}
         className="drop-shadow-[0_12px_22px_rgba(62,83,120,0.20)]"
-        draggable={isExpanded}
+        draggable={isExpanded || isMobile}
         imageRendering="auto"
         onAction={handlePetAction}
         onClick={handlePetClick}
