@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-03",
+  "solutions": [
+    {
+      "slug": "enterprise-ai-landing",
+      "status": "published"
+    },
+    {
+      "slug": "personal-ai-growth",
+      "status": "published"
+    }
+  ]
+}

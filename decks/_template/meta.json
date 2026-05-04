@@ -1,0 +1,52 @@
+{
+  "title": "方案标题",
+  "subtitle": "方案副标题",
+  "slug": "your-solution-slug",
+  "type": "enterprise",
+  "category": "企业 AI 落地",
+  "audience": [
+    "目标用户 1",
+    "目标用户 2",
+    "目标用户 3"
+  ],
+  "description": "一句话描述方案价值与适用场景。",
+  "fitFor": [
+    "适合谁 1",
+    "适合谁 2",
+    "适合谁 3"
+  ],
+  "problems": [
+    "核心问题 1",
+    "核心问题 2",
+    "核心问题 3",
+    "核心问题 4"
+  ],
+  "outline": [
+    "01 第一部分标题",
+    "02 第二部分标题",
+    "03 第三部分标题",
+    "04 第四部分标题",
+    "05 第五部分标题",
+    "06 第六部分标题",
+    "07 第七部分标题",
+    "08 第八部分标题"
+  ],
+  "tags": [
+    "标签 1",
+    "标签 2",
+    "标签 3"
+  ],
+  "keywords": "关键词 1 · 关键词 2 · 关键词 3 · 关键词 4 · 关键词 5",
+  "pageCount": 8,
+  "status": "draft",
+  "deckUrl": "/solutions/your-solution-slug/deck/",
+  "slidevUrl": "/solutions/your-solution-slug/slidev/",
+  "fallbackDeckUrl": "/solutions/your-solution-slug/deck/",
+  "publishedAt": "2026-05-04",
+  "updatedAt": "2026-05-04",
+  "cta": {
+    "label": "预约咨询",
+    "href": "/#contact"
+  }
+}
+

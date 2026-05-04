@@ -1,0 +1,25 @@
+{
+  "title": "职场人如何建立自己的 AI 工作流",
+  "subtitle": "从工具使用到个人效率系统",
+  "slug": "personal-ai-growth",
+  "type": "individual",
+  "category": "个体 AI 成长",
+  "audience": ["职场人", "学生", "产品经理", "运营人员", "希望提升 AI 使用能力的人"],
+  "description": "帮助职场人与学生理解 AI 工具如何进入日常学习和工作，逐步形成自己的效率系统与竞争力。",
+  "fitFor": ["想提升 AI 使用能力的职场人", "希望提高学习效率的学生", "希望减少重复工作的运营和产品人员", "正在思考 AI 时代竞争力的人"],
+  "problems": ["AI 工具很多，但不知道如何系统使用", "只会零散提问，不能形成稳定工作流", "学习和工作中重复劳动太多", "不知道如何把 AI 变成长期能力"],
+  "outline": ["01 AI 不是一个工具，而是一种新工作方式", "02 为什么很多人用了 AI，却没有提升效率", "03 个人 AI 工作流的四个层次", "04 从写作、研究、整理开始", "05 把 AI 接入日常工作", "06 形成自己的提示词和模板库", "07 30 天行动建议", "08 米地米立可以提供的支持"],
+  "tags": ["AI 工具", "个人成长", "工作流", "效率提升"],
+  "keywords": "工具 · 学习 · 工作 · 求职 · 成长",
+  "pageCount": 8,
+  "status": "published",
+  "deckUrl": "/solutions/personal-ai-growth/deck/",
+  "slidevUrl": "/solutions/personal-ai-growth/slidev/",
+  "fallbackDeckUrl": "/solutions/personal-ai-growth/deck/",
+  "publishedAt": "2026-05-03",
+  "updatedAt": "2026-05-03",
+  "cta": {
+    "label": "预约个人成长咨询",
+    "href": "/#contact"
+  }
+}

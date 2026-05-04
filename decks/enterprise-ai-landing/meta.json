@@ -1,0 +1,25 @@
+{
+  "title": "企业如何把 AI 用进真实业务",
+  "subtitle": "从工具尝鲜到流程落地",
+  "slug": "enterprise-ai-landing",
+  "type": "enterprise",
+  "category": "企业 AI 落地",
+  "audience": ["企业负责人", "运营团队", "客服与知识管理团队", "正在探索 AI 落地的中小企业"],
+  "description": "帮助企业从真实业务场景出发，理解 AI 如何进入流程、团队协作与运营提效。",
+  "fitFor": ["想引入 AI，但不知道从哪里开始的企业", "希望提升内容、运营、客服效率的团队", "正在把 AI 从个人使用推进到组织流程的公司", "需要建立 AI 使用共识的管理者"],
+  "problems": ["AI 工具很多，但业务流程没有变化", "员工个人在用，团队没有协同", "试点很多，沉淀很少", "不知道第一个 AI 场景从哪里开始"],
+  "outline": ["01 企业不是没有用 AI，而是 AI 没有进入流程", "02 常见误区：工具尝鲜不等于业务落地", "03 企业 AI 落地的四个判断", "04 从场景梳理开始", "05 选择合适工具，而不是追逐最新工具", "06 把 AI 接入团队流程", "07 通过培训和复盘形成组织经验", "08 米地米立可以提供的支持"],
+  "tags": ["企业 AI", "业务流程", "AI 落地", "团队提效"],
+  "keywords": "场景 · 流程 · 工具 · 培训 · 陪跑",
+  "pageCount": 8,
+  "status": "published",
+  "deckUrl": "/solutions/enterprise-ai-landing/deck/",
+  "slidevUrl": "/solutions/enterprise-ai-landing/slidev/",
+  "fallbackDeckUrl": "/solutions/enterprise-ai-landing/deck/",
+  "publishedAt": "2026-05-03",
+  "updatedAt": "2026-05-03",
+  "cta": {
+    "label": "预约企业 AI 咨询",
+    "href": "/#contact"
+  }
+}

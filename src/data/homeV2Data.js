@@ -5,13 +5,12 @@ export const siteMeta = {
 };
 
 export const navItems = [
-  { label: '首页', href: '#hero' },
-  { label: '企业服务', href: '#business' },
-  { label: '个人成长', href: '#individual' },
-  { label: '实践', href: '#practice' },
-  { label: '观点', href: '#insights' },
-  { label: '关于', href: '#about' },
-  { label: '联系', href: '#contact' },
+  { label: '首页', href: '/#hero' },
+  { label: '企业服务', href: '/#business' },
+  { label: '个人成长', href: '/#individual' },
+  { label: '实践', href: '/#practice' },
+  { label: '方案', href: '/solutions' },
+  { label: '联系', href: '/#contact' },
 ];
 
 export const heroStats = [
@@ -146,24 +145,5 @@ export const insightCards = [
     category: '实践观察',
     title: 'AI 工具、开源项目与新机会',
     body: '分析 AI 工具、开源项目和新型工作方式带来的真实机会。',
-  },
-];
-
-export const whyMetrics = [
-  {
-    value: '26 年',
-    label: '技术、产品、运营与管理经验',
-  },
-  {
-    value: '大厂 + 创业',
-    label: '经历过组织体系，也经历过从零开始',
-  },
-  {
-    value: '技术 × 产品 × 运营',
-    label: '能连接技术能力与业务场景',
-  },
-  {
-    value: 'AI 实践者',
-    label: '持续探索工具、流程与真实应用',
   },
 ];

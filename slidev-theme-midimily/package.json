@@ -1,0 +1,13 @@
+{
+  "name": "slidev-theme-midimily",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "slidev": {
+    "defaults": {
+      "colorSchema": "light",
+      "aspectRatio": "16/9",
+      "canvasWidth": 1060
+    }
+  }
+}

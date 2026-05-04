@@ -1,0 +1,360 @@
+:root {
+  --mily-bg: #fcf8f2;
+  --mily-surface: #fbfdff;
+  --mily-line: #d7e3f0;
+  --mily-text: #2e415f;
+  --mily-muted: #607795;
+  --mily-blue: #7c92bb;
+  --mily-cyan: #8cc7bd;
+}
+
+.slidev-layout {
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  height: 100vh;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--mily-text);
+  background:
+    radial-gradient(circle at 88% 16%, rgba(140, 199, 189, 0.22), transparent 28%),
+    radial-gradient(circle at 14% 78%, rgba(124, 146, 187, 0.18), transparent 30%),
+    linear-gradient(135deg, #fcf8f2 0%, #f7faff 58%, #f4fbf8 100%);
+  font-family: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.mily-topbar {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  align-items: center;
+  gap: 24px;
+  width: min(1240px, calc(100% - 32px));
+  margin: 22px auto 0;
+}
+
+.mily-brand {
+  display: grid;
+  gap: 4px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.mily-brand-name {
+  color: #304864;
+  font-size: 22px;
+  font-weight: 650;
+  letter-spacing: 0;
+}
+
+.mily-brand-subtitle {
+  color: #6f84a1;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+.mily-nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 22px;
+  color: #6b819f;
+  font-size: 13px;
+}
+
+.mily-nav a,
+.mily-back {
+  color: inherit;
+  text-decoration: none;
+}
+
+.mily-nav a:hover,
+.mily-back:hover {
+  color: #496b95;
+}
+
+.mily-back {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+  border: 1px solid #cfe0f4;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #5877a1;
+  font-size: 13px;
+}
+
+.mily-deck-shell {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  width: min(1240px, calc(100% - 32px));
+  flex-direction: column;
+  margin: 12px auto 18px;
+}
+
+.mily-deck-toolbar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 0 2px 10px;
+}
+
+.mily-deck-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  color: #526b8e;
+  font-size: 15px;
+}
+
+.mily-slide {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  padding: 14px 0 0;
+}
+
+.mily-card {
+  width: 100%;
+  min-height: 0;
+  border: 1px solid rgba(215, 227, 240, 0.95);
+  border-radius: 30px;
+  background: rgba(251, 253, 255, 0.86);
+  box-shadow: 0 18px 42px rgba(96, 120, 160, 0.12);
+}
+
+.mily-page {
+  display: inline-flex;
+  min-height: 34px;
+  min-width: 72px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d4e2f1;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #5877a1;
+  font-weight: 600;
+}
+
+.mily-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 2px 0;
+}
+
+.mily-controls button {
+  min-height: 36px;
+  border: 1px solid #d4e2f1;
+  border-radius: 11px;
+  padding: 0 14px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #5877a1;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.mily-controls button:hover:not(:disabled) {
+  border-color: #b9cee6;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.mily-controls button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.mily-controls-hint {
+  margin-left: auto;
+  color: #758ba8;
+  font-size: 13px;
+}
+
+.mily-progress {
+  height: 3px;
+  overflow: hidden;
+  margin-top: 2px;
+  border-radius: 999px;
+  background: #dfe8f4;
+}
+
+.mily-progress-bar {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #7c92bb, #8cc7bd);
+  transition: width 0.2s ease;
+}
+
+.mily-eyebrow {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 28px;
+  padding: 6px 14px;
+  border: 1px solid #cfe0f4;
+  border-radius: 999px;
+  background: #f0f6fd;
+  color: #6284af;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.slidev-layout h1 {
+  margin: 0;
+  color: var(--mily-text);
+  font-size: clamp(32px, 5.1vw, 64px);
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+.slidev-layout p {
+  max-width: 760px;
+  margin-top: 24px;
+  color: var(--mily-muted);
+  font-size: 26px;
+  line-height: 1.45;
+}
+
+.slidev-layout ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  width: 100%;
+  margin: 34px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.slidev-layout li {
+  min-height: 78px;
+  padding: 20px 22px;
+  border: 1px solid #d6e1ee;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.78);
+  color: #4f6788;
+  font-size: 24px;
+  line-height: 1.35;
+}
+
+.mily-process-list {
+  counter-reset: process;
+}
+
+.mily-process-list li {
+  position: relative;
+  padding-left: 62px;
+}
+
+.mily-process-list li::before {
+  counter-increment: process;
+  content: counter(process);
+  position: absolute;
+  left: 20px;
+  top: 18px;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 999px;
+  background: #e8f0ff;
+  color: #617ead;
+  font-size: 15px;
+}
+
+.mily-cta a {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  margin-top: 32px;
+  padding: 0 22px;
+  border-radius: 14px;
+  background: var(--mily-blue);
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .mily-topbar {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    width: calc(100% - 24px);
+    margin-top: 16px;
+  }
+
+  .mily-nav {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .mily-deck-shell {
+    width: calc(100% - 24px);
+    margin: 8px auto 14px;
+  }
+
+  .mily-deck-toolbar {
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+  }
+
+  .mily-deck-title {
+    grid-column: 1 / -1;
+    text-align: left;
+    font-size: 14px;
+  }
+
+  .mily-slide {
+    padding-top: 10px;
+  }
+
+  .mily-card {
+    min-height: 420px;
+    border-radius: 20px;
+  }
+
+  .slidev-layout h1 {
+    font-size: 38px;
+  }
+
+  .slidev-layout p {
+    margin-top: 16px;
+    font-size: 20px;
+  }
+
+  .slidev-layout ul {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 22px;
+  }
+
+  .slidev-layout li {
+    min-height: 58px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    font-size: 19px;
+  }
+
+  .mily-controls {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 10px;
+  }
+
+  .mily-controls button {
+    min-height: 44px;
+    padding: 0 16px;
+  }
+
+  .mily-controls-hint {
+    width: 100%;
+    margin-left: 0;
+    font-size: 12px;
+  }
+}
