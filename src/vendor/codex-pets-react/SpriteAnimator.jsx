@@ -58,10 +58,12 @@ export function SpriteAnimator({
     return null;
   }
 
-  const width = atlas.cellWidth * scale;
-  const height = atlas.cellHeight * scale;
-  const backgroundWidth = atlas.columns * width;
-  const backgroundHeight = atlas.rows * height;
+  const baseWidth = atlas.cellWidth;
+  const baseHeight = atlas.cellHeight;
+  const width = baseWidth * scale;
+  const height = baseHeight * scale;
+  const backgroundWidth = atlas.columns * baseWidth;
+  const backgroundHeight = atlas.rows * baseHeight;
 
   return (
     <div
@@ -72,13 +74,23 @@ export function SpriteAnimator({
       style={{
         width,
         height,
-        backgroundImage: `url("${src}")`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: `${backgroundWidth}px ${backgroundHeight}px`,
-        backgroundPosition: `${-frame * width}px ${-definition.row * height}px`,
-        imageRendering,
+        overflow: 'hidden',
         ...style,
       }}
-    />
+    >
+      <div
+        style={{
+          width: baseWidth,
+          height: baseHeight,
+          backgroundImage: `url("${src}")`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: `${backgroundWidth}px ${backgroundHeight}px`,
+          backgroundPosition: `${-frame * baseWidth}px ${-definition.row * baseHeight}px`,
+          imageRendering,
+          transform: `scale(${scale})`,
+          transformOrigin: 'top left',
+        }}
+      />
+    </div>
   );
 }

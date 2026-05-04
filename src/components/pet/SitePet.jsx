@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { PetWidget, codexPetAtlas, usePetController } from '../../vendor/codex-pets-react';
 import { PetBubble } from './PetBubble';
-import { sitePetConfig } from './petConfig';
+import { getPetProfile, getSafeAnimation, sitePetConfig } from './petConfig';
 import { clickPetMessages, initialPetMessage, sectionPetMessages } from './petMessages';
 import { usePetVisibility } from './usePetVisibility';
 
@@ -22,17 +22,70 @@ export function SitePet() {
   const { expandPet, isClosed, isExpanded, isMobile } = usePetVisibility();
   const [bubbleMessage, setBubbleMessage] = useState('');
   const [isContactNearby, setIsContactNearby] = useState(false);
+  const [activePetId, setActivePetId] = useState(sitePetConfig.activePetId);
+  const [spriteVersion, setSpriteVersion] = useState(() => Date.now());
   const promptedSectionsRef = useRef(new Set());
   const lastSectionPromptAtRef = useRef(0);
   const hideTimerRef = useRef(null);
+  const atlasAnimationNames = useMemo(() => Object.keys(codexPetAtlas.animations), []);
+  const activePetProfile = getPetProfile(activePetId) ?? getPetProfile(sitePetConfig.fallbackPetId);
+  const defaultAnimation = getSafeAnimation(sitePetConfig.defaultAnimation, activePetProfile, atlasAnimationNames, ['idle']);
+  const waitingAnimation = getSafeAnimation(sitePetConfig.waitingAnimation, activePetProfile, atlasAnimationNames, ['idle']);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const verifyPetAssets = async () => {
+      if (!activePetProfile) {
+        return;
+      }
+
+      try {
+        const petJsonResponse = await fetch(activePetProfile.petJsonPath, { cache: 'no-store' });
+        if (!petJsonResponse.ok) {
+          throw new Error(`pet.json missing: ${petJsonResponse.status}`);
+        }
+        await petJsonResponse.json();
+
+        await new Promise((resolve, reject) => {
+          const image = new window.Image();
+          image.onload = resolve;
+          image.onerror = () => reject(new Error('spritesheet load failed'));
+          image.src = `${activePetProfile.spritesheetPath}?t=${Date.now()}`;
+        });
+        setSpriteVersion(Date.now());
+      } catch (error) {
+        if (cancelled) {
+          return;
+        }
+
+        if (activePetId !== sitePetConfig.fallbackPetId) {
+          console.warn(
+            `[SitePet] Failed to load pet "${activePetId}", fallback to "${sitePetConfig.fallbackPetId}".`,
+            error,
+          );
+          setActivePetId(sitePetConfig.fallbackPetId);
+          return;
+        }
+
+        console.warn('[SitePet] Fallback pet also failed to load.', error);
+      }
+    };
+
+    verifyPetAssets();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [activePetId, activePetProfile]);
 
   const { pet, petDispatch } = usePetController({
     initialState: {
-      animation: { name: sitePetConfig.defaultAnimation, mode: 'loop' },
+      animation: { name: defaultAnimation, mode: 'loop' },
       pin: 'bottom-right',
     },
-    defaultAnimation: sitePetConfig.defaultAnimation,
-    waitingAnimation: sitePetConfig.waitingAnimation,
+    defaultAnimation,
+    waitingAnimation,
     waitingAfterMs: sitePetConfig.waitingAfterMs,
   });
 
@@ -50,22 +103,40 @@ export function SitePet() {
     };
   }, [isContactNearby, isMobile]);
 
-  const showBubble = useCallback((message, duration = sitePetConfig.clickBubbleMs, countAsAutoPrompt = false) => {
-    if (hideTimerRef.current) {
-      window.clearTimeout(hideTimerRef.current);
-    }
+  const showBubble = useCallback(
+    (message, duration = sitePetConfig.clickBubbleMs, countAsAutoPrompt = false, requestedAnimation = null) => {
+      if (hideTimerRef.current) {
+        window.clearTimeout(hideTimerRef.current);
+      }
 
-    setBubbleMessage(message);
+      if (requestedAnimation) {
+        const safeAnimation = getSafeAnimation(
+          requestedAnimation,
+          activePetProfile,
+          atlasAnimationNames,
+          ['waiting', 'idle'],
+        );
+        petDispatch({
+          type: 'animation.play',
+          animation: safeAnimation,
+          mode: 'once',
+          then: defaultAnimation,
+        });
+      }
 
-    if (countAsAutoPrompt) {
-      incrementSessionPromptCount();
-    }
+      setBubbleMessage(message);
 
-    hideTimerRef.current = window.setTimeout(() => {
-      setBubbleMessage('');
-      hideTimerRef.current = null;
-    }, duration);
-  }, []);
+      if (countAsAutoPrompt) {
+        incrementSessionPromptCount();
+      }
+
+      hideTimerRef.current = window.setTimeout(() => {
+        setBubbleMessage('');
+        hideTimerRef.current = null;
+      }, duration);
+    },
+    [activePetProfile, atlasAnimationNames, defaultAnimation, petDispatch],
+  );
 
   useEffect(
     () => () => {
@@ -96,6 +167,8 @@ export function SitePet() {
     const targets = [
       { id: 'business', message: sectionPetMessages.business },
       { id: 'individual', message: sectionPetMessages.individual },
+      { id: 'solutions-preview', message: sectionPetMessages.solutions },
+      { id: 'contact', message: sectionPetMessages.contact },
     ];
 
     const observer = new IntersectionObserver(
@@ -117,7 +190,7 @@ export function SitePet() {
 
           promptedSectionsRef.current.add(id);
           lastSectionPromptAtRef.current = now;
-          showBubble(target.message, sitePetConfig.sectionBubbleMs, true);
+          showBubble(target.message, sitePetConfig.sectionBubbleMs, true, sitePetConfig.thinkingAnimation);
         });
       },
       {
@@ -175,11 +248,16 @@ export function SitePet() {
       return;
     }
 
+    const clickAnimation = getSafeAnimation(sitePetConfig.clickAnimation, activePetProfile, atlasAnimationNames, [
+      'happy',
+      'idle',
+    ]);
+
     petDispatch({
       type: 'animation.play',
-      animation: sitePetConfig.clickAnimation,
+      animation: clickAnimation,
       mode: 'once',
-      then: sitePetConfig.defaultAnimation,
+      then: defaultAnimation,
     });
     showBubble(getRandomItem(clickPetMessages), sitePetConfig.clickBubbleMs);
   };
@@ -223,7 +301,7 @@ export function SitePet() {
         pin={pet.pin}
         position={pet.position}
         scale={scale}
-        src={sitePetConfig.spriteSrc}
+        src={`${activePetProfile?.spritesheetPath}?v=${spriteVersion}`}
         zIndex={51}
       />
     </div>
