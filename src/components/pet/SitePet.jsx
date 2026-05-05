@@ -9,6 +9,36 @@ function getRandomItem(items) {
   return items[Math.floor(Math.random() * items.length)];
 }
 
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function shuffleArray(items) {
+  const next = [...items];
+  for (let index = next.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [next[index], next[swapIndex]] = [next[swapIndex], next[index]];
+  }
+  return next;
+}
+
+function pickWeightedBehavior(behaviors) {
+  const total = behaviors.reduce((sum, item) => sum + Math.max(0, Number(item.weight) || 0), 0);
+  if (total <= 0) {
+    return behaviors[0] ?? null;
+  }
+
+  let cursor = Math.random() * total;
+  for (const behavior of behaviors) {
+    cursor -= Math.max(0, Number(behavior.weight) || 0);
+    if (cursor <= 0) {
+      return behavior;
+    }
+  }
+
+  return behaviors[behaviors.length - 1] ?? null;
+}
+
 function getSessionPromptCount() {
   const value = Number(window.sessionStorage.getItem(sitePetConfig.sessionPromptKey) ?? '0');
   return Number.isFinite(value) ? value : 0;
@@ -27,10 +57,14 @@ export function SitePet() {
   const promptedSectionsRef = useRef(new Set());
   const lastSectionPromptAtRef = useRef(0);
   const hideTimerRef = useRef(null);
+  const ambientSequenceRef = useRef([]);
+  const ambientSequenceIndexRef = useRef(0);
   const atlasAnimationNames = useMemo(() => Object.keys(codexPetAtlas.animations), []);
   const activePetProfile = getPetProfile(activePetId) ?? getPetProfile(sitePetConfig.fallbackPetId);
   const defaultAnimation = getSafeAnimation(sitePetConfig.defaultAnimation, activePetProfile, atlasAnimationNames, ['idle']);
-  const waitingAnimation = getSafeAnimation(sitePetConfig.waitingAnimation, activePetProfile, atlasAnimationNames, ['idle']);
+  const waitingAnimation = sitePetConfig.waitingAnimation
+    ? getSafeAnimation(sitePetConfig.waitingAnimation, activePetProfile, atlasAnimationNames, ['idle'])
+    : null;
 
   useEffect(() => {
     let cancelled = false;
@@ -137,6 +171,117 @@ export function SitePet() {
     },
     [activePetProfile, atlasAnimationNames, defaultAnimation, petDispatch],
   );
+
+  useEffect(() => {
+    if (!sitePetConfig.ambientMotionEnabled || isClosed || (isMobile && !isExpanded)) {
+      return undefined;
+    }
+
+    let cancelled = false;
+    let timer = null;
+    let runningResetTimer = null;
+
+    const scheduleNext = () => {
+      if (cancelled) {
+        return;
+      }
+
+      timer = window.setTimeout(() => {
+        if (cancelled) {
+          return;
+        }
+
+        if (!pet.isDragging && pet.animation.mode === 'loop') {
+          let behavior = null;
+          if (sitePetConfig.ambientMotionUseSequence && (sitePetConfig.ambientMotionSequence?.length ?? 0) > 0) {
+            if (ambientSequenceRef.current.length === 0) {
+              ambientSequenceRef.current = shuffleArray(sitePetConfig.ambientMotionSequence);
+              ambientSequenceIndexRef.current = 0;
+            }
+
+            if (ambientSequenceIndexRef.current >= ambientSequenceRef.current.length) {
+              ambientSequenceRef.current = shuffleArray(sitePetConfig.ambientMotionSequence);
+              ambientSequenceIndexRef.current = 0;
+            }
+
+            behavior = {
+              animation: ambientSequenceRef.current[ambientSequenceIndexRef.current],
+              mode: ['run-right', 'run-left', 'running'].includes(
+                ambientSequenceRef.current[ambientSequenceIndexRef.current],
+              )
+                ? 'run'
+                : 'once',
+            };
+            ambientSequenceIndexRef.current += 1;
+          } else {
+            behavior = pickWeightedBehavior(sitePetConfig.ambientMotionBehaviors ?? []);
+          }
+
+          const requestedAnimation = behavior?.animation ?? 'idle';
+          const safeAnimation = getSafeAnimation(requestedAnimation, activePetProfile, atlasAnimationNames, [
+            'wave',
+            'jump',
+            'idle',
+          ]);
+          const mode = behavior?.mode ?? 'once';
+
+          if (mode === 'rest') {
+            petDispatch({
+              type: 'animation.set',
+              animation: defaultAnimation,
+            });
+          } else if (mode === 'run') {
+            petDispatch({
+              type: 'animation.set',
+              animation: safeAnimation,
+            });
+
+            if (runningResetTimer) {
+              window.clearTimeout(runningResetTimer);
+            }
+
+            runningResetTimer = window.setTimeout(() => {
+              petDispatch({
+                type: 'animation.set',
+                animation: defaultAnimation,
+              });
+            }, getRandomInt(sitePetConfig.ambientMotionRunMinMs, sitePetConfig.ambientMotionRunMaxMs));
+          } else {
+            petDispatch({
+              type: 'animation.play',
+              animation: safeAnimation,
+              mode: 'once',
+              then: defaultAnimation,
+            });
+          }
+        }
+
+        scheduleNext();
+      }, getRandomInt(sitePetConfig.ambientMotionMinDelayMs, sitePetConfig.ambientMotionMaxDelayMs));
+    };
+
+    scheduleNext();
+
+    return () => {
+      cancelled = true;
+      if (timer) {
+        window.clearTimeout(timer);
+      }
+      if (runningResetTimer) {
+        window.clearTimeout(runningResetTimer);
+      }
+    };
+  }, [
+    activePetProfile,
+    atlasAnimationNames,
+    defaultAnimation,
+    isClosed,
+    isExpanded,
+    isMobile,
+    pet.animation.mode,
+    pet.isDragging,
+    petDispatch,
+  ]);
 
   useEffect(
     () => () => {

@@ -6,6 +6,11 @@
   --mily-muted: #607795;
   --mily-blue: #7c92bb;
   --mily-cyan: #8cc7bd;
+  --mily-ink: #344e72;
+  --mily-plum: #8f9cd6;
+  --mily-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
+  --mily-sans: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --mily-mono: "IBM Plex Mono", "SFMono-Regular", "Menlo", monospace;
 }
 
 .slidev-layout {
@@ -20,12 +25,25 @@
     radial-gradient(circle at 88% 16%, rgba(140, 199, 189, 0.22), transparent 28%),
     radial-gradient(circle at 14% 78%, rgba(124, 146, 187, 0.18), transparent 30%),
     linear-gradient(135deg, #fcf8f2 0%, #f7faff 58%, #f4fbf8 100%);
-  font-family: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: var(--mily-sans);
+}
+
+.slidev-layout::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.3;
+  background-image:
+    radial-gradient(circle at 20% 15%, rgba(124, 146, 187, 0.14) 0, transparent 34%),
+    radial-gradient(circle at 86% 82%, rgba(140, 199, 189, 0.12) 0, transparent 40%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3) 1px, transparent 1px, transparent 4px);
+  background-size: auto, auto, 100% 4px;
 }
 
 .mily-topbar {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   display: grid;
   grid-template-columns: 220px 1fr;
   align-items: center;
@@ -43,9 +61,10 @@
 
 .mily-brand-name {
   color: #304864;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 650;
   letter-spacing: 0;
+  font-family: var(--mily-serif);
 }
 
 .mily-brand-subtitle {
@@ -57,9 +76,10 @@
 .mily-nav {
   display: flex;
   justify-content: flex-end;
-  gap: 22px;
+  gap: 20px;
   color: #6b819f;
   font-size: 13px;
+  letter-spacing: 0.02em;
 }
 
 .mily-nav a,
@@ -83,7 +103,10 @@
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.72);
   color: #5877a1;
-  font-size: 13px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: var(--mily-mono);
 }
 
 .mily-deck-shell {
@@ -110,8 +133,9 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: center;
-  color: #526b8e;
-  font-size: 15px;
+  color: #4f688d;
+  font-size: 16px;
+  font-family: var(--mily-serif);
 }
 
 .mily-slide {
@@ -119,15 +143,68 @@
   flex: 1;
   min-height: 0;
   padding: 14px 0 0;
+  align-items: stretch;
 }
 
 .mily-card {
+  position: relative;
   width: 100%;
   min-height: 0;
   border: 1px solid rgba(215, 227, 240, 0.95);
   border-radius: 30px;
   background: rgba(251, 253, 255, 0.86);
-  box-shadow: 0 18px 42px rgba(96, 120, 160, 0.12);
+  box-shadow: 0 14px 30px rgba(96, 120, 160, 0.1);
+  overflow: hidden;
+}
+
+.mily-card::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(203, 219, 238, 0.62);
+  border-radius: 22px;
+  pointer-events: none;
+}
+
+.mily-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  background:
+    radial-gradient(circle at 96% 10%, rgba(124, 146, 187, 0.1), transparent 26%),
+    radial-gradient(circle at 6% 90%, rgba(140, 199, 189, 0.1), transparent 26%),
+    linear-gradient(110deg, transparent 0 56%, rgba(255, 255, 255, 0.26) 56% 62%, transparent 62% 100%);
+}
+
+.mily-card.mily-cover::before,
+.mily-card.mily-statement::before {
+  inset: 12px;
+  border-width: 1.2px;
+}
+
+.mily-card.mily-cover::after {
+  opacity: 0.62;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(124, 146, 187, 0.18), transparent 32%),
+    radial-gradient(circle at 0% 100%, rgba(140, 199, 189, 0.14), transparent 36%);
+}
+
+.mily-card > .mily-eyebrow {
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.mily-card > .mily-eyebrow::after {
+  content: "";
+  position: absolute;
+  left: calc(100% + 14px);
+  right: -10px;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(190, 205, 225, 0.75), rgba(190, 205, 225, 0));
+  transform: translateY(-50%);
 }
 
 .mily-page {
@@ -141,6 +218,7 @@
   background: rgba(255, 255, 255, 0.72);
   color: #5877a1;
   font-weight: 600;
+  font-family: var(--mily-mono);
 }
 
 .mily-controls {
@@ -158,6 +236,7 @@
   background: rgba(255, 255, 255, 0.72);
   color: #5877a1;
   font-size: 13px;
+  font-family: var(--mily-sans);
   transition: all 0.2s ease;
 }
 
@@ -174,7 +253,9 @@
 .mily-controls-hint {
   margin-left: auto;
   color: #758ba8;
-  font-size: 13px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  font-family: var(--mily-mono);
 }
 
 .mily-progress {
@@ -201,24 +282,87 @@
   border-radius: 999px;
   background: #f0f6fd;
   color: #6284af;
-  font-size: 14px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--mily-mono);
   line-height: 1.2;
 }
 
 .slidev-layout h1 {
   margin: 0;
-  color: var(--mily-text);
+  color: var(--mily-ink);
   font-size: clamp(32px, 5.1vw, 64px);
-  line-height: 1.1;
+  line-height: 1.14;
   letter-spacing: 0;
+  font-family: var(--mily-serif);
+  font-weight: 620;
+  text-wrap: balance;
 }
 
 .slidev-layout p {
   max-width: 760px;
   margin-top: 24px;
   color: var(--mily-muted);
-  font-size: 26px;
-  line-height: 1.45;
+  font-size: clamp(21px, 2.45vw, 28px);
+  line-height: 1.5;
+  max-inline-size: 34ch;
+}
+
+.mily-cover h1 {
+  max-width: 15ch;
+  font-size: clamp(44px, 6vw, 74px);
+  line-height: 1.08;
+}
+
+.mily-cover p {
+  margin-top: 18px;
+  max-inline-size: 24ch;
+  font-size: clamp(22px, 2.7vw, 30px);
+  color: #567399;
+  max-width: 26ch;
+}
+
+.mily-cover p::before {
+  content: "";
+  display: block;
+  width: 86px;
+  height: 3px;
+  margin: 0 0 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--mily-blue), var(--mily-cyan));
+}
+
+.mily-cover .mily-eyebrow {
+  margin-bottom: 34px;
+}
+
+.mily-statement {
+  position: relative;
+}
+
+.mily-statement h1 {
+  max-width: 17ch;
+}
+
+.mily-statement p {
+  font-size: clamp(22px, 2.8vw, 34px);
+  color: #4f688c;
+  padding-left: 20px;
+  border-left: 4px solid rgba(124, 146, 187, 0.35);
+  max-inline-size: 28ch;
+}
+
+.mily-statement p::before {
+  content: "“";
+  margin-right: 2px;
+  color: rgba(89, 120, 161, 0.5);
+}
+
+.mily-statement p::after {
+  content: "”";
+  margin-left: 2px;
+  color: rgba(89, 120, 161, 0.5);
 }
 
 .slidev-layout ul {
@@ -235,11 +379,57 @@
   min-height: 78px;
   padding: 20px 22px;
   border: 1px solid #d6e1ee;
-  border-radius: 18px;
+  border-radius: 14px;
   background: rgba(255, 255, 255, 0.78);
   color: #4f6788;
-  font-size: 24px;
+  font-size: clamp(19px, 2.05vw, 24px);
   line-height: 1.35;
+}
+
+.slidev-layout li:nth-child(odd) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(249, 252, 255, 0.8));
+}
+
+.slidev-layout li:nth-child(even) {
+  background:
+    linear-gradient(180deg, rgba(252, 255, 255, 0.88), rgba(246, 253, 250, 0.8));
+}
+
+.mily-points ul {
+  counter-reset: milyPoint;
+}
+
+.mily-points li {
+  position: relative;
+  padding-left: 62px;
+}
+
+.mily-points li::before {
+  counter-increment: milyPoint;
+  content: counter(milyPoint, decimal-leading-zero);
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  color: #6d87ab;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  font-family: var(--mily-mono);
+}
+
+.mily-points li::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  bottom: 14px;
+  width: 28px;
+  height: 1px;
+  background: rgba(141, 161, 192, 0.5);
+}
+
+.mily-process li {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(247, 251, 255, 0.8));
 }
 
 .mily-process-list {
@@ -274,10 +464,60 @@
   margin-top: 32px;
   padding: 0 22px;
   border-radius: 14px;
-  background: var(--mily-blue);
+  background: linear-gradient(90deg, #7c92bb, #748fbd);
   color: white;
   font-size: 18px;
   text-decoration: none;
+}
+
+.mily-cta a::after {
+  content: "→";
+  margin-left: 8px;
+  font-size: 18px;
+}
+
+.mily-card h1,
+.mily-card p,
+.mily-card ul,
+.mily-card li,
+.mily-card .mily-eyebrow {
+  position: relative;
+  z-index: 1;
+}
+
+.mily-card > * {
+  animation: milyEditorialIn 360ms ease both;
+}
+
+.mily-card ul li {
+  animation: milyEditorialIn 420ms ease both;
+}
+
+.mily-card ul li:nth-child(1) { animation-delay: 40ms; }
+.mily-card ul li:nth-child(2) { animation-delay: 90ms; }
+.mily-card ul li:nth-child(3) { animation-delay: 140ms; }
+.mily-card ul li:nth-child(4) { animation-delay: 190ms; }
+
+.mily-card blockquote {
+  margin: 24px 0 0;
+  padding: 14px 16px;
+  border: 1px solid #d7e2f0;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.74);
+  color: #5a7397;
+  font-size: clamp(16px, 1.6vw, 20px);
+  line-height: 1.55;
+}
+
+@keyframes milyEditorialIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 900px) {
@@ -319,12 +559,26 @@
     border-radius: 20px;
   }
 
+  .mily-card::before {
+    inset: 10px;
+    border-radius: 14px;
+  }
+
   .slidev-layout h1 {
     font-size: 38px;
   }
 
   .slidev-layout p {
     margin-top: 16px;
+    font-size: 19px;
+    max-inline-size: 100%;
+  }
+
+  .mily-cover h1 {
+    font-size: 42px;
+  }
+
+  .mily-cover p {
     font-size: 20px;
   }
 

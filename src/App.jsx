@@ -93,7 +93,7 @@ export default function App() {
           <CTA />
         </main>
       )}
-      {!deckMatch ? <SitePet /> : null}
+      <SitePet />
       <Footer />
     </div>
   );

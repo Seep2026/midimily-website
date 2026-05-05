@@ -6,6 +6,7 @@
 ## 0) 约束边界
 
 - 不替换当前 Slidev 方案。
+- `guizang-ppt-skill` 仅用于草稿与版式参考，不作为线上渲染引擎。
 - 不引入 stella-decks 源码，不 fork stella-decks。
 - 不新增 PDF/PPT 下载 UI。
 - 不新增后台/CMS/登录。
@@ -41,6 +42,12 @@ decks/{slug}/
 - 不要写什么
 
 ## 3) 产出内容文件
+
+可选草稿环节（推荐）：
+
+- 先用 `guizang-ppt-skill` 生成一版叙事与版式草稿，用于快速试错。
+- 把确认后的文案结构回填到 `slides.md`（Slidev）中。
+- 线上发布仍走 `/solutions/{slug}/slidev/` 路径。
 
 1. 创建/更新 `meta.json`
 2. 创建/更新 `slides.md`
@@ -94,4 +101,3 @@ pnpm build
 - pdf-lib 合并与目录处理
 
 注意：当前阶段不实现公开页面的 PDF/PPT 下载按钮。
-
