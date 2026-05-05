@@ -11,7 +11,7 @@ function DeckSlide({ slide, onAdvance, isLast }) {
           onAdvance();
         }
       }}
-      className={`mx-auto flex min-h-[460px] w-full max-w-[1220px] flex-col justify-center rounded-[24px] border border-[#d7e3f0] bg-[#fbfdff]/92 p-6 shadow-[0_14px_32px_rgba(96,120,160,0.12)] transition duration-300 sm:p-8 md:min-h-[680px] md:p-12 ${
+      className={`mx-auto flex min-h-[460px] w-full max-w-[1220px] flex-col rounded-[24px] border border-[#d7e3f0] bg-[#fbfdff]/92 p-6 shadow-[0_14px_32px_rgba(96,120,160,0.12)] transition duration-300 sm:p-8 md:min-h-[680px] md:p-12 ${
         isLast ? 'cursor-default' : 'cursor-pointer'
       }`}
       role="button"
@@ -24,30 +24,37 @@ function DeckSlide({ slide, onAdvance, isLast }) {
       }}
       aria-label={isLast ? '当前为最后一页' : '点击翻到下一页'}
     >
-      <h1 className="max-w-[980px] text-[32px] leading-tight text-[#2e415f] sm:text-[44px] md:text-[72px]">{slide.title}</h1>
-      {slide.subtitle ? (
-        <p className="mt-5 max-w-[860px] text-[20px] leading-relaxed text-[#5a7295] sm:text-[28px]">{slide.subtitle}</p>
-      ) : null}
+      <div className="w-full max-w-[980px]">
+        <h1 className="text-[32px] leading-tight text-[#2e415f] sm:text-[44px] md:text-[72px]">{slide.title}</h1>
+      </div>
 
-      {slide.points.length > 0 ? (
-        <ul className="mt-9 grid gap-3 sm:grid-cols-2">
-          {slide.points.map((point) => (
-            <li key={point} className="rounded-[16px] border border-[#d6e1ee] bg-white/78 px-4 py-4 text-[18px] text-[#4f6788] sm:text-[22px]">
-              {point}
-            </li>
-          ))}
-        </ul>
-      ) : null}
+      <div className="flex min-h-0 flex-1 items-center">
+        <div className="w-full max-w-[980px]">
+          {slide.subtitle ? (
+            <p className="max-w-[860px] text-[20px] leading-relaxed text-[#5a7295] sm:text-[28px]">{slide.subtitle}</p>
+          ) : null}
 
-      {isCta ? (
-        <a
-          href={slide.href}
-          onClick={(event) => event.stopPropagation()}
-          className="mt-8 inline-flex min-h-11 w-fit items-center rounded-[12px] bg-[#7c92bb] px-5 text-[14px] font-medium text-white transition hover:bg-[#6f86b0]"
-        >
-          {slide.button}
-        </a>
-      ) : null}
+          {slide.points.length > 0 ? (
+            <ul className="mt-9 grid gap-3 sm:grid-cols-2">
+              {slide.points.map((point) => (
+                <li key={point} className="rounded-[16px] border border-[#d6e1ee] bg-white/78 px-4 py-4 text-[18px] text-[#4f6788] sm:text-[22px]">
+                  {point}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+
+          {isCta ? (
+            <a
+              href={slide.href}
+              onClick={(event) => event.stopPropagation()}
+              className="mt-8 inline-flex min-h-11 w-fit items-center rounded-[12px] bg-[#7c92bb] px-5 text-[14px] font-medium text-white transition hover:bg-[#6f86b0]"
+            >
+              {slide.button}
+            </a>
+          ) : null}
+        </div>
+      </div>
     </section>
   );
 }

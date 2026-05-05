@@ -1,4 +1,4 @@
-import { getDeckBySlug } from '../../data/solutionsData';
+import { getDeckBySlug, getSolutionVersionLabel } from '../../data/solutionsData';
 
 function SolutionDeckPreview({ solution }) {
   const deck = getDeckBySlug(solution.slug);
@@ -7,6 +7,7 @@ function SolutionDeckPreview({ solution }) {
   const previewTitle = coverSlide?.title || solution.title;
   const previewSubtitle = coverSlide?.subtitle || solution.subtitle;
   const previewEyebrow = coverSlide?.eyebrow || solution.category;
+  const versionLabel = getSolutionVersionLabel(solution);
 
   return (
     <div
@@ -36,6 +37,11 @@ function SolutionDeckPreview({ solution }) {
           <h4 className="text-[20px] leading-tight text-[#2f4867] sm:text-[24px]">{previewTitle}</h4>
           <p className="mt-2 text-[13px] leading-relaxed text-[#647c9d] sm:text-[15px]">{previewSubtitle}</p>
         </div>
+        {versionLabel ? (
+          <span className="absolute bottom-3 right-4 text-[11px] text-[#8a96a8] sm:bottom-4 sm:right-5 sm:text-[12px]">
+            更新于 {versionLabel}
+          </span>
+        ) : null}
       </div>
     </div>
   );

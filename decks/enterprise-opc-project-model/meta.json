@@ -1,0 +1,57 @@
+{
+  "title": "企业项目如何转用 OPC 管理模式",
+  "subtitle": "用 AI 系统重构项目组织与业务增长方式",
+  "slug": "enterprise-opc-project-model",
+  "type": "enterprise",
+  "category": "企业 AI 落地方案",
+  "audience": [
+    "企业负责人",
+    "业务负责人",
+    "产品运营团队",
+    "正在探索 AI 转型的中小企业"
+  ],
+  "description": "帮助企业从传统团队扩张逻辑，转向以 OPC 单元为核心的 AI 驱动项目模式。",
+  "fitFor": [
+    "想降低试错成本的企业负责人",
+    "希望在新项目中提高灵活度的业务团队",
+    "正在推进 AI 转型但组织负担较重的公司",
+    "需要可验证增长路径的项目主理人"
+  ],
+  "problems": [
+    "新项目依赖加人，组织越来越重",
+    "协作链条拉长，决策和执行效率下降",
+    "项目试点多但难以独立核算与复用",
+    "AI 工具有引入但没有形成最小业务单元"
+  ],
+  "outline": [
+    "01 不是所有项目都要继续用公司制推进",
+    "02 OPC：一个人 + 一套 AI 系统的最小公司",
+    "03 企业项目为什么适合转向 OPC 模式",
+    "04 从包办项目转向孵化 OPC",
+    "05 OPC 项目的三阶段推进",
+    "06 OPC 需要什么样的人",
+    "07 企业转 OPC 模式的价值",
+    "08 如何开始第一个 OPC 项目"
+  ],
+  "tags": [
+    "OPC",
+    "企业 AI 落地",
+    "项目管理",
+    "AI 组织",
+    "一人公司"
+  ],
+  "keywords": "OPC · 企业 AI 落地 · 项目管理 · AI 组织 · 一人公司",
+  "pageCount": 8,
+  "status": "published",
+  "createdAt": "2026-05-05 18:52",
+  "versionAt": "2026-05-05 18:52",
+  "deckUrl": "/solutions/enterprise-opc-project-model/deck/",
+  "slidevUrl": "/solutions/enterprise-opc-project-model/slidev/",
+  "fallbackDeckUrl": "/solutions/enterprise-opc-project-model/deck/",
+  "publishedAt": "2026-05-05",
+  "updatedAt": "2026-05-05",
+  "cta": {
+    "label": "从第一个 OPC 试点开始",
+    "href": "/#contact"
+  }
+}

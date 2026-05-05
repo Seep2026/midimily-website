@@ -1,0 +1,36 @@
+{
+  "slug": "programmer-ai-growth-guide",
+  "type": "individual",
+  "category": "个体 AI 成长方案",
+  "title": "AI 时代的程序员突围指南",
+  "subtitle": "从写代码的人，转向调度 AI、设计产品、交付结果的人",
+  "description": "以程序员职业变化为入口，帮助技术从业者和计算机专业学生理解 AI 冲击，并建立个人 AI 工作流与职业竞争力。",
+  "audience": [
+    "程序员",
+    "计算机专业学生",
+    "准备进入 IT 行业的人",
+    "正在转型的技术从业者",
+    "想提升 AI 使用能力的职场人"
+  ],
+  "tags": [
+    "程序员",
+    "AI 成长",
+    "Vibe Coding",
+    "AI 工作流",
+    "职业转型"
+  ],
+  "keywords": "程序员 · AI 成长 · Vibe Coding · AI 工作流 · 职业转型",
+  "pageCount": 8,
+  "status": "published",
+  "createdAt": "2026-05-05 19:01",
+  "versionAt": "2026-05-05 19:01",
+  "publishedAt": "2026-05-05",
+  "updatedAt": "2026-05-05",
+  "deckUrl": "/solutions/programmer-ai-growth-guide/deck/",
+  "slidevUrl": "/solutions/programmer-ai-growth-guide/slidev/",
+  "fallbackDeckUrl": "/solutions/programmer-ai-growth-guide/deck/",
+  "cta": {
+    "label": "预约个人成长咨询",
+    "href": "/#contact"
+  }
+}

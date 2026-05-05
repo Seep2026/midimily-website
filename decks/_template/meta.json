@@ -39,6 +39,8 @@
   "keywords": "关键词 1 · 关键词 2 · 关键词 3 · 关键词 4 · 关键词 5",
   "pageCount": 8,
   "status": "draft",
+  "createdAt": "2026-05-04 12:00",
+  "versionAt": "2026-05-04 12:00",
   "deckUrl": "/solutions/your-solution-slug/deck/",
   "slidevUrl": "/solutions/your-solution-slug/slidev/",
   "fallbackDeckUrl": "/solutions/your-solution-slug/deck/",
@@ -49,4 +51,3 @@
     "href": "/#contact"
   }
 }
-

@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>企业项目如何转用 OPC 管理模式</title>
+    <style>
+      :root {
+        --bg: #fcf8f2;
+        --surface: #f7fbff;
+        --line: #d6e2f0;
+        --text: #2e425f;
+        --muted: #607896;
+        --brand: #7f95bd;
+        --accent: #88c2b8;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 85% 14%, rgba(136, 194, 184, 0.2), transparent 28%),
+          radial-gradient(circle at 10% 82%, rgba(127, 149, 189, 0.16), transparent 32%),
+          linear-gradient(130deg, #fcf8f2 0%, #f6f9ff 56%, #f3faf7 100%);
+      }
+
+      .deck {
+        width: min(1240px, calc(100vw - 24px));
+        margin: 14px auto;
+      }
+
+      .toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+
+      .brand {
+        display: grid;
+        gap: 2px;
+      }
+
+      .brand-title {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 650;
+      }
+
+      .brand-subtitle {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .nav {
+        display: flex;
+        gap: 8px;
+      }
+
+      button,
+      .back {
+        min-height: 42px;
+        border: 1px solid #cddcf0;
+        border-radius: 12px;
+        padding: 0 14px;
+        background: rgba(255, 255, 255, 0.78);
+        color: #56739a;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      button:hover,
+      .back:hover {
+        border-color: #b8cbe3;
+        background: rgba(255, 255, 255, 0.95);
+      }
+
+      button:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+
+      .back {
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .stage {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 95% 8%, rgba(127, 149, 189, 0.16), transparent 28%),
+          radial-gradient(circle at 8% 90%, rgba(136, 194, 184, 0.14), transparent 30%),
+          rgba(251, 254, 255, 0.94);
+      }
+
+      .stage::before {
+        content: "";
+        position: absolute;
+        inset: 14px;
+        border: 1px solid rgba(200, 216, 236, 0.75);
+        border-radius: 18px;
+      }
+
+      .slide {
+        position: absolute;
+        inset: 0;
+        padding: clamp(22px, 3.6vw, 52px);
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .slide.active {
+        display: flex;
+        animation: fadeUp 220ms ease;
+      }
+
+      .eyebrow {
+        width: fit-content;
+        margin-bottom: 20px;
+        padding: 6px 12px;
+        border: 1px solid #cfe0f4;
+        border-radius: 999px;
+        background: #f0f6fd;
+        color: #5f7ea6;
+        font-size: 12px;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 16ch;
+        font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+        font-size: clamp(34px, 4.8vw, 74px);
+        line-height: 1.12;
+      }
+
+      .subtitle {
+        margin-top: 18px;
+        max-width: 30ch;
+        color: #5c7698;
+        font-size: clamp(18px, 2.35vw, 30px);
+        line-height: 1.5;
+      }
+
+      .statement {
+        margin-top: 18px;
+        max-width: 28ch;
+        border-left: 4px solid rgba(127, 149, 189, 0.35);
+        padding-left: 16px;
+        color: #4d688d;
+        font-size: clamp(20px, 2.7vw, 34px);
+        line-height: 1.5;
+      }
+
+      .points {
+        margin: 26px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .points li {
+        min-height: 82px;
+        border: 1px solid #d4dfec;
+        border-radius: 14px;
+        padding: 14px 16px;
+        font-size: clamp(17px, 1.9vw, 24px);
+        line-height: 1.4;
+        color: #4e6688;
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      .cta {
+        margin-top: 22px;
+      }
+
+      .cta a {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        border-radius: 12px;
+        padding: 0 16px;
+        text-decoration: none;
+        color: #fff;
+        background: linear-gradient(90deg, #7f95bd, #7891bd);
+      }
+
+      .footer {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .hint {
+        color: #7188a6;
+        font-size: 12px;
+      }
+
+      .progress {
+        width: 240px;
+        max-width: 45%;
+        height: 4px;
+        border-radius: 999px;
+        background: #dde8f5;
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        height: 100%;
+        width: 0%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--brand), var(--accent));
+        transition: width 180ms ease;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .deck {
+          width: calc(100vw - 16px);
+          margin: 10px auto;
+        }
+
+        .toolbar {
+          flex-wrap: wrap;
+        }
+
+        .stage {
+          aspect-ratio: auto;
+          min-height: 72vh;
+        }
+
+        .slide {
+          padding: 18px;
+        }
+
+        h1 {
+          font-size: 36px;
+          max-width: 100%;
+        }
+
+        .subtitle,
+        .statement {
+          max-width: 100%;
+          font-size: 18px;
+        }
+
+        .points {
+          grid-template-columns: 1fr;
+          gap: 10px;
+          margin-top: 18px;
+        }
+
+        .points li {
+          min-height: 60px;
+          font-size: 17px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="deck">
+      <div class="toolbar">
+        <div class="brand">
+          <p class="brand-title">企业项目如何转用 OPC 管理模式</p>
+          <p class="brand-subtitle">企业 AI 落地方案 · Midimily Web Deck</p>
+        </div>
+        <div class="nav">
+          <a class="back" href="/solutions">返回方案库</a>
+          <button id="prevButton" type="button">上一页</button>
+          <button id="nextButton" type="button">下一页</button>
+        </div>
+      </div>
+
+      <main class="stage" id="stage"></main>
+
+      <div class="footer">
+        <span class="hint" id="pageHint">1 / 8</span>
+        <span class="hint">可用左右方向键翻页</span>
+        <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+      </div>
+    </div>
+
+    <script>
+      const slides = [
+        {
+          eyebrow: "企业 AI 落地方案",
+          title: "企业项目如何转用 OPC 管理模式",
+          subtitle: "用 AI 系统重构项目组织与业务增长方式"
+        },
+        {
+          eyebrow: "核心判断",
+          title: "不是所有项目都要继续用“公司制”推进",
+          statement: "先构建系统，再扩张组织。"
+        },
+        {
+          eyebrow: "模式定义",
+          title: "OPC：一个人 + 一套 AI 系统的最小公司",
+          points: [
+            "一个主脑判断方向",
+            "AI Agent 和工具系统执行",
+            "人负责机制和关键决策",
+            "系统负责内容、数据与自动化"
+          ]
+        },
+        {
+          eyebrow: "转型动因",
+          title: "企业项目为什么适合转向 OPC",
+          points: [
+            "减少“靠加人扩产能”的惯性",
+            "把试点变成可验证业务单元",
+            "用 AI 支撑流程与独立核算",
+            "在小规模中先跑出确定性"
+          ]
+        },
+        {
+          eyebrow: "路径选择",
+          title: "从“包办项目”转向“孵化 OPC”",
+          points: [
+            "资源保底：成本、工具、资质、空间",
+            "陪跑赛马：方法、节点、资源杠杆",
+            "VC 模式：分成、合伙或股权绑定",
+            "目标：孵化可独立跑通的小型单元"
+          ]
+        },
+        {
+          eyebrow: "阶段推进",
+          title: "OPC 项目的三阶段推进",
+          points: [
+            "冷启动：验证方向，搭建系统",
+            "试跑：验证获客、交付、现金流",
+            "跑通：进入独立核算与持续经营",
+            "每阶段都要留复盘与沉淀"
+          ]
+        },
+        {
+          eyebrow: "关键能力",
+          title: "OPC 的核心不是“少人”，而是“对人要求更高”",
+          points: [
+            "5C：好奇心、勇气、创造力、同理心、沟通力",
+            "成事力：执行力、抗压力、长期主义",
+            "角色本质：项目 Main Tank",
+            "企业价值：投入可控、风险分散、激励直接"
+          ]
+        },
+        {
+          eyebrow: "下一步",
+          title: "如何开始第一个 OPC 项目",
+          subtitle:
+            "先选一个可试跑场景，设计最小 OPC 单元：一个负责人 + 一套 AI 工作流 + 一个可验证目标 + 一套独立核算机制。",
+          cta: {
+            label: "从第一个 OPC 试点开始",
+            href: "/#contact"
+          }
+        }
+      ];
+
+      const stage = document.getElementById("stage");
+      const prevButton = document.getElementById("prevButton");
+      const nextButton = document.getElementById("nextButton");
+      const pageHint = document.getElementById("pageHint");
+      const progressBar = document.getElementById("progressBar");
+      let current = 0;
+
+      function renderSlide(slide) {
+        const section = document.createElement("section");
+        section.className = "slide active";
+
+        const eyebrow = document.createElement("div");
+        eyebrow.className = "eyebrow";
+        eyebrow.textContent = slide.eyebrow || "方案";
+        section.appendChild(eyebrow);
+
+        const title = document.createElement("h1");
+        title.textContent = slide.title;
+        section.appendChild(title);
+
+        if (slide.subtitle) {
+          const subtitle = document.createElement("p");
+          subtitle.className = "subtitle";
+          subtitle.textContent = slide.subtitle;
+          section.appendChild(subtitle);
+        }
+
+        if (slide.statement) {
+          const statement = document.createElement("p");
+          statement.className = "statement";
+          statement.textContent = slide.statement;
+          section.appendChild(statement);
+        }
+
+        if (slide.points && slide.points.length) {
+          const list = document.createElement("ul");
+          list.className = "points";
+          slide.points.forEach((point) => {
+            const item = document.createElement("li");
+            item.textContent = point;
+            list.appendChild(item);
+          });
+          section.appendChild(list);
+        }
+
+        if (slide.cta) {
+          const ctaWrap = document.createElement("div");
+          ctaWrap.className = "cta";
+          const link = document.createElement("a");
+          link.href = slide.cta.href;
+          link.textContent = slide.cta.label;
+          ctaWrap.appendChild(link);
+          section.appendChild(ctaWrap);
+        }
+
+        return section;
+      }
+
+      function update() {
+        stage.innerHTML = "";
+        stage.appendChild(renderSlide(slides[current]));
+        prevButton.disabled = current === 0;
+        nextButton.disabled = current === slides.length - 1;
+        pageHint.textContent = `${current + 1} / ${slides.length}`;
+        progressBar.style.width = `${((current + 1) / slides.length) * 100}%`;
+      }
+
+      function goPrev() {
+        if (current > 0) {
+          current -= 1;
+          update();
+        }
+      }
+
+      function goNext() {
+        if (current < slides.length - 1) {
+          current += 1;
+          update();
+        }
+      }
+
+      prevButton.addEventListener("click", goPrev);
+      nextButton.addEventListener("click", goNext);
+
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") {
+          goPrev();
+        }
+        if (event.key === "ArrowRight") {
+          goNext();
+        }
+      });
+
+      update();
+    </script>
+  </body>
+</html>

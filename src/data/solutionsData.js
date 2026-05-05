@@ -1,25 +1,72 @@
 import manifest from '../../content/solutions/manifest.json';
 import enterpriseAiLanding from '../../decks/enterprise-ai-landing/meta.json';
 import enterpriseAiLandingDeck from '../../decks/enterprise-ai-landing/deck.json';
+import enterpriseOpcProjectModel from '../../decks/enterprise-opc-project-model/meta.json';
+import enterpriseOpcProjectModelDeck from '../../decks/enterprise-opc-project-model/deck.json';
 import personalAiGrowth from '../../decks/personal-ai-growth/meta.json';
 import personalAiGrowthDeck from '../../decks/personal-ai-growth/deck.json';
+import programmerAiGrowthGuide from '../../decks/programmer-ai-growth-guide/meta.json';
+import programmerAiGrowthGuideDeck from '../../decks/programmer-ai-growth-guide/deck.json';
 
 const solutionMetaBySlug = {
   'enterprise-ai-landing': enterpriseAiLanding,
+  'enterprise-opc-project-model': enterpriseOpcProjectModel,
   'personal-ai-growth': personalAiGrowth,
+  'programmer-ai-growth-guide': programmerAiGrowthGuide,
 };
 
 const solutionDeckBySlug = {
   'enterprise-ai-landing': enterpriseAiLandingDeck,
+  'enterprise-opc-project-model': enterpriseOpcProjectModelDeck,
   'personal-ai-growth': personalAiGrowthDeck,
+  'programmer-ai-growth-guide': programmerAiGrowthGuideDeck,
 };
 
 export const solutionManifest = manifest;
 
+function toSortableVersionKey(rawValue) {
+  if (!rawValue || typeof rawValue !== 'string') {
+    return 0;
+  }
+
+  const minutePattern = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/;
+  const datePattern = /^(\d{4})-(\d{2})-(\d{2})$/;
+
+  const minuteMatch = rawValue.match(minutePattern);
+  if (minuteMatch) {
+    const [, year, month, day, hour, minute] = minuteMatch;
+    return Number(`${year}${month}${day}${hour}${minute}`);
+  }
+
+  const dateMatch = rawValue.match(datePattern);
+  if (dateMatch) {
+    const [, year, month, day] = dateMatch;
+    return Number(`${year}${month}${day}0000`);
+  }
+
+  const normalized = rawValue.replace(/[^\d]/g, '').slice(0, 12);
+  return normalized ? Number(normalized.padEnd(12, '0')) : 0;
+}
+
+export function getSolutionVersionLabel(solution) {
+  return (
+    solution.versionAt ||
+    solution.createdAt ||
+    solution.updatedAt ||
+    solution.publishedAt ||
+    ''
+  );
+}
+
 export const solutions = manifest.solutions
   .map((item) => solutionMetaBySlug[item.slug])
   .filter(Boolean)
-  .filter((item) => item.status === 'published');
+  .filter((item) => item.status === 'published')
+  .sort(
+    (a, b) =>
+      toSortableVersionKey(getSolutionVersionLabel(b)) -
+      toSortableVersionKey(getSolutionVersionLabel(a)),
+  );
 
 export function getSolutionBySlug(slug) {
   const solution = solutionMetaBySlug[slug];

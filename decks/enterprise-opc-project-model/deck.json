@@ -1,0 +1,89 @@
+{
+  "slug": "enterprise-opc-project-model",
+  "title": "企业项目如何转用 OPC 管理模式",
+  "subtitle": "用 AI 系统重构项目组织与业务增长方式",
+  "type": "enterprise",
+  "slides": [
+    {
+      "layout": "cover",
+      "eyebrow": "企业 AI 落地方案",
+      "title": "企业项目如何转用 OPC 管理模式",
+      "subtitle": "用 AI 系统重构项目组织与业务增长方式",
+      "points": []
+    },
+    {
+      "layout": "statement",
+      "eyebrow": "核心判断",
+      "title": "不是所有项目都要继续用“公司制”推进",
+      "subtitle": "先构建系统，再扩张组织。",
+      "points": []
+    },
+    {
+      "layout": "points",
+      "eyebrow": "模式定义",
+      "title": "OPC：一个人 + 一套 AI 系统的最小公司",
+      "subtitle": "",
+      "points": [
+        "一个主脑判断方向",
+        "AI 系统负责执行链路",
+        "人负责机制和关键决策",
+        "系统负责内容、数据和自动化"
+      ]
+    },
+    {
+      "layout": "points",
+      "eyebrow": "转型原因",
+      "title": "企业项目为什么适合转向 OPC 模式",
+      "subtitle": "",
+      "points": [
+        "减少“靠加人扩产能”的惯性",
+        "先验证最小业务单元可行性",
+        "用 AI 支撑试跑和独立核算",
+        "把组织负担留在跑通之后"
+      ]
+    },
+    {
+      "layout": "process",
+      "eyebrow": "孵化路径",
+      "title": "从“包办项目”转向“孵化 OPC”",
+      "subtitle": "",
+      "points": [
+        "资源保底：成本、工具、资质、空间",
+        "陪跑赛马：方法、节点、资源杠杆",
+        "VC 模式：分成、合伙或股权绑定"
+      ]
+    },
+    {
+      "layout": "process",
+      "eyebrow": "阶段推进",
+      "title": "OPC 项目的三阶段推进",
+      "subtitle": "",
+      "points": [
+        "冷启动：验证方向，搭建基础系统",
+        "试跑：验证获客、交付和现金流",
+        "跑通：独立核算并持续经营"
+      ]
+    },
+    {
+      "layout": "points",
+      "eyebrow": "组织能力",
+      "title": "OPC 的核心不是“少人”，而是“对人要求更高”",
+      "subtitle": "",
+      "points": [
+        "5C：好奇心、勇气、创造力、同理心、沟通力",
+        "成事能力：成就动机、执行力、抗压力、长期主义",
+        "角色本质：项目 Main Tank",
+        "企业价值：投入可控、风险分散、激励直接"
+      ]
+    },
+    {
+      "layout": "cta",
+      "eyebrow": "下一步",
+      "title": "如何开始第一个 OPC 项目",
+      "subtitle": "先选一个可试跑场景，设计最小 OPC 单元：一个负责人 + 一套 AI 工作流 + 一个可验证目标 + 独立核算机制。",
+      "points": [],
+      "button": "从第一个 OPC 试点开始",
+      "href": "/#contact"
+    }
+  ]
+}
