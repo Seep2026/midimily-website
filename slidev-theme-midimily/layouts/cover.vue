@@ -1,5 +1,5 @@
 <template>
-  <MidimilyFrame card-class="mily-cover" fallback-eyebrow="方案">
+  <MidimilyFrame card-class="mily-cover">
     <slot />
   </MidimilyFrame>
 </template>

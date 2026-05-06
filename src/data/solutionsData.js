@@ -3,12 +3,15 @@ import enterpriseAiLanding from '../../decks/enterprise-ai-landing/meta.json';
 import enterpriseAiLandingDeck from '../../decks/enterprise-ai-landing/deck.json';
 import enterpriseOpcProjectModel from '../../decks/enterprise-opc-project-model/meta.json';
 import enterpriseOpcProjectModelDeck from '../../decks/enterprise-opc-project-model/deck.json';
+import aiTruthForEntrepreneurs from '../../decks/ai-truth-for-entrepreneurs/meta.json';
+import aiTruthForEntrepreneursDeck from '../../decks/ai-truth-for-entrepreneurs/deck.json';
 import personalAiGrowth from '../../decks/personal-ai-growth/meta.json';
 import personalAiGrowthDeck from '../../decks/personal-ai-growth/deck.json';
 import programmerAiGrowthGuide from '../../decks/programmer-ai-growth-guide/meta.json';
 import programmerAiGrowthGuideDeck from '../../decks/programmer-ai-growth-guide/deck.json';
 
 const solutionMetaBySlug = {
+  'ai-truth-for-entrepreneurs': aiTruthForEntrepreneurs,
   'enterprise-ai-landing': enterpriseAiLanding,
   'enterprise-opc-project-model': enterpriseOpcProjectModel,
   'personal-ai-growth': personalAiGrowth,
@@ -16,6 +19,7 @@ const solutionMetaBySlug = {
 };
 
 const solutionDeckBySlug = {
+  'ai-truth-for-entrepreneurs': aiTruthForEntrepreneursDeck,
   'enterprise-ai-landing': enterpriseAiLandingDeck,
   'enterprise-opc-project-model': enterpriseOpcProjectModelDeck,
   'personal-ai-growth': personalAiGrowthDeck,

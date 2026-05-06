@@ -1,5 +1,5 @@
 <template>
-  <MidimilyFrame card-class="mily-process" fallback-eyebrow="路径">
+  <MidimilyFrame card-class="mily-process">
     <div class="mily-process-list">
       <slot />
     </div>

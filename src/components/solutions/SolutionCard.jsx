@@ -48,7 +48,7 @@ function SolutionDeckPreview({ solution }) {
 }
 
 export function SolutionCard({ solution }) {
-  const href = solution.deckUrl || `/solutions/${solution.slug}/deck/`;
+  const href = `/solutions/${solution.slug}/deck/`;
 
   return (
     <a

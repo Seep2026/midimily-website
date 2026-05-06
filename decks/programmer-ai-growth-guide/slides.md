@@ -9,6 +9,8 @@ drawings:
   enabled: false
 transition: fade
 mdc: true
+defaults:
+  class: mily-airy mily-individual
 fonts:
   sans: "Inter, PingFang SC, Microsoft YaHei, sans-serif"
   provider: none
@@ -95,10 +97,10 @@ eyebrow: 成长路径
 
 # 从写代码的人，转向调度 AI 的人
 
-- 大模型深度使用：ChatGPT、Gemini、Claude、Kimi、通义千问、智谱
-- AI 编程工作流：Vibe Coding、Claude Code、Codex、CodeBuddy、智谱等工具
-- 系统设计能力：需求拆成模块、流程、数据、接口和可执行任务
-- 产品 / 业务设计：跳出编程，定义代码要解决的问题
+- 大模型深用：ChatGPT、Gemini、Claude、Kimi 等
+- AI 编程协同：Vibe Coding、Claude Code、Codex 等
+- 系统设计：需求拆模块、流程、接口、数据
+- 产品思维：先定义问题，再组织交付
 
 > 未来更有价值的程序员，不只是写代码，而是设计任务、调度 AI、交付结果。
 
@@ -112,8 +114,8 @@ eyebrow: 行动建议
 - 每天用 AI 完成一个真实任务
 - 每周沉淀一个提示词模板
 - 每月复盘一次能力变化
-- 用一个 AI 智能体 MVP 实践技能和流程
-- 不要只练习，要把行动结果持续积累成作品集
+- 用一个 AI 智能体 MVP 跑通技能流程
+- 把行动结果持续沉淀成作品集
 
 不要等岗位变化发生在自己身上，再开始学习 AI。  
 米地米立可以陪你梳理 AI 时代的个人成长路径。

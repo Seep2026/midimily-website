@@ -1,0 +1,58 @@
+{
+  "title": "企业家必须看到的 AI 的 8 个扎心真相",
+  "subtitle": "不是每个企业都要追风口，但每个企业都必须重估自己的生存方式",
+  "slug": "ai-truth-for-entrepreneurs",
+  "type": "enterprise",
+  "category": "企业 AI 落地方案",
+  "audience": [
+    "企业家",
+    "创业者",
+    "企业负责人",
+    "业务负责人",
+    "正在思考 AI 转型的管理者"
+  ],
+  "description": "面向企业家和业务负责人，梳理 AI 竞争、技术速度、投入确定性、认知偏差、组织抗力和长期 ROI，帮助企业用更清醒的方式进入 AI 落地。",
+  "fitFor": [
+    "准备推进 AI 落地但担心盲目投入的企业负责人",
+    "需要在增长与效率之间做取舍的创业团队",
+    "正在重估组织协作方式的业务管理者",
+    "希望从一个可验证场景起步的转型决策者"
+  ],
+  "problems": [
+    "要么盲目跟风，要么长期观望",
+    "买了工具但没有形成业务闭环",
+    "短期 ROI 焦虑掩盖长期能力建设",
+    "组织抗力让 AI 项目推进反复卡住"
+  ],
+  "outline": [
+    "01 AI 是不可避免的竞争",
+    "02 AI 是幂次发展速度",
+    "03 投入 AI 是最确定性的押注",
+    "04 盲目跟风得不偿失",
+    "05 认知偏差事倍功半",
+    "06 浅尝辄止会被时代掉队",
+    "07 组织抗力让落地复杂化",
+    "08 长期看 ROI，做时间的朋友"
+  ],
+  "tags": [
+    "企业 AI 落地",
+    "AI 转型",
+    "组织进化",
+    "AI ROI",
+    "企业家认知"
+  ],
+  "keywords": "企业 AI 落地 · AI 转型 · 组织进化 · AI ROI · 企业家认知",
+  "pageCount": 9,
+  "status": "published",
+  "createdAt": "2026-05-06 19:19",
+  "versionAt": "2026-05-06 19:19",
+  "deckUrl": "/solutions/ai-truth-for-entrepreneurs/slidev/",
+  "slidevUrl": "/solutions/ai-truth-for-entrepreneurs/slidev/",
+  "fallbackDeckUrl": "/solutions/ai-truth-for-entrepreneurs/deck/",
+  "publishedAt": "2026-05-06",
+  "updatedAt": "2026-05-06",
+  "cta": {
+    "label": "预约企业 AI 咨询",
+    "href": "/#contact"
+  }
+}

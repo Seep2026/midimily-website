@@ -1,6 +1,6 @@
 {
   "title": "企业项目如何转用 OPC 管理模式",
-  "subtitle": "用 AI 系统重构项目组织与业务增长方式",
+  "subtitle": "用 AI 系统重构项目组织与增长方式",
   "slug": "enterprise-opc-project-model",
   "type": "enterprise",
   "category": "企业 AI 落地方案",
@@ -44,12 +44,12 @@
   "pageCount": 8,
   "status": "published",
   "createdAt": "2026-05-05 18:52",
-  "versionAt": "2026-05-05 18:52",
-  "deckUrl": "/solutions/enterprise-opc-project-model/deck/",
+  "versionAt": "2026-05-06 19:06",
+  "deckUrl": "/solutions/enterprise-opc-project-model/slidev/",
   "slidevUrl": "/solutions/enterprise-opc-project-model/slidev/",
   "fallbackDeckUrl": "/solutions/enterprise-opc-project-model/deck/",
   "publishedAt": "2026-05-05",
-  "updatedAt": "2026-05-05",
+  "updatedAt": "2026-05-06",
   "cta": {
     "label": "从第一个 OPC 试点开始",
     "href": "/#contact"

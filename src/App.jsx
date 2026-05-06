@@ -15,8 +15,8 @@ import { SitePet } from './components/pet/SitePet';
 
 function SlidevRedirectPage({ slug, restPath }) {
   const cleanPath = restPath?.replace(/^\/+|\/+$/g, '') || '';
-  const pageSuffix = /^\d+$/.test(cleanPath) ? `#/${cleanPath}` : '';
-  const target = `/solutions/${slug}/slidev/${pageSuffix}`;
+  const pageQuery = /^\d+$/.test(cleanPath) ? `?slide=${cleanPath}` : '';
+  const target = `/solutions/${slug}/deck/${pageQuery}`;
 
   useEffect(() => {
     window.location.replace(target);
@@ -26,7 +26,7 @@ function SlidevRedirectPage({ slug, restPath }) {
     <main className="min-h-screen px-4 pb-20 pt-28 sm:px-6 md:px-8 md:pt-32">
       <section className="mx-auto max-w-[900px] rounded-[20px] border border-[#d7e3f0] bg-white/80 p-8">
         <span className="inline-flex rounded-full border border-[#cfe0f4] bg-[#f0f6fd] px-3 py-1 text-[12px] text-[#6284af]">
-          正在打开 Slidev
+          正在打开方案
         </span>
         <h1 className="mt-4 text-[32px] leading-tight text-[#2e415f]">正在进入方案 Deck</h1>
         <p className="mt-3 text-[#627896]">如果没有自动跳转，请点击下方按钮继续。</p>

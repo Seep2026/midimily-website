@@ -3,7 +3,7 @@ import { getSolutionBySlug } from '../../data/solutionsData';
 
 export function SolutionDetailPage({ slug }) {
   const solution = getSolutionBySlug(slug);
-  const targetUrl = solution?.deckUrl || solution?.fallbackDeckUrl || `/solutions/${slug}/deck/`;
+  const targetUrl = `/solutions/${slug}/deck/`;
 
   useEffect(() => {
     if (targetUrl) {

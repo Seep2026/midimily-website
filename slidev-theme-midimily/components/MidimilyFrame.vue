@@ -16,7 +16,7 @@
       </nav>
     </header>
 
-    <section class="mily-deck-shell">
+    <section class="mily-deck-shell" :class="{ 'mily-deck-shell--embed': isEmbed }">
       <div v-if="!isEmbed" class="mily-deck-toolbar">
         <a class="mily-back" href="/solutions">返回方案库</a>
         <span class="mily-deck-title">{{ title }}</span>
@@ -29,7 +29,6 @@
 
       <section class="mily-slide">
         <div class="mily-card" :class="cardClass">
-          <div class="mily-eyebrow">{{ eyebrow || fallbackEyebrow }}</div>
           <slot />
         </div>
       </section>
@@ -44,7 +43,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, onMounted, onUnmounted } from 'vue';
 import { useNav, useSlideContext } from '@slidev/client';
 
 const props = defineProps({
@@ -52,23 +51,83 @@ const props = defineProps({
     type: String,
     default: 'mily-default',
   },
-  fallbackEyebrow: {
-    type: String,
-    default: '米地米立方案',
-  },
 });
 
 const nav = useNav();
-const { $frontmatter, $slidev } = useSlideContext();
+const { $slidev } = useSlideContext();
 
-const eyebrow = computed(() => $frontmatter.value?.eyebrow);
 const currentPage = computed(() => nav.currentPage.value || 1);
 const total = computed(() => nav.total.value || 1);
 const progress = computed(() => `${(currentPage.value / total.value) * 100}%`);
 const title = computed(() => $slidev.configs?.title || '米地米立方案');
 const isFirst = computed(() => currentPage.value <= 1);
 const isLast = computed(() => currentPage.value >= total.value);
-const isEmbed = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('embed') === '1';
+const isEmbed = (() => {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const embedValue = params.get('embed');
+  const embeddedValue = params.get('embedded');
+  return embedValue === '1' || embeddedValue === '1' || embeddedValue === 'true';
+})();
+
+function isContactAnchorHref(rawHref) {
+  if (!rawHref || typeof rawHref !== 'string') {
+    return false;
+  }
+
+  return rawHref === '#contact' || rawHref === '/#contact' || rawHref.endsWith('#contact');
+}
+
+function handleEmbedAnchorClick(event) {
+  if (!isEmbed) {
+    return;
+  }
+
+  const target = event.target;
+  if (!(target instanceof Element)) {
+    return;
+  }
+
+  const anchor = target.closest('a[href]');
+  if (!(anchor instanceof HTMLAnchorElement)) {
+    return;
+  }
+
+  const rawHref = anchor.getAttribute('href');
+  if (!isContactAnchorHref(rawHref)) {
+    return;
+  }
+
+  event.preventDefault();
+  event.stopPropagation();
+
+  const targetUrl = `${window.location.origin}/#contact`;
+  if (window.top && window.top !== window) {
+    window.top.location.href = targetUrl;
+    return;
+  }
+
+  window.location.href = targetUrl;
+}
+
+onMounted(() => {
+  if (!isEmbed || typeof document === 'undefined') {
+    return;
+  }
+
+  document.addEventListener('click', handleEmbedAnchorClick, true);
+});
+
+onUnmounted(() => {
+  if (typeof document === 'undefined') {
+    return;
+  }
+
+  document.removeEventListener('click', handleEmbedAnchorClick, true);
+});
 
 function goPrevious() {
   nav.prev();

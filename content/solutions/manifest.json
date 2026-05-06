@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-05",
+  "updatedAt": "2026-05-06",
   "solutions": [
     {
       "slug": "enterprise-ai-landing",
@@ -15,6 +15,12 @@
       "deckUrl": "/solutions/enterprise-opc-project-model/slidev/"
     },
     {
+      "slug": "ai-truth-for-entrepreneurs",
+      "status": "published",
+      "type": "enterprise",
+      "deckUrl": "/solutions/ai-truth-for-entrepreneurs/slidev/"
+    },
+    {
       "slug": "personal-ai-growth",
       "status": "published",
       "type": "individual",
@@ -24,7 +30,7 @@
       "slug": "programmer-ai-growth-guide",
       "status": "published",
       "type": "individual",
-      "deckUrl": "/solutions/programmer-ai-growth-guide/deck/"
+      "deckUrl": "/solutions/programmer-ai-growth-guide/slidev/"
     }
   ]
 }

@@ -14,12 +14,12 @@
   "pageCount": 8,
   "status": "published",
   "createdAt": "2026-05-04 12:25",
-  "versionAt": "2026-05-04 12:25",
-  "deckUrl": "/solutions/personal-ai-growth/deck/",
+  "versionAt": "2026-05-06 18:54",
+  "deckUrl": "/solutions/personal-ai-growth/slidev/",
   "slidevUrl": "/solutions/personal-ai-growth/slidev/",
   "fallbackDeckUrl": "/solutions/personal-ai-growth/deck/",
   "publishedAt": "2026-05-03",
-  "updatedAt": "2026-05-03",
+  "updatedAt": "2026-05-06",
   "cta": {
     "label": "预约个人成长咨询",
     "href": "/#contact"

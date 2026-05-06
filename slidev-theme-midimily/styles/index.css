@@ -8,9 +8,17 @@
   --mily-cyan: #8cc7bd;
   --mily-ink: #344e72;
   --mily-plum: #8f9cd6;
-  --mily-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
   --mily-sans: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
-  --mily-mono: "IBM Plex Mono", "SFMono-Regular", "Menlo", monospace;
+}
+
+html,
+body,
+#app,
+.slidev-root,
+.slidev-page,
+.slidev-page-container,
+.slidev-slide-container {
+  background: transparent !important;
 }
 
 .slidev-layout {
@@ -33,12 +41,10 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.3;
+  opacity: 0.24;
   background-image:
     radial-gradient(circle at 20% 15%, rgba(124, 146, 187, 0.14) 0, transparent 34%),
-    radial-gradient(circle at 86% 82%, rgba(140, 199, 189, 0.12) 0, transparent 40%),
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3) 1px, transparent 1px, transparent 4px);
-  background-size: auto, auto, 100% 4px;
+    radial-gradient(circle at 86% 82%, rgba(140, 199, 189, 0.12) 0, transparent 40%);
 }
 
 .mily-topbar {
@@ -64,7 +70,7 @@
   font-size: 24px;
   font-weight: 650;
   letter-spacing: 0;
-  font-family: var(--mily-serif);
+  font-family: var(--mily-sans);
 }
 
 .mily-brand-subtitle {
@@ -103,10 +109,9 @@
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.72);
   color: #5877a1;
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-family: var(--mily-mono);
+  font-size: 14px;
+  letter-spacing: 0;
+  font-family: var(--mily-sans);
 }
 
 .mily-deck-shell {
@@ -118,6 +123,11 @@
   width: min(1240px, calc(100% - 32px));
   flex-direction: column;
   margin: 12px auto 18px;
+}
+
+.mily-deck-shell--embed {
+  width: 100%;
+  margin: 0;
 }
 
 .mily-deck-toolbar {
@@ -135,7 +145,7 @@
   text-align: center;
   color: #4f688d;
   font-size: 16px;
-  font-family: var(--mily-serif);
+  font-family: var(--mily-sans);
 }
 
 .mily-slide {
@@ -146,65 +156,24 @@
   align-items: stretch;
 }
 
+.mily-deck-shell--embed .mily-slide {
+  padding: 0;
+}
+
 .mily-card {
   position: relative;
   width: 100%;
   min-height: 0;
-  border: 1px solid rgba(215, 227, 240, 0.95);
   border-radius: 30px;
-  background: rgba(251, 253, 255, 0.86);
-  box-shadow: 0 14px 30px rgba(96, 120, 160, 0.1);
+  background: linear-gradient(180deg, rgba(251, 253, 255, 0.97), rgba(247, 251, 255, 0.95));
+  box-shadow: 0 10px 24px rgba(96, 120, 160, 0.09);
   overflow: hidden;
 }
 
-.mily-card::before {
-  content: "";
-  position: absolute;
-  inset: 14px;
-  border: 1px solid rgba(203, 219, 238, 0.62);
-  border-radius: 22px;
-  pointer-events: none;
-}
-
-.mily-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.55;
-  background:
-    radial-gradient(circle at 96% 10%, rgba(124, 146, 187, 0.1), transparent 26%),
-    radial-gradient(circle at 6% 90%, rgba(140, 199, 189, 0.1), transparent 26%),
-    linear-gradient(110deg, transparent 0 56%, rgba(255, 255, 255, 0.26) 56% 62%, transparent 62% 100%);
-}
-
-.mily-card.mily-cover::before,
-.mily-card.mily-statement::before {
-  inset: 12px;
-  border-width: 1.2px;
-}
-
-.mily-card.mily-cover::after {
-  opacity: 0.62;
-  background:
-    radial-gradient(circle at 100% 0%, rgba(124, 146, 187, 0.18), transparent 32%),
-    radial-gradient(circle at 0% 100%, rgba(140, 199, 189, 0.14), transparent 36%);
-}
-
-.mily-card > .mily-eyebrow {
-  position: relative;
-  margin-bottom: 14px;
-}
-
-.mily-card > .mily-eyebrow::after {
-  content: "";
-  position: absolute;
-  left: calc(100% + 14px);
-  right: -10px;
-  top: 50%;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(190, 205, 225, 0.75), rgba(190, 205, 225, 0));
-  transform: translateY(-50%);
+.mily-deck-shell--embed .mily-card {
+  min-height: 100%;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .mily-page {
@@ -218,7 +187,7 @@
   background: rgba(255, 255, 255, 0.72);
   color: #5877a1;
   font-weight: 600;
-  font-family: var(--mily-mono);
+  font-family: var(--mily-sans);
 }
 
 .mily-controls {
@@ -254,8 +223,8 @@
   margin-left: auto;
   color: #758ba8;
   font-size: 12px;
-  letter-spacing: 0.04em;
-  font-family: var(--mily-mono);
+  letter-spacing: 0;
+  font-family: var(--mily-sans);
 }
 
 .mily-progress {
@@ -273,46 +242,30 @@
   transition: width 0.2s ease;
 }
 
-.mily-eyebrow {
-  display: inline-flex;
-  width: fit-content;
-  margin-bottom: 28px;
-  padding: 6px 14px;
-  border: 1px solid #cfe0f4;
-  border-radius: 999px;
-  background: #f0f6fd;
-  color: #6284af;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-family: var(--mily-mono);
-  line-height: 1.2;
-}
-
 .slidev-layout h1 {
   margin: 0;
   color: var(--mily-ink);
-  font-size: clamp(32px, 5.1vw, 64px);
+  font-size: clamp(28px, 4.2vw, 58px);
   line-height: 1.14;
   letter-spacing: 0;
-  font-family: var(--mily-serif);
+  font-family: var(--mily-sans);
   font-weight: 620;
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 
 .slidev-layout p {
   max-width: 760px;
   margin-top: 24px;
   color: var(--mily-muted);
-  font-size: clamp(21px, 2.45vw, 28px);
+  font-size: clamp(20px, 2.2vw, 27px);
   line-height: 1.5;
   max-inline-size: 34ch;
 }
 
 .mily-cover h1 {
-  max-width: 15ch;
-  font-size: clamp(44px, 6vw, 74px);
-  line-height: 1.08;
+  max-width: 75%;
+  font-size: clamp(40px, 5.1vw, 64px);
+  line-height: 1.1;
 }
 
 .mily-cover p {
@@ -324,17 +277,7 @@
 }
 
 .mily-cover p::before {
-  content: "";
-  display: block;
-  width: 86px;
-  height: 3px;
-  margin: 0 0 14px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--mily-blue), var(--mily-cyan));
-}
-
-.mily-cover .mily-eyebrow {
-  margin-bottom: 34px;
+  content: none;
 }
 
 .mily-statement {
@@ -342,48 +285,41 @@
 }
 
 .mily-statement h1 {
-  max-width: 17ch;
+  max-width: 75%;
 }
 
 .mily-statement p {
   font-size: clamp(22px, 2.8vw, 34px);
   color: #4f688c;
-  padding-left: 20px;
-  border-left: 4px solid rgba(124, 146, 187, 0.35);
   max-inline-size: 28ch;
 }
 
 .mily-statement p::before {
-  content: "“";
-  margin-right: 2px;
-  color: rgba(89, 120, 161, 0.5);
+  content: none;
 }
 
 .mily-statement p::after {
-  content: "”";
-  margin-left: 2px;
-  color: rgba(89, 120, 161, 0.5);
+  content: none;
 }
 
 .slidev-layout ul {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  gap: 20px;
   width: 100%;
-  margin: 34px 0 0;
+  margin: 30px 0 0;
   padding: 0;
   list-style: none;
 }
 
 .slidev-layout li {
-  min-height: 78px;
+  min-height: 80px;
   padding: 20px 22px;
-  border: 1px solid #d6e1ee;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.72);
   color: #4f6788;
-  font-size: clamp(19px, 2.05vw, 24px);
-  line-height: 1.35;
+  font-size: clamp(18px, 1.75vw, 22px);
+  line-height: 1.44;
 }
 
 .slidev-layout li:nth-child(odd) {
@@ -413,18 +349,8 @@
   top: 18px;
   color: #6d87ab;
   font-size: 12px;
-  letter-spacing: 0.08em;
-  font-family: var(--mily-mono);
-}
-
-.mily-points li::after {
-  content: "";
-  position: absolute;
-  left: 18px;
-  bottom: 14px;
-  width: 28px;
-  height: 1px;
-  background: rgba(141, 161, 192, 0.5);
+  letter-spacing: 0;
+  font-family: var(--mily-sans);
 }
 
 .mily-process li {
@@ -476,11 +402,164 @@
   font-size: 18px;
 }
 
+.mily-cta-content {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.mily-cta--compact h1 {
+  font-size: clamp(26px, 3.6vw, 48px) !important;
+  line-height: 1.18 !important;
+  max-width: 75% !important;
+}
+
+.mily-cta--compact p {
+  margin-top: 14px !important;
+  font-size: clamp(17px, 1.8vw, 22px) !important;
+  line-height: 1.5 !important;
+  max-inline-size: 34ch !important;
+}
+
+.mily-cta--compact ul {
+  margin-top: 18px !important;
+  gap: 10px !important;
+}
+
+.mily-cta--compact li {
+  min-height: 56px !important;
+  padding: 14px 16px !important;
+  font-size: clamp(15px, 1.45vw, 19px) !important;
+  line-height: 1.4 !important;
+}
+
+.mily-cta--compact a {
+  margin-top: 18px !important;
+  min-height: 42px !important;
+  font-size: 16px !important;
+}
+
+.mily-cta--dense h1 {
+  font-size: clamp(24px, 3.2vw, 42px) !important;
+  line-height: 1.18 !important;
+  max-width: 75% !important;
+}
+
+.mily-cta--dense p {
+  margin-top: 10px !important;
+  font-size: clamp(16px, 1.5vw, 19px) !important;
+  line-height: 1.45 !important;
+  max-inline-size: 38ch !important;
+}
+
+.mily-cta--dense ul {
+  margin-top: 14px !important;
+  gap: 8px !important;
+}
+
+.mily-cta--dense li {
+  min-height: 50px !important;
+  padding: 12px 14px !important;
+  border-radius: 12px !important;
+  font-size: clamp(14px, 1.25vw, 17px) !important;
+  line-height: 1.34 !important;
+}
+
+.mily-cta--dense a {
+  margin-top: 14px !important;
+  min-height: 40px !important;
+  padding: 0 16px !important;
+  font-size: 15px !important;
+}
+
+.mily-airy .mily-cover,
+.mily-airy .mily-statement,
+.mily-airy .mily-points,
+.mily-airy .mily-process,
+.mily-airy .mily-cta,
+.slidev-page.mily-airy .mily-cover,
+.slidev-page.mily-airy .mily-statement,
+.slidev-page.mily-airy .mily-points,
+.slidev-page.mily-airy .mily-process,
+.slidev-page.mily-airy .mily-cta {
+  padding: clamp(46px, 5.4vw, 80px) clamp(48px, 5.4vw, 84px);
+}
+
+.mily-airy .mily-card h1,
+.slidev-page.mily-airy .mily-card h1 {
+  font-size: clamp(29px, 3.9vw, 52px);
+  line-height: 1.18;
+  max-width: 75%;
+}
+
+.mily-airy .mily-cover h1,
+.slidev-page.mily-airy .mily-cover h1 {
+  font-size: clamp(36px, 4.7vw, 60px);
+  max-width: 75%;
+}
+
+.mily-airy .mily-card p,
+.slidev-page.mily-airy .mily-card p {
+  margin-top: 22px;
+  font-size: clamp(20px, 1.95vw, 25px);
+  line-height: 1.62;
+  max-inline-size: 32ch;
+}
+
+.mily-airy .mily-card ul,
+.slidev-page.mily-airy .mily-card ul {
+  margin-top: 28px;
+  gap: 16px;
+}
+
+.mily-airy .mily-card li,
+.slidev-page.mily-airy .mily-card li {
+  min-height: 74px;
+  padding: 19px 21px;
+  font-size: clamp(17px, 1.68vw, 21px);
+  border-radius: 15px;
+}
+
+.mily-enterprise .mily-card,
+.slidev-page.mily-enterprise .mily-card {
+  background:
+    radial-gradient(circle at 90% 10%, rgba(124, 146, 187, 0.14), transparent 32%),
+    radial-gradient(circle at 18% 88%, rgba(143, 156, 214, 0.12), transparent 35%),
+    linear-gradient(180deg, rgba(251, 253, 255, 0.98), rgba(246, 250, 255, 0.95));
+}
+
+.mily-individual .mily-card,
+.slidev-page.mily-individual .mily-card {
+  background:
+    radial-gradient(circle at 88% 12%, rgba(140, 199, 189, 0.14), transparent 32%),
+    radial-gradient(circle at 20% 85%, rgba(124, 146, 187, 0.1), transparent 34%),
+    linear-gradient(180deg, rgba(250, 254, 255, 0.98), rgba(245, 252, 250, 0.95));
+}
+
+.mily-airy .mily-points li,
+.slidev-page.mily-airy .mily-points li,
+.mily-airy .mily-process-list li,
+.slidev-page.mily-airy .mily-process-list li {
+  padding-left: 74px;
+}
+
+.mily-airy .mily-points li::before,
+.slidev-page.mily-airy .mily-points li::before {
+  left: 22px;
+  top: 20px;
+}
+
+.mily-airy .mily-process-list li::before,
+.slidev-page.mily-airy .mily-process-list li::before {
+  left: 22px;
+  top: 18px;
+}
+
 .mily-card h1,
 .mily-card p,
 .mily-card ul,
-.mily-card li,
-.mily-card .mily-eyebrow {
+.mily-card li {
   position: relative;
   z-index: 1;
 }
@@ -499,14 +578,13 @@
 .mily-card ul li:nth-child(4) { animation-delay: 190ms; }
 
 .mily-card blockquote {
-  margin: 24px 0 0;
-  padding: 14px 16px;
-  border: 1px solid #d7e2f0;
+  margin: 26px 0 0;
+  padding: 14px 18px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.74);
-  color: #5a7397;
+  background: linear-gradient(90deg, rgba(124, 146, 187, 0.1), rgba(140, 199, 189, 0.08));
+  color: #4f688d;
   font-size: clamp(16px, 1.6vw, 20px);
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
 @keyframes milyEditorialIn {
@@ -559,13 +637,8 @@
     border-radius: 20px;
   }
 
-  .mily-card::before {
-    inset: 10px;
-    border-radius: 14px;
-  }
-
   .slidev-layout h1 {
-    font-size: 38px;
+    font-size: 34px;
   }
 
   .slidev-layout p {
@@ -580,6 +653,32 @@
 
   .mily-cover p {
     font-size: 20px;
+  }
+
+  .mily-airy .mily-cover,
+  .mily-airy .mily-statement,
+  .mily-airy .mily-points,
+  .mily-airy .mily-process,
+  .mily-airy .mily-cta,
+  .slidev-page.mily-airy .mily-cover,
+  .slidev-page.mily-airy .mily-statement,
+  .slidev-page.mily-airy .mily-points,
+  .slidev-page.mily-airy .mily-process,
+  .slidev-page.mily-airy .mily-cta {
+    padding: 24px;
+  }
+
+  .mily-airy .mily-card h1,
+  .slidev-page.mily-airy .mily-card h1 {
+    font-size: 34px;
+    max-width: 100%;
+  }
+
+  .mily-airy .mily-card p,
+  .slidev-page.mily-airy .mily-card p {
+    margin-top: 14px;
+    font-size: 19px;
+    max-inline-size: 100%;
   }
 
   .slidev-layout ul {
@@ -610,5 +709,22 @@
     width: 100%;
     margin-left: 0;
     font-size: 12px;
+  }
+
+  .mily-cta--compact h1,
+  .mily-cta--dense h1 {
+    font-size: 30px !important;
+    max-width: 100% !important;
+  }
+
+  .mily-cta--compact p,
+  .mily-cta--dense p {
+    font-size: 18px !important;
+    max-inline-size: 100% !important;
+  }
+
+  .mily-cta--compact ul,
+  .mily-cta--dense ul {
+    grid-template-columns: 1fr;
   }
 }
