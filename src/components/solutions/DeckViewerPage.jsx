@@ -15,11 +15,17 @@ function getRequestedSlideFromUrl() {
   return raw && /^\d+$/.test(raw) ? Number(raw) : 1;
 }
 
+function isForceFallbackEnabled() {
+  const search = new URLSearchParams(window.location.search);
+  return search.get('forceFallback') === '1';
+}
+
 function buildSlidevEmbedUrl(basePath, page) {
   const normalizedBasePath = normalizeDeckPath(basePath);
-  const url = new URL(`${normalizedBasePath}${page}`, window.location.origin);
+  const url = new URL(`${normalizedBasePath}index.html`, window.location.origin);
   url.searchParams.set('embedded', '1');
   url.searchParams.set('embed', '1');
+  url.searchParams.set('slide', String(page));
   return `${url.pathname}${url.search}`;
 }
 
@@ -98,6 +104,7 @@ export function DeckViewerPage({ slug }) {
   );
   const [showPagePicker, setShowPagePicker] = useState(false);
   const [renderMode, setRenderMode] = useState('checking');
+  const [forceFallback, setForceFallback] = useState(() => isForceFallbackEnabled());
 
   const currentSlide = deck?.slides?.[currentPage - 1];
   const pageNumbers = useMemo(() => Array.from({ length: totalSlides }, (_, index) => index + 1), [totalSlides]);
@@ -131,6 +138,15 @@ export function DeckViewerPage({ slug }) {
   }, [currentPage]);
 
   useEffect(() => {
+    const syncForceFallback = () => {
+      setForceFallback(isForceFallbackEnabled());
+    };
+
+    window.addEventListener('popstate', syncForceFallback);
+    return () => window.removeEventListener('popstate', syncForceFallback);
+  }, []);
+
+  useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'ArrowRight') {
         goNext();
@@ -149,6 +165,11 @@ export function DeckViewerPage({ slug }) {
 
     async function detectSlidevBuild() {
       if (!solution) {
+        setRenderMode('fallback');
+        return;
+      }
+
+      if (forceFallback) {
         setRenderMode('fallback');
         return;
       }
@@ -174,7 +195,7 @@ export function DeckViewerPage({ slug }) {
     return () => {
       disposed = true;
     };
-  }, [slidevBasePath, solution]);
+  }, [forceFallback, slidevBasePath, solution]);
 
   if (!solution) {
     return (

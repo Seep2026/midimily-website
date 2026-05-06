@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { ServicesOverview } from './components/ServicesOverview';
@@ -14,13 +14,25 @@ import { SolutionDetailPage } from './components/solutions/SolutionDetailPage';
 import { SitePet } from './components/pet/SitePet';
 
 function SlidevRedirectPage({ slug, restPath }) {
+  const params = useMemo(() => new URLSearchParams(window.location.search), []);
+  const isEmbedRequest = useMemo(() => {
+    const embedValue = params.get('embed');
+    const embeddedValue = params.get('embedded');
+    return embedValue === '1' || embeddedValue === '1' || embeddedValue === 'true';
+  }, [params]);
   const cleanPath = restPath?.replace(/^\/+|\/+$/g, '') || '';
   const pageQuery = /^\d+$/.test(cleanPath) ? `?slide=${cleanPath}` : '';
+  const fallbackQuery = pageQuery ? `${pageQuery}&forceFallback=1` : '?forceFallback=1';
   const target = `/solutions/${slug}/deck/${pageQuery}`;
+  const embedFallbackTarget = `/solutions/${slug}/deck/${fallbackQuery}`;
 
   useEffect(() => {
+    if (isEmbedRequest && window.top && window.top !== window) {
+      window.top.location.replace(embedFallbackTarget);
+      return;
+    }
     window.location.replace(target);
-  }, [target]);
+  }, [embedFallbackTarget, isEmbedRequest, target]);
 
   return (
     <main className="min-h-screen px-4 pb-20 pt-28 sm:px-6 md:px-8 md:pt-32">
