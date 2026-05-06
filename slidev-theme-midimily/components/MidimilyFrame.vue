@@ -43,7 +43,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, onUnmounted } from 'vue';
+import { computed, nextTick, onMounted, onUnmounted } from 'vue';
 import { useNav, useSlideContext } from '@slidev/client';
 
 const props = defineProps({
@@ -113,12 +113,52 @@ function handleEmbedAnchorClick(event) {
   window.location.href = targetUrl;
 }
 
+function handleParentSlideMessage(event) {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  if (event.origin !== window.location.origin) {
+    return;
+  }
+
+  const payload = event.data;
+  if (!payload || payload.type !== 'midimily:go-slide') {
+    return;
+  }
+
+  const nextSlide = Number.parseInt(String(payload.slide), 10);
+  if (!Number.isInteger(nextSlide) || nextSlide <= 0) {
+    return;
+  }
+
+  if (typeof nav.go === 'function') {
+    nav.go(nextSlide);
+  }
+}
+
 onMounted(() => {
+  if (typeof window !== 'undefined') {
+    const params = new URLSearchParams(window.location.search);
+    const requestedSlide = Number.parseInt(params.get('slide') || '', 10);
+    if (Number.isInteger(requestedSlide) && requestedSlide > 0) {
+      nextTick(() => {
+        if (typeof nav.go === 'function') {
+          nav.go(requestedSlide);
+        }
+      });
+    }
+  }
+
   if (!isEmbed || typeof document === 'undefined') {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('message', handleParentSlideMessage);
+    }
     return;
   }
 
   document.addEventListener('click', handleEmbedAnchorClick, true);
+  window.addEventListener('message', handleParentSlideMessage);
 });
 
 onUnmounted(() => {
@@ -127,6 +167,10 @@ onUnmounted(() => {
   }
 
   document.removeEventListener('click', handleEmbedAnchorClick, true);
+
+  if (typeof window !== 'undefined') {
+    window.removeEventListener('message', handleParentSlideMessage);
+  }
 });
 
 function goPrevious() {

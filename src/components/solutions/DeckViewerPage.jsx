@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { getDeckBySlug, getSolutionBySlug } from '../../data/solutionsData';
 
 function normalizeDeckPath(pathname) {
@@ -105,6 +105,7 @@ export function DeckViewerPage({ slug }) {
   const [showPagePicker, setShowPagePicker] = useState(false);
   const [renderMode, setRenderMode] = useState('checking');
   const [forceFallback, setForceFallback] = useState(() => isForceFallbackEnabled());
+  const slidevIframeRef = useRef(null);
 
   const currentSlide = deck?.slides?.[currentPage - 1];
   const pageNumbers = useMemo(() => Array.from({ length: totalSlides }, (_, index) => index + 1), [totalSlides]);
@@ -136,6 +137,25 @@ export function DeckViewerPage({ slug }) {
     url.searchParams.set('slide', String(currentPage));
     window.history.replaceState({}, '', `${url.pathname}${url.search}`);
   }, [currentPage]);
+
+  useEffect(() => {
+    if (renderMode !== 'slidev') {
+      return;
+    }
+
+    const targetWindow = slidevIframeRef.current?.contentWindow;
+    if (!targetWindow) {
+      return;
+    }
+
+    targetWindow.postMessage(
+      {
+        type: 'midimily:go-slide',
+        slide: currentPage,
+      },
+      window.location.origin,
+    );
+  }, [currentPage, renderMode]);
 
   useEffect(() => {
     const syncForceFallback = () => {
@@ -247,6 +267,7 @@ export function DeckViewerPage({ slug }) {
       {renderMode === 'slidev' ? (
         <section className="relative mx-auto min-h-[460px] w-full max-w-[1220px] overflow-hidden rounded-[24px] bg-[#f9fcff]/94 md:min-h-[680px]">
           <iframe
+            ref={slidevIframeRef}
             title={`${solution.title} Slidev`}
             src={slidevEmbedUrl}
             className="h-full min-h-[460px] w-full border-0 md:min-h-[680px]"
