@@ -52,7 +52,7 @@ export function SitePet() {
   const { expandPet, isClosed, isExpanded, isMobile } = usePetVisibility();
   const [bubbleMessage, setBubbleMessage] = useState('');
   const [isContactNearby, setIsContactNearby] = useState(false);
-  const [activePetId, setActivePetId] = useState(sitePetConfig.activePetId);
+  const [activePetId] = useState(sitePetConfig.activePetId);
   const [spriteVersion, setSpriteVersion] = useState(() => Date.now());
   const promptedSectionsRef = useRef(new Set());
   const lastSectionPromptAtRef = useRef(0);
@@ -93,16 +93,7 @@ export function SitePet() {
           return;
         }
 
-        if (activePetId !== sitePetConfig.fallbackPetId) {
-          console.warn(
-            `[SitePet] Failed to load pet "${activePetId}", fallback to "${sitePetConfig.fallbackPetId}".`,
-            error,
-          );
-          setActivePetId(sitePetConfig.fallbackPetId);
-          return;
-        }
-
-        console.warn('[SitePet] Fallback pet also failed to load.', error);
+        console.warn(`[SitePet] Failed to load locked brand pet "${activePetId}".`, error);
       }
     };
 
