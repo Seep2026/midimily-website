@@ -105,8 +105,11 @@ export function DeckViewerPage({ slug }) {
   const [currentPage, setCurrentPage] = useState(initialRequestedPageRef.current);
   const [showPagePicker, setShowPagePicker] = useState(false);
   const [renderMode, setRenderMode] = useState('checking');
+  const [isSlidevFrameReady, setIsSlidevFrameReady] = useState(false);
   const [forceFallback, setForceFallback] = useState(() => isForceFallbackEnabled());
   const slidevIframeRef = useRef(null);
+  const syncTimerIdsRef = useRef([]);
+  const frameReadyFallbackTimerRef = useRef(null);
 
   const currentSlide = deck?.slides?.[currentPage - 1];
   const pageNumbers = useMemo(() => Array.from({ length: totalSlides }, (_, index) => index + 1), [totalSlides]);
@@ -117,8 +120,11 @@ export function DeckViewerPage({ slug }) {
   );
 
   const goNext = useCallback(() => {
+    if (renderMode === 'slidev' && !isSlidevFrameReady) {
+      return;
+    }
     setCurrentPage((page) => Math.min(totalSlides, page + 1));
-  }, [totalSlides]);
+  }, [isSlidevFrameReady, renderMode, totalSlides]);
 
   const goPrevious = useCallback(() => {
     setCurrentPage((page) => Math.max(1, page - 1));
@@ -126,10 +132,51 @@ export function DeckViewerPage({ slug }) {
 
   const goToPage = useCallback(
     (page) => {
+      if (renderMode === 'slidev' && !isSlidevFrameReady) {
+        return;
+      }
       const pageNumber = Math.min(Math.max(1, page), totalSlides);
       setCurrentPage(pageNumber);
     },
-    [totalSlides],
+    [isSlidevFrameReady, renderMode, totalSlides],
+  );
+
+  const clearSyncTimers = useCallback(() => {
+    syncTimerIdsRef.current.forEach((timerId) => window.clearTimeout(timerId));
+    syncTimerIdsRef.current = [];
+  }, []);
+
+  const clearFrameReadyFallbackTimer = useCallback(() => {
+    if (frameReadyFallbackTimerRef.current) {
+      window.clearTimeout(frameReadyFallbackTimerRef.current);
+      frameReadyFallbackTimerRef.current = null;
+    }
+  }, []);
+
+  const postSlideToIframe = useCallback((page) => {
+    const targetWindow = slidevIframeRef.current?.contentWindow;
+    if (!targetWindow) {
+      return;
+    }
+
+    targetWindow.postMessage(
+      {
+        type: 'midimily:go-slide',
+        slide: page,
+      },
+      window.location.origin,
+    );
+  }, []);
+
+  const syncSlideToIframe = useCallback(
+    (page) => {
+      clearSyncTimers();
+      [0, 120, 320].forEach((delay) => {
+        const timerId = window.setTimeout(() => postSlideToIframe(page), delay);
+        syncTimerIdsRef.current.push(timerId);
+      });
+    },
+    [clearSyncTimers, postSlideToIframe],
   );
 
   useEffect(() => {
@@ -143,23 +190,56 @@ export function DeckViewerPage({ slug }) {
   }, [currentPage]);
 
   useEffect(() => {
+    if (renderMode !== 'slidev' || !isSlidevFrameReady) {
+      return;
+    }
+
+    syncSlideToIframe(currentPage);
+  }, [currentPage, isSlidevFrameReady, renderMode, syncSlideToIframe]);
+
+  useEffect(() => {
+    if (renderMode !== 'slidev') {
+      setIsSlidevFrameReady(false);
+      clearSyncTimers();
+      clearFrameReadyFallbackTimer();
+    }
+  }, [clearFrameReadyFallbackTimer, clearSyncTimers, renderMode]);
+
+  useEffect(
+    () => () => {
+      clearSyncTimers();
+      clearFrameReadyFallbackTimer();
+    },
+    [clearFrameReadyFallbackTimer, clearSyncTimers],
+  );
+
+  useEffect(() => {
     if (renderMode !== 'slidev') {
       return;
     }
 
-    const targetWindow = slidevIframeRef.current?.contentWindow;
-    if (!targetWindow) {
-      return;
-    }
+    const handleFrameMessage = (event) => {
+      if (event.origin !== window.location.origin) {
+        return;
+      }
 
-    targetWindow.postMessage(
-      {
-        type: 'midimily:go-slide',
-        slide: currentPage,
-      },
-      window.location.origin,
-    );
-  }, [currentPage, renderMode]);
+      if (event.source !== slidevIframeRef.current?.contentWindow) {
+        return;
+      }
+
+      const payload = event.data;
+      if (!payload || payload.type !== 'midimily:slidev-ready') {
+        return;
+      }
+
+      setIsSlidevFrameReady(true);
+      clearFrameReadyFallbackTimer();
+      syncSlideToIframe(currentPage);
+    };
+
+    window.addEventListener('message', handleFrameMessage);
+    return () => window.removeEventListener('message', handleFrameMessage);
+  }, [clearFrameReadyFallbackTimer, currentPage, renderMode, syncSlideToIframe]);
 
   useEffect(() => {
     const syncForceFallback = () => {
@@ -276,8 +356,16 @@ export function DeckViewerPage({ slug }) {
             src={slidevEmbedUrl}
             className="h-full min-h-[460px] w-full border-0 md:min-h-[680px]"
             loading="lazy"
+            onLoad={() => {
+              setIsSlidevFrameReady(false);
+              clearFrameReadyFallbackTimer();
+              frameReadyFallbackTimerRef.current = window.setTimeout(() => {
+                setIsSlidevFrameReady(true);
+                syncSlideToIframe(currentPage);
+              }, 1800);
+            }}
           />
-          {currentPage < totalSlides ? (
+          {isSlidevFrameReady && currentPage < totalSlides ? (
             <button
               type="button"
               onClick={goNext}

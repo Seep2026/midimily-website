@@ -137,6 +137,19 @@ function handleParentSlideMessage(event) {
   }
 }
 
+function notifyParentDeckReady() {
+  if (typeof window === 'undefined' || !window.parent || window.parent === window) {
+    return;
+  }
+
+  window.parent.postMessage(
+    {
+      type: 'midimily:slidev-ready',
+    },
+    window.location.origin,
+  );
+}
+
 onMounted(() => {
   if (typeof window !== 'undefined') {
     const params = new URLSearchParams(window.location.search);
@@ -153,12 +166,24 @@ onMounted(() => {
   if (!isEmbed || typeof document === 'undefined') {
     if (typeof window !== 'undefined') {
       window.addEventListener('message', handleParentSlideMessage);
+      nextTick(() => {
+        notifyParentDeckReady();
+      });
+      window.setTimeout(() => {
+        notifyParentDeckReady();
+      }, 240);
     }
     return;
   }
 
   document.addEventListener('click', handleEmbedAnchorClick, true);
   window.addEventListener('message', handleParentSlideMessage);
+  nextTick(() => {
+    notifyParentDeckReady();
+  });
+  window.setTimeout(() => {
+    notifyParentDeckReady();
+  }, 240);
 });
 
 onUnmounted(() => {
