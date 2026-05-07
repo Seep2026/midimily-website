@@ -99,9 +99,10 @@ export function DeckViewerPage({ slug }) {
   const solution = getSolutionBySlug(slug);
   const deck = getDeckBySlug(slug);
   const totalSlides = solution?.pageCount ?? deck?.slides?.length ?? 0;
-  const [currentPage, setCurrentPage] = useState(() =>
+  const initialRequestedPageRef = useRef(
     Math.min(Math.max(getRequestedSlideFromUrl(), 1), Math.max(totalSlides, 1)),
   );
+  const [currentPage, setCurrentPage] = useState(initialRequestedPageRef.current);
   const [showPagePicker, setShowPagePicker] = useState(false);
   const [renderMode, setRenderMode] = useState('checking');
   const [forceFallback, setForceFallback] = useState(() => isForceFallbackEnabled());
@@ -110,7 +111,10 @@ export function DeckViewerPage({ slug }) {
   const currentSlide = deck?.slides?.[currentPage - 1];
   const pageNumbers = useMemo(() => Array.from({ length: totalSlides }, (_, index) => index + 1), [totalSlides]);
   const slidevBasePath = solution?.slidevUrl || `/solutions/${slug}/slidev/`;
-  const slidevEmbedUrl = useMemo(() => buildSlidevEmbedUrl(slidevBasePath, currentPage), [slidevBasePath, currentPage]);
+  const slidevEmbedUrl = useMemo(
+    () => buildSlidevEmbedUrl(slidevBasePath, initialRequestedPageRef.current),
+    [slidevBasePath],
+  );
 
   const goNext = useCallback(() => {
     setCurrentPage((page) => Math.min(totalSlides, page + 1));
