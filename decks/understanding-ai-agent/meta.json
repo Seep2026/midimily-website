@@ -1,0 +1,62 @@
+{
+  "slug": "understanding-ai-agent",
+  "type": "individual",
+  "category": "个体 AI 成长方案",
+  "title": "在 AI Agent 元年，全面理解 AI Agent",
+  "subtitle": "从大模型、AI 工作流，到真正能完成任务的智能体",
+  "description": "面向正在使用 AI 工具的职场人、学生和技术入门者，用 LLM、AI Workflow、AI Agent 三层递进方式讲清 Agent 的本质、结构、案例和个人成长路径。",
+  "audience": [
+    "职场人",
+    "大学生",
+    "产品经理",
+    "运营人员",
+    "程序员",
+    "正在使用 AI 工具但还不理解 Agent 的人",
+    "想建立个人 AI 工作流的人"
+  ],
+  "fitFor": [
+    "已经会用 AI 聊天但想理解 Agent 的职场人",
+    "希望建立个人 AI 工作流的学生和新人",
+    "正在探索 AI 生产力工具的产品、运营和技术从业者",
+    "想把 AI 从问答工具升级为任务助手的人"
+  ],
+  "problems": [
+    "会用大模型提问，但不理解 Agent 的本质",
+    "分不清 AI Workflow 和 AI Agent",
+    "不知道如何把 AI 接入真实任务",
+    "缺少目标、工具、反馈和沉淀的系统方法"
+  ],
+  "outline": [
+    "01 AI 正在从会聊天走向会办事",
+    "02 Level 1：LLM 会回答",
+    "03 Level 2：AI Workflow 按流程执行",
+    "04 Level 3：AI Agent 开始做决策",
+    "05 Agent 如何工作",
+    "06 Agent 的基本结构",
+    "07 从内容工作流到内容 Agent",
+    "08 为什么编程 Agent 最先成熟",
+    "09 个人如何开始"
+  ],
+  "tags": [
+    "AI Agent",
+    "个体 AI 成长",
+    "AI 工作流",
+    "大模型",
+    "Vibe Coding",
+    "AI 生产力"
+  ],
+  "keywords": "AI Agent · 个体 AI 成长 · AI 工作流 · 大模型 · Vibe Coding · AI 生产力",
+  "pageCount": 10,
+  "status": "published",
+  "createdAt": "2026-05-11 18:51",
+  "versionAt": "2026-05-11 18:51",
+  "publishedAt": "2026-05-11",
+  "updatedAt": "2026-05-11",
+  "deckUrl": "/solutions/understanding-ai-agent/slidev/",
+  "slidevUrl": "/solutions/understanding-ai-agent/slidev/",
+  "fallbackDeckUrl": "/solutions/understanding-ai-agent/deck/",
+  "cta": {
+    "label": "预约个人成长咨询",
+    "href": "/#contact"
+  }
+}

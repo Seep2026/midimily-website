@@ -9,6 +9,8 @@ import personalAiGrowth from '../../decks/personal-ai-growth/meta.json';
 import personalAiGrowthDeck from '../../decks/personal-ai-growth/deck.json';
 import programmerAiGrowthGuide from '../../decks/programmer-ai-growth-guide/meta.json';
 import programmerAiGrowthGuideDeck from '../../decks/programmer-ai-growth-guide/deck.json';
+import understandingAiAgent from '../../decks/understanding-ai-agent/meta.json';
+import understandingAiAgentDeck from '../../decks/understanding-ai-agent/deck.json';
 
 const solutionMetaBySlug = {
   'ai-truth-for-entrepreneurs': aiTruthForEntrepreneurs,
@@ -16,6 +18,7 @@ const solutionMetaBySlug = {
   'enterprise-opc-project-model': enterpriseOpcProjectModel,
   'personal-ai-growth': personalAiGrowth,
   'programmer-ai-growth-guide': programmerAiGrowthGuide,
+  'understanding-ai-agent': understandingAiAgent,
 };
 
 const solutionDeckBySlug = {
@@ -24,6 +27,7 @@ const solutionDeckBySlug = {
   'enterprise-opc-project-model': enterpriseOpcProjectModelDeck,
   'personal-ai-growth': personalAiGrowthDeck,
   'programmer-ai-growth-guide': programmerAiGrowthGuideDeck,
+  'understanding-ai-agent': understandingAiAgentDeck,
 };
 
 export const solutionManifest = manifest;
@@ -60,6 +64,13 @@ export function getSolutionVersionLabel(solution) {
     solution.publishedAt ||
     ''
   );
+}
+
+export function getSolutionVersionDateLabel(solution) {
+  const versionLabel = getSolutionVersionLabel(solution);
+  const dateMatch = versionLabel.match(/^(\d{4})-(\d{2})-(\d{2})/);
+
+  return dateMatch ? `${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}` : versionLabel;
 }
 
 export const solutions = manifest.solutions

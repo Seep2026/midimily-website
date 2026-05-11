@@ -1,0 +1,117 @@
+{
+  "slug": "understanding-ai-agent",
+  "title": "在 AI Agent 元年，全面理解 AI Agent",
+  "subtitle": "从大模型、AI 工作流，到真正能完成任务的智能体",
+  "type": "individual",
+  "slides": [
+    {
+      "layout": "cover",
+      "eyebrow": "个体 AI 成长方案",
+      "title": "在 AI Agent 元年，全面理解 AI Agent",
+      "subtitle": "从大模型、AI 工作流，到真正能完成任务的智能体",
+      "points": []
+    },
+    {
+      "layout": "list",
+      "eyebrow": "为什么现在",
+      "title": "AI 正在从“会聊天”走向“会办事”",
+      "points": [
+        "很多人已经会用大模型",
+        "Agent 不是更会聊天的机器人",
+        "AI 从回答问题走向执行任务",
+        "个人要理解一种新工作方式"
+      ]
+    },
+    {
+      "layout": "list",
+      "eyebrow": "Level 1",
+      "title": "第一层：大模型是会回答问题的大脑",
+      "points": [
+        "生成文字、修改内容",
+        "总结资料、写邮件",
+        "写代码、头脑风暴",
+        "默认不知道你的真实世界"
+      ]
+    },
+    {
+      "layout": "list",
+      "eyebrow": "Level 2",
+      "title": "第二层：AI 工作流会按预设路径执行",
+      "points": [
+        "用户提出问题",
+        "系统按固定步骤查工具",
+        "大模型组织回答",
+        "没有预设工具就会失败"
+      ]
+    },
+    {
+      "layout": "list",
+      "eyebrow": "Level 3",
+      "title": "第三层：Agent 的关键，是 AI 开始做决策",
+      "points": [
+        "人给目标",
+        "AI 判断路径",
+        "AI 选择工具",
+        "AI 根据结果调整"
+      ]
+    },
+    {
+      "layout": "list",
+      "eyebrow": "工作循环",
+      "title": "Agent 的工作方式：想一想，做一步，看结果",
+      "points": [
+        "Reason：理解目标",
+        "Act：调用工具",
+        "Observe：观察结果",
+        "不符合标准就继续迭代"
+      ]
+    },
+    {
+      "layout": "list",
+      "eyebrow": "基本结构",
+      "title": "一个 Agent 通常由这些部分组成",
+      "points": [
+        "LLM：理解、推理、生成",
+        "Instructions：角色和边界",
+        "Tools：浏览器、API、文件",
+        "Feedback Loop：根据结果修正"
+      ]
+    },
+    {
+      "layout": "list",
+      "eyebrow": "内容案例",
+      "title": "从“每天自动发帖”到“自己优化内容”",
+      "points": [
+        "Workflow 按固定路径运行",
+        "Agent 自己判断新闻选择",
+        "自己生成不同版本",
+        "自己评审并迭代"
+      ]
+    },
+    {
+      "layout": "list",
+      "eyebrow": "成熟入口",
+      "title": "为什么编程 Agent 最先成熟",
+      "points": [
+        "能读取代码库",
+        "能拆解开发任务",
+        "能运行命令和测试",
+        "代码反馈清楚可验证"
+      ]
+    },
+    {
+      "layout": "cta",
+      "eyebrow": "个人如何开始",
+      "title": "下一代能力，是管理 AI 完成任务",
+      "subtitle": "米地米立可以陪你建立自己的 AI 工作流，从会用 AI，走向会管理 AI。",
+      "button": "预约个人成长咨询",
+      "href": "/#contact",
+      "points": [
+        "选择一个真实任务",
+        "拆成 3-5 个步骤",
+        "加入检查和反馈",
+        "沉淀为模板或作品"
+      ]
+    }
+  ]
+}
