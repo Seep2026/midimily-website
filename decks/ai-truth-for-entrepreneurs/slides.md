@@ -1,6 +1,6 @@
 ---
 theme: ../../slidev-theme-midimily
-title: 企业家必须看到的 AI 的 8 个扎心真相
+title: 企业AI落地的8个扎心真相
 info: 企业 AI 落地方案
 layout: cover
 eyebrow: 企业 AI 落地方案
@@ -16,7 +16,7 @@ fonts:
   provider: none
 ---
 
-# 企业家必须看到的 AI 的 8 个扎心真相
+# 企业AI落地的8个扎心真相
 
 不是每个企业都要追风口，但每个企业都必须重估自己的生存方式。
 
