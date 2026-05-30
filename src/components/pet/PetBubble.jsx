@@ -31,7 +31,7 @@ export function PetBubble({ message, onClose }) {
           href="/#individual"
           className="rounded-full border border-[#d2d8ef] bg-[#f8f6ff] px-3 py-1.5 text-[12px] text-[#60719b] transition hover:border-[#b9c4e4] hover:bg-white"
         >
-          了解个人成长
+          了解个体成长
         </a>
       </div>
     </aside>

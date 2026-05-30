@@ -7,7 +7,7 @@ export const siteMeta = {
 export const navItems = [
   { label: '首页', href: '/#hero' },
   { label: '企业服务', href: '/#business' },
-  { label: '个人成长', href: '/#individual' },
+  { label: '个体成长', href: '/#individual' },
   { label: '实践', href: '/#practice' },
   { label: '方案', href: '/solutions' },
   { label: '联系', href: '/#contact' },
@@ -45,7 +45,7 @@ export const serviceOverviewCards = [
   },
   {
     id: 'individual',
-    tag: '个人成长',
+    tag: '个体成长',
     title: '个体 AI 成长服务',
     summary: '帮助职场人和学生掌握 AI 工具，提升学习效率、工作能力与未来竞争力。',
     bullets: [
@@ -63,7 +63,7 @@ export const serviceOverviewCards = [
       '担心被 AI 变化影响的人',
     ],
     keywords: '工具 · 学习 · 工作 · 求职 · 成长',
-    cta: '了解个人成长',
+    cta: '了解个体成长',
     gradient: 'from-[#f1fbf8] via-[#eff9ff] to-[#edf5ff]',
     border: 'border-[#d3e6e0]',
   },
@@ -126,7 +126,7 @@ export const practiceCards = [
   {
     title: '个体 AI 成长方法',
     body: '面向职场人与学生，沉淀 AI 工具使用、学习提效、职业转型与个人竞争力提升方法。',
-    tags: ['个人成长', '学习提效', '职业竞争力', 'AI 工具'],
+    tags: ['个体成长', '学习提效', '职业竞争力', 'AI 工具'],
   },
 ];
 

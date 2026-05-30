@@ -2,14 +2,19 @@
   <main class="slidev-layout">
     <header v-if="!isEmbed" class="mily-topbar">
       <a class="mily-brand" href="/">
-        <span class="mily-brand-name">米地米立</span>
-        <span class="mily-brand-subtitle">企业 AI 落地 · 个体 AI 成长</span>
+        <span class="mily-brand-logo-wrap">
+          <img class="mily-brand-logo" :src="brandLogo" alt="" aria-hidden="true">
+        </span>
+        <span class="mily-brand-copy">
+          <span class="mily-brand-name">米地米立</span>
+          <span class="mily-brand-subtitle">企业 AI 落地 · 个体 AI 成长</span>
+        </span>
       </a>
 
       <nav class="mily-nav" aria-label="站点导航">
         <a href="/#hero">首页</a>
         <a href="/#business">企业服务</a>
-        <a href="/#individual">个人成长</a>
+        <a href="/#individual">个体成长</a>
         <a href="/#practice">实践</a>
         <a href="/solutions">方案</a>
         <a href="/#contact">联系</a>
@@ -45,6 +50,7 @@
 <script setup>
 import { computed, nextTick, onMounted, onUnmounted } from 'vue';
 import { useNav, useSlideContext } from '@slidev/client';
+import brandLogo from '../../src/styles/LogoScandina.png';
 
 const props = defineProps({
   cardClass: {

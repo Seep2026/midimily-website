@@ -1,4 +1,5 @@
 import { navItems } from '../data/homeV2Data';
+import brandLogo from '../styles/LogoScandina.png';
 
 export function Header() {
   const currentPath = window.location.pathname;
@@ -6,10 +7,20 @@ export function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[#d8e2f0] bg-[#fbfcff]/88 backdrop-blur-md">
       <div className="mx-auto flex min-h-[74px] w-full max-w-[1220px] items-center gap-2 px-3 sm:px-4 lg:px-8">
-        <a href="/#hero" className="min-w-0 flex-1">
-          <span className="block truncate text-[17px] font-semibold tracking-tight text-[#2d3f5d]">米地米立</span>
-          <span className="mt-0.5 hidden truncate text-[11px] text-[#6d7f98] sm:block">
-            企业 AI 落地 · 个体 AI 成长
+        <a href="/#hero" className="flex min-w-0 flex-1 items-center gap-2.5">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-[10px] bg-white/70 sm:h-11 sm:w-11">
+            <img
+              src={brandLogo}
+              alt=""
+              aria-hidden="true"
+              className="h-full w-full object-contain mix-blend-multiply"
+            />
+          </span>
+          <span className="min-w-0">
+            <span className="block truncate text-[17px] font-semibold tracking-tight text-[#2d3f5d]">米地米立</span>
+            <span className="mt-0.5 hidden truncate text-[11px] text-[#6d7f98] sm:block">
+              企业 AI 落地 · 个体 AI 成长
+            </span>
           </span>
         </a>
 

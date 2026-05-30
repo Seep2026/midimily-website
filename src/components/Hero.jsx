@@ -23,7 +23,7 @@ export function Hero() {
               href="#individual"
               className="inline-flex min-h-11 items-center rounded-[12px] border border-[#d2dff0] bg-white/90 px-5 text-[14px] text-[#4f6f97] transition hover:border-[#b4cae6] hover:bg-white"
             >
-              了解个人成长
+              了解个体成长
             </a>
           </div>
 
