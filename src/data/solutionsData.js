@@ -105,9 +105,9 @@ export const solutionTypeLabels = {
 export const solutionCategoryCards = [
   {
     type: 'enterprise',
-    title: '企业 AI 落地方案',
-    description: '面向企业团队，关注 AI 如何进入业务流程、团队协作与运营提效。',
-    keywords: '场景 · 流程 · 工具 · 培训 · 陪跑',
+    title: '企业方案',
+    description: 'AI 进入业务流程',
+    keywords: '场景 · 流程 · 工具',
     gradient: 'from-[#f5f7ff] via-[#f3f8ff] to-[#eef3ff]',
     border: 'border-[#d6e0f4]',
     selectedGradient: 'from-[#eef3ff] via-[#edf5ff] to-[#e8edff]',
@@ -116,9 +116,9 @@ export const solutionCategoryCards = [
   },
   {
     type: 'individual',
-    title: '个体 AI 成长方案',
-    description: '面向职场人与学生，关注 AI 如何提升学习效率、工作能力与未来竞争力。',
-    keywords: '工具 · 学习 · 工作 · 求职 · 成长',
+    title: '个体方案',
+    description: 'AI 进入学习与工作',
+    keywords: '工具 · 学习 · 作品',
     gradient: 'from-[#f1fbf8] via-[#eff9ff] to-[#edf6fb]',
     border: 'border-[#d1e5df]',
     selectedGradient: 'from-[#e9fbf6] via-[#e9f8ff] to-[#e8f6f2]',

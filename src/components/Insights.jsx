@@ -14,16 +14,16 @@ export function Insights() {
             精选 AI 方案
           </h2>
           <p className="text-[16px] text-[#627896]">
-            用 Web Deck 快速理解企业落地和个体成长路径，把 AI 的变化转成可以讨论、可以行动的方案。
+            一页页读懂 AI 落地、成长与实践方法。
           </p>
         </div>
 
         <div className="mt-6 grid gap-3 sm:grid-cols-2">
-          <div className="rounded-[16px] border border-[#d6e0f4] bg-[#f6f9ff] p-4 text-[14px] text-[#5f7593]">
+          <div className="rounded-[20px] border border-[#d6e0f4] bg-[#f6f9ff]/86 p-4 text-[14px] text-[#5f7593] shadow-[0_10px_24px_rgba(92,118,150,0.06)]">
             <span className="block text-[17px] text-[#304864]">企业 AI 落地方案</span>
             <span className="mt-2 block">场景 · 流程 · 工具 · 培训 · 陪跑</span>
           </div>
-          <div className="rounded-[16px] border border-[#d1e5df] bg-[#f2fbf8] p-4 text-[14px] text-[#5f7593]">
+          <div className="rounded-[20px] border border-[#d1e5df] bg-[#f2fbf8]/86 p-4 text-[14px] text-[#5f7593] shadow-[0_10px_24px_rgba(92,118,150,0.06)]">
             <span className="block text-[17px] text-[#304864]">个体 AI 成长方案</span>
             <span className="mt-2 block">工具 · 学习 · 工作 · 求职 · 成长</span>
           </div>
@@ -39,7 +39,7 @@ export function Insights() {
           href="/solutions"
           className="mt-8 inline-flex min-h-11 items-center rounded-[12px] border border-[#d1dff0] bg-white/86 px-4 text-[14px] text-[#4e709a] transition hover:border-[#b6cde9] hover:bg-white"
         >
-          查看全部方案
+          查看精选 AI 方案
         </a>
       </div>
     </section>

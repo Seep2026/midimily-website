@@ -5,7 +5,6 @@ export const siteMeta = {
 };
 
 export const navItems = [
-  { label: '首页', href: '/#hero' },
   { label: '企业服务', href: '/#business' },
   { label: '个体成长', href: '/#individual' },
   { label: '实践', href: '/#practice' },
@@ -14,10 +13,40 @@ export const navItems = [
 ];
 
 export const heroStats = [
-  { value: '26 年', label: '复合从业经验' },
-  { value: '大厂 + 创业', label: '双重实践背景' },
-  { value: '技术 × 产品 × 运营', label: '跨领域视角' },
-  { value: 'AI 实践者', label: '持续探索落地' },
+  { value: '26 年复合经验', label: '' },
+  { value: '大厂 + 创业', label: '' },
+  { value: '技术 × 产品 × 运营', label: '' },
+  { value: '持续 AI 实践', label: '' },
+];
+
+export const heroEntryCards = [
+  {
+    tag: '企业路径',
+    title: '企业 AI 落地',
+    summary: '从一个真实流程开始，跑通 AI 小闭环。',
+    href: '#business',
+    cta: '查看落地路径',
+    progress: '01',
+    tone: 'enterprise',
+  },
+  {
+    tag: '成长路径',
+    title: '个体 AI 成长',
+    summary: '把 AI 用进学习、工作与作品积累。',
+    href: '#individual',
+    cta: '查看成长路径',
+    progress: '02',
+    tone: 'individual',
+  },
+  {
+    tag: '方案库',
+    title: '精选 AI 方案',
+    summary: '一页页读懂 AI 落地、成长与实践方法。',
+    href: '/solutions',
+    cta: '查看方案库',
+    progress: '03',
+    tone: 'library',
+  },
 ];
 
 export const serviceOverviewCards = [
@@ -36,7 +65,7 @@ export const serviceOverviewCards = [
     audience: [
       '想引入 AI，但不知道从哪里开始的企业',
       '想提升内容、运营、客服、管理效率的团队',
-      '想把 AI 从个人使用推进到组织流程的公司',
+      '想把 AI 从个体使用推进到组织流程的公司',
     ],
     keywords: '场景 · 流程 · 工具 · 培训 · 陪跑',
     cta: '了解企业服务',
@@ -71,62 +100,75 @@ export const serviceOverviewCards = [
 
 export const businessSteps = [
   {
-    title: '场景梳理',
-    body: '识别内容、运营、客服、知识管理与协作流程中的 AI 应用机会。',
+    title: '诊断场景',
+    body: '找到最值得 AI 改造的真实流程。',
+    output: '场景清单',
   },
   {
-    title: '工具选型',
-    body: '根据业务目标，选择合适的大模型、AI 工具或开源方案。',
+    title: '设计工作流',
+    body: '把业务目标拆成可执行 AI 流程。',
+    output: '流程草图',
   },
   {
-    title: '流程接入',
-    body: '把 AI 从个人尝鲜，接入团队日常工作与业务流程。',
+    title: '跑通 MVP',
+    body: '用一个小闭环验证价值。',
+    output: '试点结果',
   },
   {
-    title: '培训陪跑',
-    body: '通过培训、复盘和持续优化，让团队真正用起来。',
+    title: '沉淀能力',
+    body: '把试点经验变成组织能力。',
+    output: '复盘机制',
   },
 ];
 
 export const individualSteps = [
   {
-    title: '工具掌握',
-    body: '学会使用主流 AI 工具，完成写作、学习、研究、办公和创作任务。',
+    title: '会使用',
+    body: '掌握 ChatGPT、Claude、Gemini、Kimi 等模型基础使用。',
+    progress: '25%',
   },
   {
-    title: '效率提升',
-    body: '把 AI 融入日常学习和工作流程，减少重复劳动，提高产出质量。',
+    title: '会拆解',
+    body: '把复杂任务拆成目标、步骤、输入与输出。',
+    progress: '50%',
   },
   {
-    title: '能力重塑',
-    body: '理解 AI 对行业、岗位和专业学习的影响，重新规划个人能力结构。',
+    title: '会协作',
+    body: '让 AI 进入写作、研究、编程和运营流程。',
+    progress: '75%',
   },
   {
-    title: '路径规划',
-    body: '结合个人背景，设计学习、求职、转型或独立发展的现实路径。',
+    title: '会创造',
+    body: '用 AI 做作品、MVP、自动化和个人作品集。',
+    progress: '100%',
   },
 ];
 
 export const practiceCards = [
   {
-    title: 'OpenClaw 与 Agent 工作流',
-    body: '研究 AI Agent、多模型接入、技能扩展与自动化工作流，探索 AI 如何进入真实任务执行。',
-    tags: ['Agent', '多模型', '自动化', '工作流'],
+    title: 'AI Agent 工作流',
+    body: '把智能体放进真实任务，观察它如何协助拆解、执行与复盘。',
+    tags: ['Agent', '任务执行', '反馈循环'],
   },
   {
-    title: 'AI 新媒体内容中台',
-    body: '围绕选题、脚本、排版、短视频和数据反馈，搭建 AI 辅助内容生产系统。',
-    tags: ['内容中台', '选题', '短视频', '运营提效'],
+    title: 'Web Deck 内容系统',
+    body: '把观点、方案与演示沉淀成可浏览、可讨论、可迭代的内容资产。',
+    tags: ['Web Deck', '内容资产', '方案库'],
   },
   {
-    title: '企业 AI 应用场景库',
-    body: '持续整理内容、运营、客服、知识管理等场景中的 AI 应用方式和落地路径。',
-    tags: ['企业场景', '流程改造', '工具接入', '团队提效'],
+    title: 'Vibe Coding 实践',
+    body: '用 AI 编程工具搭建 MVP，验证从想法到交付的新工作方式。',
+    tags: ['Vibe Coding', 'MVP', 'AI 编程'],
   },
   {
-    title: '个体 AI 成长方法',
-    body: '面向职场人与学生，沉淀 AI 工具使用、学习提效、职业转型与个人竞争力提升方法。',
-    tags: ['个体成长', '学习提效', '职业竞争力', 'AI 工具'],
+    title: '企业 AI 流程试点',
+    body: '从一个高频流程开始，测试 AI 如何进入内容、客服、知识管理与协作。',
+    tags: ['企业流程', '试点', '陪跑'],
+  },
+  {
+    title: '个体 AI 作品集',
+    body: '把学习成果变成可展示的作品、模板和自动化流程。',
+    tags: ['作品集', '模板', '成长路径'],
   },
 ];
 

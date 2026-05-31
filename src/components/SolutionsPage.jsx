@@ -18,20 +18,24 @@ export function SolutionsPage() {
   };
 
   return (
-    <main className="min-h-screen px-4 pb-20 pt-28 sm:px-6 md:px-8">
-      <section className="mx-auto w-full max-w-[1220px]">
-        <div className="max-w-[820px] space-y-4">
+    <main className="relative min-h-screen overflow-hidden bg-[#fcf8f2] px-4 pb-20 pt-28 text-[#324967] sm:px-6 md:px-8">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(circle_at_18%_18%,rgba(124,146,187,0.10),transparent_30%),radial-gradient(circle_at_82%_10%,rgba(140,199,189,0.11),transparent_28%),linear-gradient(180deg,rgba(247,250,255,0.78),rgba(252,248,242,0))]" />
+      <div className="pointer-events-none absolute left-0 right-0 top-[280px] mx-auto h-px max-w-[1220px] bg-gradient-to-r from-transparent via-[#d9e5f3]/55 to-transparent" />
+
+      <section className="relative mx-auto w-full max-w-[1220px]">
+        <div className="max-w-[760px] space-y-3">
           <h1 className="text-[34px] leading-tight text-[#2e415f] sm:text-[42px] md:text-[48px]">
             精选 AI 方案
           </h1>
-          <p className="text-[16px] leading-relaxed text-[#627896]">
-            面向企业 AI 落地与个体 AI 成长，以 Web Deck 形式呈现可浏览、可讨论、可行动的方案。
+          <p className="max-w-[640px] text-[15px] leading-relaxed text-[#617895] sm:text-[16px]">
+            一页页读懂 AI 落地、成长与实践方法。
           </p>
+          <p className="text-[12px] text-[#8a9bb1]">Web Deck = 可在线阅读的方案简报</p>
         </div>
       </section>
 
-      <section className="mx-auto mt-8 w-full max-w-[1220px]">
-        <div className="grid gap-4 lg:grid-cols-2">
+      <section className="relative mx-auto mt-7 w-full max-w-[1220px]">
+        <div className="grid gap-3 md:grid-cols-2">
           {solutionCategoryCards.map((category) => (
             <SolutionCategoryCard
               key={category.type}
@@ -43,8 +47,8 @@ export function SolutionsPage() {
         </div>
       </section>
 
-      <section className="mx-auto mt-12 w-full max-w-[1220px]">
-        <div className="grid gap-4 lg:grid-cols-2">
+      <section className="relative mx-auto mt-10 w-full max-w-[1220px]">
+        <div className="grid gap-5 lg:grid-cols-2">
           {filteredSolutions.map((solution) => (
             <SolutionCard key={solution.slug} solution={solution} />
           ))}

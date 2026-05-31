@@ -6,9 +6,9 @@ export function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[#d8e2f0] bg-[#fbfcff]/88 backdrop-blur-md">
-      <div className="mx-auto flex min-h-[74px] w-full max-w-[1220px] items-center gap-2 px-3 sm:px-4 lg:px-8">
+      <div className="mx-auto flex min-h-[76px] w-full max-w-[1280px] items-center gap-2 px-3 sm:px-4 lg:px-5">
         <a href="/#hero" className="flex min-w-0 flex-1 items-center gap-2.5">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-[10px] bg-white/70 sm:h-11 sm:w-11">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-[10px] bg-white/70 sm:h-12 sm:w-12">
             <img
               src={brandLogo}
               alt=""
