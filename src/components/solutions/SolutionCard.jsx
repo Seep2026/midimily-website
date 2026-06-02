@@ -40,21 +40,22 @@ function SolutionDeckPreview({ solution }) {
 export function SolutionCard({ solution }) {
   const href = `/solutions/${solution.slug}/deck/`;
   const typeLabel = solutionTypeLabels[solution.type] || solution.category;
+  const shortTypeLabel = solution.type === 'enterprise' ? '企业方案' : '个体方案';
 
   return (
     <a
       href={href}
       aria-label={`打开《${solution.title}》Web Deck`}
-      className="block cursor-pointer rounded-[24px] border border-[#d8e3f1] bg-white/70 p-2.5 shadow-[0_12px_30px_rgba(90,115,150,0.07)] transition duration-200 hover:-translate-y-[3px] hover:border-[#b9cbe4] hover:bg-white/86 hover:shadow-[0_16px_36px_rgba(90,115,150,0.10)] focus:outline-none focus:ring-2 focus:ring-[#9bb1d4] focus:ring-offset-2 focus:ring-offset-[#fcf8f2]"
+      className="block cursor-pointer rounded-[20px] border border-[#d8e3f1] bg-white/70 p-2 shadow-[0_12px_30px_rgba(90,115,150,0.07)] transition duration-200 active:translate-y-[1px] hover:-translate-y-[3px] hover:border-[#b9cbe4] hover:bg-white/86 hover:shadow-[0_16px_36px_rgba(90,115,150,0.10)] focus:outline-none focus:ring-2 focus:ring-[#9bb1d4] focus:ring-offset-2 focus:ring-offset-[#fcf8f2] sm:rounded-[24px] sm:p-2.5"
     >
       <SolutionDeckPreview solution={solution} />
-      <div className="px-2 pb-2 pt-4 sm:px-3">
-        <h3 className="text-[18px] leading-tight text-[#304763] sm:text-[20px]">{solution.title}</h3>
-        <div className="mt-3 flex flex-wrap gap-2">
+      <div className="px-1.5 pb-1.5 pt-2 sm:px-3 sm:pb-2 sm:pt-3">
+        <div className="flex flex-wrap gap-2 max-sm:text-[10px]">
           <span className="rounded-full border border-[#d4e1ef] bg-[#f4f8fd] px-2.5 py-1 text-[11px] text-[#6682a5]">
-            {typeLabel}
+            <span className="sm:hidden">{shortTypeLabel} · {solution.pageCount} 页</span>
+            <span className="max-sm:hidden">{typeLabel}</span>
           </span>
-          <span className="rounded-full border border-[#d4e1ef] bg-[#f8fbff] px-2.5 py-1 text-[11px] text-[#6682a5]">
+          <span className="rounded-full border border-[#d4e1ef] bg-[#f8fbff] px-2.5 py-1 text-[11px] text-[#6682a5] max-sm:hidden">
             {solution.pageCount} 页
           </span>
         </div>

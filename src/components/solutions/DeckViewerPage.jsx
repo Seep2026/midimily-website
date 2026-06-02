@@ -47,7 +47,7 @@ function DeckSlide({ slide, onAdvance, isLast }) {
           onAdvance();
         }
       }}
-      className={`mx-auto flex min-h-[460px] w-full max-w-[1220px] flex-col rounded-[24px] bg-[#f9fcff]/95 p-6 shadow-[0_8px_18px_rgba(96,120,160,0.08)] transition duration-300 sm:p-8 md:min-h-[680px] md:p-12 ${
+      className={`mx-auto flex min-h-[70svh] w-full max-w-[1220px] flex-col rounded-[20px] bg-[#f9fcff]/95 p-6 shadow-[0_8px_18px_rgba(96,120,160,0.08)] transition duration-300 sm:p-8 md:min-h-[680px] md:rounded-[24px] md:p-12 ${
         isLast ? 'cursor-default' : 'cursor-pointer'
       }`}
       role="button"
@@ -317,44 +317,51 @@ export function DeckViewerPage({ slug }) {
 
   return (
     <main className="overflow-x-hidden bg-[#f7f9fc] px-4 pb-16 pt-24 text-[#324967] sm:px-6 md:px-8 md:pb-20 md:pt-28">
-      <div className="mx-auto flex w-full max-w-[1220px] flex-wrap items-center gap-3 py-3">
-        <a href="/solutions" className="inline-flex min-h-11 items-center rounded-[12px] border border-[#d1dff0] bg-white/88 px-4 text-[14px] text-[#5f7da5] transition hover:text-[#496b95]">
-          返回
-        </a>
-        <div className="ml-auto flex items-center gap-2">
-          {showPagePicker
-            ? pageNumbers.map((page) => (
-                <button
-                  key={page}
-                  type="button"
-                  onClick={() => goToPage(page)}
-                  className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-[11px] border px-3 text-[14px] transition ${
-                    currentPage === page
-                      ? 'border-[#7c92bb] bg-[#7c92bb] text-white'
-                      : 'border-[#d1dff0] bg-white/88 text-[#4e709a] hover:bg-white'
-                  }`}
-                >
-                  {page}
-                </button>
-              ))
-            : null}
+      <div className="mx-auto w-full max-w-[1220px] py-2 md:py-3">
+        <div className="flex items-center gap-3">
+          <a
+            href="/solutions"
+            className="inline-flex min-h-10 items-center rounded-[11px] border border-[#d1dff0] bg-white/88 px-3.5 text-[13px] font-medium text-[#5f7da5] transition hover:text-[#496b95] md:min-h-11 md:rounded-[12px] md:px-4 md:text-[14px]"
+          >
+            返回方案
+          </a>
           <button
             type="button"
             onClick={() => setShowPagePicker((value) => !value)}
-            className="inline-flex min-h-11 items-center rounded-[12px] border border-[#d1dff0] bg-white/88 px-4 text-[14px] text-[#4e709a] transition hover:bg-white"
+            className="ml-auto inline-flex min-h-10 items-center rounded-[11px] border border-[#d1dff0] bg-white/88 px-3.5 text-[13px] font-semibold text-[#4e709a] transition hover:bg-white md:min-h-11 md:rounded-[12px] md:px-4 md:text-[14px]"
+            aria-expanded={showPagePicker}
           >
-            页
+            {currentPage} / {totalSlides}
           </button>
         </div>
+
+        {showPagePicker ? (
+          <div className="mt-2 flex gap-2 overflow-x-auto pb-1">
+            {pageNumbers.map((page) => (
+              <button
+                key={page}
+                type="button"
+                onClick={() => goToPage(page)}
+                className={`inline-flex min-h-10 min-w-10 shrink-0 items-center justify-center rounded-[10px] border px-3 text-[13px] transition md:min-h-11 md:min-w-11 md:rounded-[11px] md:text-[14px] ${
+                  currentPage === page
+                    ? 'border-[#7c92bb] bg-[#7c92bb] text-white'
+                    : 'border-[#d1dff0] bg-white/88 text-[#4e709a] hover:bg-white'
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+          </div>
+        ) : null}
       </div>
 
       {renderMode === 'slidev' ? (
-        <section className="relative mx-auto min-h-[460px] w-full max-w-[1220px] overflow-hidden rounded-[24px] bg-[#f9fcff]/94 md:min-h-[680px]">
+        <section className="relative mx-auto h-[70svh] min-h-[520px] w-full max-w-[1220px] overflow-hidden rounded-[20px] bg-[#f9fcff]/94 md:h-auto md:min-h-[680px] md:rounded-[24px]">
           <iframe
             ref={slidevIframeRef}
             title={`${solution.title} Slidev`}
             src={slidevEmbedUrl}
-            className="h-full min-h-[460px] w-full border-0 md:min-h-[680px]"
+            className="h-full min-h-[520px] w-full border-0 md:min-h-[680px]"
             loading="lazy"
             onLoad={() => {
               setIsSlidevFrameReady(false);
@@ -364,7 +371,7 @@ export function DeckViewerPage({ slug }) {
                 syncSlideToIframe(currentPage);
               }, 1800);
             }}
-          />
+            />
           {isSlidevFrameReady && currentPage < totalSlides ? (
             <button
               type="button"
@@ -377,7 +384,7 @@ export function DeckViewerPage({ slug }) {
       ) : renderMode === 'fallback' && deck && currentSlide ? (
         <DeckSlide slide={currentSlide} onAdvance={goNext} isLast={currentPage >= totalSlides} />
       ) : (
-        <section className="mx-auto flex min-h-[460px] w-full max-w-[1220px] items-center justify-center rounded-[24px] border border-[#d7e3f0] bg-[#fbfdff]/92 md:min-h-[680px]">
+        <section className="mx-auto flex h-[70svh] min-h-[520px] w-full max-w-[1220px] items-center justify-center rounded-[20px] border border-[#d7e3f0] bg-[#fbfdff]/92 md:min-h-[680px] md:rounded-[24px]">
           <p className="text-[15px] text-[#6b81a0]">正在加载方案内容...</p>
         </section>
       )}

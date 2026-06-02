@@ -34,20 +34,7 @@ function SlidevRedirectPage({ slug, restPath }) {
     window.location.replace(target);
   }, [embedFallbackTarget, isEmbedRequest, target]);
 
-  return (
-    <main className="min-h-screen px-4 pb-20 pt-28 sm:px-6 md:px-8 md:pt-32">
-      <section className="mx-auto max-w-[900px] rounded-[20px] border border-[#d7e3f0] bg-white/80 p-8">
-        <span className="inline-flex rounded-full border border-[#cfe0f4] bg-[#f0f6fd] px-3 py-1 text-[12px] text-[#6284af]">
-          正在打开方案
-        </span>
-        <h1 className="mt-4 text-[32px] leading-tight text-[#2e415f]">正在进入方案 Deck</h1>
-        <p className="mt-3 text-[#627896]">如果没有自动跳转，请点击下方按钮继续。</p>
-        <a href={target} className="mt-6 inline-flex min-h-11 items-center rounded-[12px] bg-[#7c92bb] px-4 text-[14px] font-medium text-white">
-          打开 Web Deck
-        </a>
-      </section>
-    </main>
-  );
+  return null;
 }
 
 export default function App() {

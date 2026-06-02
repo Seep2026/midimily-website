@@ -5,6 +5,11 @@ import { SolutionCategoryCard } from './solutions/SolutionCategoryCard';
 
 export function SolutionsPage() {
   const [activeFilter, setActiveFilter] = useState(null);
+  const mobileFilters = [
+    { type: null, label: '全部' },
+    { type: 'enterprise', label: '企业' },
+    { type: 'individual', label: '个体' },
+  ];
   const filteredSolutions = useMemo(() => {
     if (!activeFilter) {
       return solutions;
@@ -18,24 +23,33 @@ export function SolutionsPage() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#fcf8f2] px-4 pb-20 pt-28 text-[#324967] sm:px-6 md:px-8">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(circle_at_18%_18%,rgba(124,146,187,0.10),transparent_30%),radial-gradient(circle_at_82%_10%,rgba(140,199,189,0.11),transparent_28%),linear-gradient(180deg,rgba(247,250,255,0.78),rgba(252,248,242,0))]" />
-      <div className="pointer-events-none absolute left-0 right-0 top-[280px] mx-auto h-px max-w-[1220px] bg-gradient-to-r from-transparent via-[#d9e5f3]/55 to-transparent" />
+    <main className="relative min-h-screen overflow-hidden bg-[#fcf8f2] px-4 pb-20 pt-24 text-[#324967] sm:px-6 md:px-8 md:pt-28">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[360px] bg-[radial-gradient(circle_at_18%_10%,rgba(124,146,187,0.08),transparent_30%),radial-gradient(circle_at_82%_4%,rgba(140,199,189,0.08),transparent_28%),linear-gradient(180deg,rgba(247,250,255,0.60),rgba(252,248,242,0))]" />
 
       <section className="relative mx-auto w-full max-w-[1220px]">
-        <div className="max-w-[760px] space-y-3">
-          <h1 className="text-[34px] leading-tight text-[#2e415f] sm:text-[42px] md:text-[48px]">
-            精选 AI 方案
-          </h1>
-          <p className="max-w-[640px] text-[15px] leading-relaxed text-[#617895] sm:text-[16px]">
-            一页页读懂 AI 落地、成长与实践方法。
-          </p>
-          <p className="text-[12px] text-[#8a9bb1]">Web Deck = 可在线阅读的方案简报</p>
-        </div>
-      </section>
+        <div className="flex rounded-full border border-[#d6e2f0] bg-white/66 p-1 shadow-[0_10px_26px_rgba(88,112,148,0.06)] md:hidden">
+          {mobileFilters.map((filter) => {
+            const isSelected = activeFilter === filter.type;
 
-      <section className="relative mx-auto mt-7 w-full max-w-[1220px]">
-        <div className="grid gap-3 md:grid-cols-2">
+            return (
+              <button
+                key={filter.label}
+                type="button"
+                onClick={() => setActiveFilter(filter.type)}
+                className={`min-h-10 flex-1 rounded-full px-3 text-[13px] font-medium transition ${
+                  isSelected
+                    ? 'bg-[#7c92bb] text-white shadow-[0_8px_18px_rgba(124,146,187,0.18)]'
+                    : 'text-[#60799b] hover:bg-white/72'
+                }`}
+                aria-pressed={isSelected}
+              >
+                {filter.label}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="hidden gap-3 md:grid md:grid-cols-2">
           {solutionCategoryCards.map((category) => (
             <SolutionCategoryCard
               key={category.type}
@@ -47,8 +61,8 @@ export function SolutionsPage() {
         </div>
       </section>
 
-      <section className="relative mx-auto mt-10 w-full max-w-[1220px]">
-        <div className="grid gap-5 lg:grid-cols-2">
+      <section className="relative mx-auto mt-4 w-full max-w-[1220px] md:mt-8">
+        <div className="grid gap-4 md:gap-5 lg:grid-cols-2">
           {filteredSolutions.map((solution) => (
             <SolutionCard key={solution.slug} solution={solution} />
           ))}
