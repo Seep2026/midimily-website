@@ -18,7 +18,7 @@ export function ServicesOverview() {
           {serviceOverviewCards.map((card) => (
             <article
               key={card.id}
-              className={`rounded-[24px] border ${card.border} bg-gradient-to-br ${card.gradient} p-5 shadow-[0_14px_34px_rgba(86,111,148,0.07)] transition duration-200 hover:-translate-y-[3px] hover:border-[#bdcfe7] hover:shadow-[0_18px_40px_rgba(86,111,148,0.10)] sm:p-6`}
+              className={`cursor-default rounded-[24px] border ${card.border} bg-gradient-to-br ${card.gradient} p-5 shadow-[0_10px_24px_rgba(86,111,148,0.06)] sm:p-6`}
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
@@ -46,7 +46,8 @@ export function ServicesOverview() {
 
               <a
                 href="#contact"
-                className="mt-5 inline-flex min-h-11 items-center rounded-[12px] bg-[#7c92bb] px-4 text-[14px] font-medium text-white transition hover:bg-[#6f86b0]"
+                aria-label={`${card.cta}，前往联系区`}
+                className="mt-5 inline-flex min-h-11 items-center rounded-[12px] bg-[#7c92bb] px-4 text-[14px] font-medium text-white transition active:translate-y-[1px] hover:bg-[#6f86b0] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#9db3d7] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
               >
                 {card.cta}
               </a>

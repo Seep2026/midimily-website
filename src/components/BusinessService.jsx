@@ -16,9 +16,9 @@ export function BusinessService() {
           {businessSteps.map((step, index) => (
             <article
               key={step.title}
-              className="group relative overflow-hidden rounded-[20px] border border-[#d6e2f2] bg-[#fcfeff]/88 p-5 shadow-[0_10px_26px_rgba(95,119,154,0.07)] transition duration-200 hover:-translate-y-[2px] hover:border-[#bdcfe7] hover:bg-white"
+              className="relative cursor-default overflow-hidden rounded-[20px] border border-[#d6e2f2] bg-[#fcfeff]/88 p-5 shadow-[0_8px_20px_rgba(95,119,154,0.05)]"
             >
-              <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[#e8eefc]/62 transition group-hover:scale-110" />
+              <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[#e8eefc]/62" />
               <span className="relative inline-flex rounded-full border border-[#c9daef] bg-[#eff5fc] px-3 py-1 text-[12px] text-[#6687b1]">
                 {String(index + 1).padStart(2, '0')}
               </span>

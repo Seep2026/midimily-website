@@ -36,7 +36,8 @@ export function SolutionsPage() {
                 key={filter.label}
                 type="button"
                 onClick={() => setActiveFilter(filter.type)}
-                className={`min-h-10 flex-1 rounded-full px-3 text-[13px] font-medium transition ${
+                aria-label={filter.type ? `筛选${filter.label}方案` : '显示全部方案'}
+                className={`min-h-10 flex-1 cursor-pointer rounded-full px-3 text-[13px] font-medium transition active:translate-y-[1px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#9db3d7] focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
                   isSelected
                     ? 'bg-[#7c92bb] text-white shadow-[0_8px_18px_rgba(124,146,187,0.18)]'
                     : 'text-[#60799b] hover:bg-white/72'

@@ -38,28 +38,50 @@ function SolutionDeckPreview({ solution }) {
 }
 
 export function SolutionCard({ solution }) {
-  const href = `/solutions/${solution.slug}/deck/`;
+  const href = solution.fallbackDeckUrl || `/solutions/${solution.slug}/deck/`;
+  const hasDeckSource = Boolean(solution.deckUrl || solution.slidevUrl || solution.fallbackDeckUrl);
+  const isAvailable = solution.status === 'published' && hasDeckSource;
   const typeLabel = solutionTypeLabels[solution.type] || solution.category;
   const shortTypeLabel = solution.type === 'enterprise' ? '企业方案' : '个体方案';
+  const baseClass =
+    'block rounded-[20px] border border-[#d8e3f1] bg-white/70 p-2 shadow-[0_12px_30px_rgba(90,115,150,0.07)] sm:rounded-[24px] sm:p-2.5';
+  const metaContent = (
+    <div className="px-1.5 pb-1.5 pt-2 sm:px-3 sm:pb-2 sm:pt-3">
+      <div className="flex flex-wrap gap-2 max-sm:text-[10px]">
+        <span className="rounded-full border border-[#d4e1ef] bg-[#f4f8fd] px-2.5 py-1 text-[11px] text-[#6682a5]">
+          <span className="sm:hidden">{shortTypeLabel} · {solution.pageCount} 页</span>
+          <span className="max-sm:hidden">{typeLabel}</span>
+        </span>
+        <span className="rounded-full border border-[#d4e1ef] bg-[#f8fbff] px-2.5 py-1 text-[11px] text-[#6682a5] max-sm:hidden">
+          {solution.pageCount} 页
+        </span>
+        {!isAvailable ? (
+          <span className="rounded-full border border-[#d8e3ef] bg-[#f7fafd] px-2.5 py-1 text-[11px] text-[#8a9bb2]">
+            即将开放
+          </span>
+        ) : null}
+      </div>
+      {!isAvailable ? <p className="mt-2 text-[12px] text-[#8a9bb2]">内容整理中</p> : null}
+    </div>
+  );
+
+  if (!isAvailable) {
+    return (
+      <article className={`${baseClass} cursor-default opacity-80`} aria-label={`《${solution.title}》方案正在整理中`}>
+        <SolutionDeckPreview solution={solution} />
+        {metaContent}
+      </article>
+    );
+  }
 
   return (
     <a
       href={href}
       aria-label={`打开《${solution.title}》Web Deck`}
-      className="block cursor-pointer rounded-[20px] border border-[#d8e3f1] bg-white/70 p-2 shadow-[0_12px_30px_rgba(90,115,150,0.07)] transition duration-200 active:translate-y-[1px] hover:-translate-y-[3px] hover:border-[#b9cbe4] hover:bg-white/86 hover:shadow-[0_16px_36px_rgba(90,115,150,0.10)] focus:outline-none focus:ring-2 focus:ring-[#9bb1d4] focus:ring-offset-2 focus:ring-offset-[#fcf8f2] sm:rounded-[24px] sm:p-2.5"
+      className={`${baseClass} cursor-pointer transition duration-200 active:translate-y-[1px] hover:-translate-y-[3px] hover:border-[#b9cbe4] hover:bg-white/86 hover:shadow-[0_16px_36px_rgba(90,115,150,0.10)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#9bb1d4] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fcf8f2]`}
     >
       <SolutionDeckPreview solution={solution} />
-      <div className="px-1.5 pb-1.5 pt-2 sm:px-3 sm:pb-2 sm:pt-3">
-        <div className="flex flex-wrap gap-2 max-sm:text-[10px]">
-          <span className="rounded-full border border-[#d4e1ef] bg-[#f4f8fd] px-2.5 py-1 text-[11px] text-[#6682a5]">
-            <span className="sm:hidden">{shortTypeLabel} · {solution.pageCount} 页</span>
-            <span className="max-sm:hidden">{typeLabel}</span>
-          </span>
-          <span className="rounded-full border border-[#d4e1ef] bg-[#f8fbff] px-2.5 py-1 text-[11px] text-[#6682a5] max-sm:hidden">
-            {solution.pageCount} 页
-          </span>
-        </div>
-      </div>
+      {metaContent}
     </a>
   );
 }

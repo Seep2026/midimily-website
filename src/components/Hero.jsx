@@ -22,13 +22,13 @@ export function Hero() {
           <div className="flex flex-wrap gap-3">
             <a
               href="/solutions"
-              className="inline-flex min-h-11 items-center rounded-[12px] bg-[#7c92bb] px-5 text-[14px] font-medium text-white transition hover:bg-[#6f86b0]"
+              className="inline-flex min-h-11 items-center rounded-[12px] bg-[#7c92bb] px-5 text-[14px] font-medium text-white transition active:translate-y-[1px] hover:bg-[#6f86b0] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#9db3d7] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fcf8f2]"
             >
               查看精选方案
             </a>
             <a
               href="#contact"
-              className="inline-flex min-h-11 items-center rounded-[12px] border border-[#d2dff0] bg-white/90 px-5 text-[14px] text-[#4f6f97] transition hover:border-[#b4cae6] hover:bg-white"
+              className="inline-flex min-h-11 items-center rounded-[12px] border border-[#d2dff0] bg-white/90 px-5 text-[14px] text-[#4f6f97] transition active:translate-y-[1px] hover:border-[#b4cae6] hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#9db3d7] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fcf8f2]"
             >
               预约一次交流
             </a>
@@ -57,7 +57,8 @@ export function Hero() {
           <a
             key={card.title}
             href={card.href}
-            className="group rounded-[22px] border border-[#d8e4f2] bg-white/64 p-4 shadow-[0_12px_30px_rgba(85,111,148,0.07)] backdrop-blur transition duration-200 hover:-translate-y-[3px] hover:border-[#bfd0e8] hover:bg-white/78 focus:outline-none focus:ring-2 focus:ring-[#9db3d7] focus:ring-offset-2 focus:ring-offset-[#fcf8f2] sm:p-5"
+            aria-label={`${card.cta}：${card.title}`}
+            className="group cursor-pointer rounded-[22px] border border-[#d8e4f2] bg-white/64 p-4 shadow-[0_12px_30px_rgba(85,111,148,0.07)] backdrop-blur transition duration-200 active:translate-y-[1px] hover:-translate-y-[3px] hover:border-[#bfd0e8] hover:bg-white/78 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#9db3d7] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fcf8f2] sm:p-5"
           >
             <div className="flex items-center justify-between gap-3">
               <span className="inline-flex rounded-full border border-white/70 bg-white/76 px-2.5 py-1 text-[11px] text-[#607c9e]">

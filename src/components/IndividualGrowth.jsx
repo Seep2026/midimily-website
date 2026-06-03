@@ -17,7 +17,7 @@ export function IndividualGrowth() {
           {individualSteps.map((step, index) => (
             <article
               key={step.title}
-              className="relative overflow-hidden rounded-[20px] border border-[#d7e7e4] bg-[#fffdfb]/84 p-5 shadow-[0_10px_26px_rgba(104,132,153,0.07)] transition duration-200 hover:-translate-y-[2px] hover:border-[#bddbd5] hover:bg-white/92"
+              className="relative cursor-default overflow-hidden rounded-[20px] border border-[#d7e7e4] bg-[#fffdfb]/84 p-5 shadow-[0_8px_20px_rgba(104,132,153,0.05)]"
             >
               <div className="absolute left-0 top-0 h-1 w-full bg-[#e7f2f2]" />
               <div className="absolute left-0 top-0 h-1 bg-gradient-to-r from-[#8cc7bd] to-[#8f9cd6]" style={{ width: step.progress }} />

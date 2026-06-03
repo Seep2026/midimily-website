@@ -3,7 +3,8 @@ export function SolutionCategoryCard({ category, isSelected, onSelect }) {
     <button
       type="button"
       onClick={() => onSelect(category.type)}
-      className={`group min-h-11 rounded-[22px] border bg-gradient-to-br p-4 text-left shadow-[0_10px_28px_rgba(86,111,148,0.06)] transition duration-200 hover:-translate-y-[2px] sm:p-5 ${
+      aria-label={`筛选${category.title}`}
+      className={`group min-h-11 cursor-pointer rounded-[22px] border bg-gradient-to-br p-4 text-left shadow-[0_10px_28px_rgba(86,111,148,0.06)] transition duration-200 active:translate-y-[1px] hover:-translate-y-[2px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#9db3d7] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fcf8f2] sm:p-5 ${
         isSelected
           ? `${category.selectedBorder} ${category.selectedGradient} shadow-[0_14px_32px_rgba(86,111,148,0.09)]`
           : `${category.border} ${category.gradient} hover:border-[#bccde5] hover:bg-white/70`

@@ -25,7 +25,8 @@ export function Insights() {
         <div className="mt-7 flex justify-center md:mt-9">
           <a
             href="/solutions"
-            className="inline-flex min-h-[46px] items-center justify-center rounded-full border border-[#c7daf0] bg-white/76 px-6 text-[15px] font-semibold text-[#526f96] shadow-[0_14px_34px_rgba(115,139,171,0.12)] transition hover:-translate-y-0.5 hover:border-[#9fb9da] hover:bg-white hover:text-[#2e5b94]"
+            aria-label="查看全部精选 AI 方案"
+            className="inline-flex min-h-[46px] items-center justify-center rounded-full border border-[#c7daf0] bg-white/76 px-6 text-[15px] font-semibold text-[#526f96] shadow-[0_14px_34px_rgba(115,139,171,0.12)] transition active:translate-y-[1px] hover:-translate-y-0.5 hover:border-[#9fb9da] hover:bg-white hover:text-[#2e5b94] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#9db3d7] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fcf8f2]"
           >
             查看全部方案
           </a>

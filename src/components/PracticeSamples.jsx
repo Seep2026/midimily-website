@@ -13,11 +13,16 @@ export function PracticeSamples() {
           {practiceCards.map((card) => (
             <article
               key={card.title}
-              className="rounded-[20px] border border-[#d5e1ef] bg-[#fdfefe]/88 p-5 shadow-[0_10px_26px_rgba(113,134,165,0.06)] transition duration-200 hover:-translate-y-[2px] hover:border-[#bdcfe7] hover:bg-white"
+              className="cursor-default rounded-[20px] border border-[#d5e1ef] bg-[#fdfefe]/88 p-5 shadow-[0_8px_20px_rgba(113,134,165,0.05)]"
             >
-              <span className="inline-flex rounded-full border border-[#d6e4f2] bg-[#f2f7fc] px-2.5 py-1 text-[11px] text-[#6684aa]">
-                Project Lab
-              </span>
+              <div className="flex items-center justify-between gap-3">
+                <span className="inline-flex rounded-full border border-[#d6e4f2] bg-[#f2f7fc] px-2.5 py-1 text-[11px] text-[#6684aa]">
+                  实践样本
+                </span>
+                <span className="inline-flex rounded-full border border-[#d6e4f2] bg-[#f7fafd] px-2.5 py-1 text-[11px] text-[#8a9bb2]">
+                  实践中
+                </span>
+              </div>
               <h3 className="mt-3 text-[22px] leading-tight text-[#304864]">{card.title}</h3>
               <p className="mt-3 text-[14px] leading-relaxed text-[#5f7593]">{card.body}</p>
               <div className="mt-4 flex flex-wrap gap-2">
