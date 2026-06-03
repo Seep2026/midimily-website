@@ -7,6 +7,9 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[560px] bg-[radial-gradient(circle_at_18%_20%,rgba(124,146,187,0.11),transparent_30%),radial-gradient(circle_at_82%_18%,rgba(140,199,189,0.12),transparent_28%),radial-gradient(circle_at_50%_86%,rgba(235,205,126,0.10),transparent_28%),linear-gradient(180deg,rgba(247,250,255,0.74),rgba(252,248,242,0))]" />
       <div className="relative mx-auto grid w-full max-w-[1220px] items-center gap-8 lg:grid-cols-[1.03fr_0.97fr] lg:gap-12">
         <div className="max-w-[680px] space-y-6">
+          <span className="inline-flex rounded-full border border-[#d5e3f4] bg-white/70 px-3 py-1 text-[12px] text-[#6684aa] shadow-[0_8px_18px_rgba(86,111,148,0.06)]">
+            不只看趋势，先跑一个小闭环。
+          </span>
           <h1 className="text-[34px] leading-[1.16] tracking-tight text-[#2d3f5d] sm:text-[42px] md:text-[54px]">
             企业的 AI 落地伙伴
             <br />
@@ -18,16 +21,16 @@ export function Hero() {
 
           <div className="flex flex-wrap gap-3">
             <a
-              href="#business"
+              href="/solutions"
               className="inline-flex min-h-11 items-center rounded-[12px] bg-[#7c92bb] px-5 text-[14px] font-medium text-white transition hover:bg-[#6f86b0]"
             >
-              了解企业服务
+              查看精选方案
             </a>
             <a
-              href="#individual"
+              href="#contact"
               className="inline-flex min-h-11 items-center rounded-[12px] border border-[#d2dff0] bg-white/90 px-5 text-[14px] text-[#4f6f97] transition hover:border-[#b4cae6] hover:bg-white"
             >
-              了解个体成长
+              预约一次交流
             </a>
           </div>
 
