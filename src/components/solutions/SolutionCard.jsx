@@ -38,7 +38,7 @@ function SolutionDeckPreview({ solution }) {
 }
 
 export function SolutionCard({ solution }) {
-  const href = solution.fallbackDeckUrl || `/solutions/${solution.slug}/deck/`;
+  const href = `/solutions/${solution.slug}/`;
   const hasDeckSource = Boolean(solution.deckUrl || solution.slidevUrl || solution.fallbackDeckUrl);
   const isAvailable = solution.status === 'published' && hasDeckSource;
   const typeLabel = solutionTypeLabels[solution.type] || solution.category;
@@ -61,6 +61,15 @@ export function SolutionCard({ solution }) {
           </span>
         ) : null}
       </div>
+      <h3 className="mt-3 text-[19px] leading-tight text-[#304965] sm:text-[21px]">{solution.title}</h3>
+      <p className="mt-2 line-clamp-3 text-[13px] leading-relaxed text-[#627c9b] sm:text-[14px]">
+        {solution.description}
+      </p>
+      {solution.audience?.length ? (
+        <p className="mt-2 text-[12px] leading-relaxed text-[#7890ad]">
+          适合：{solution.audience.slice(0, 3).join('、')}
+        </p>
+      ) : null}
       {!isAvailable ? <p className="mt-2 text-[12px] text-[#8a9bb2]">内容整理中</p> : null}
     </div>
   );
@@ -77,7 +86,7 @@ export function SolutionCard({ solution }) {
   return (
     <a
       href={href}
-      aria-label={`打开《${solution.title}》Web Deck`}
+      aria-label={`查看《${solution.title}》方案详情`}
       className={`${baseClass} cursor-pointer transition duration-200 active:translate-y-[1px] hover:-translate-y-[3px] hover:border-[#b9cbe4] hover:bg-white/86 hover:shadow-[0_16px_36px_rgba(90,115,150,0.10)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#9bb1d4] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fcf8f2]`}
     >
       <SolutionDeckPreview solution={solution} />

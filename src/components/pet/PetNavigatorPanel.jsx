@@ -6,7 +6,7 @@ const initialMessages = [
   {
     id: 'intro',
     role: 'assistant',
-    text: '你可以直接告诉我：想了解企业 AI 落地、个人 AI 成长、教育机构增长，或预约一次咨询。',
+    text: '你可以直接告诉我：想了解企业 AI 落地、个人 AI 成长、AI OPC，或预约一次咨询。',
   },
 ];
 
@@ -19,6 +19,13 @@ function getStoredMessages() {
 
     const parsed = JSON.parse(rawValue);
     if (!Array.isArray(parsed) || parsed.length === 0) {
+      return initialMessages;
+    }
+
+    const hasRetiredDraftTopic = parsed.some((message) =>
+      /教育机构|教培|EduSocial|edusocial|AI API Gateway|模型路由/.test(String(message?.text || '')),
+    );
+    if (hasRetiredDraftTopic) {
       return initialMessages;
     }
 

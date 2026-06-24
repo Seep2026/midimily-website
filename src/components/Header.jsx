@@ -3,6 +3,14 @@ import brandLogo from '../styles/LogoScandina.png';
 
 export function Header() {
   const currentPath = window.location.pathname;
+  const currentHash = window.location.hash;
+  const isItemActive = (href) => {
+    if (href.startsWith('/#')) {
+      return currentPath === '/' && currentHash === href.slice(1);
+    }
+
+    return currentPath === href || currentPath.startsWith(`${href}/`);
+  };
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[#d8e2f0] bg-[#fbfcff]/88 backdrop-blur-md">
@@ -26,7 +34,7 @@ export function Header() {
 
         <nav className="hidden items-center gap-6 text-[14px] text-[#6f809b] lg:flex">
           {navItems.map((item) => {
-            const isActive = item.href === '/solutions' && currentPath.startsWith('/solutions');
+            const isActive = isItemActive(item.href);
 
             return (
               <a
@@ -49,7 +57,7 @@ export function Header() {
             </summary>
             <div className="absolute right-0 mt-2 grid w-[188px] gap-1 rounded-[14px] border border-[#d8e3f2] bg-white p-2 shadow-[0_14px_28px_rgba(96,120,160,0.16)]">
               {navItems.map((item) => {
-                const isActive = item.href === '/solutions' && currentPath.startsWith('/solutions');
+                const isActive = isItemActive(item.href);
 
                 return (
                   <a

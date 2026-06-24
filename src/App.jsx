@@ -1,16 +1,14 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Header } from './components/Header';
-import { Hero } from './components/Hero';
-import { ServicesOverview } from './components/ServicesOverview';
-import { BusinessService } from './components/BusinessService';
-import { IndividualGrowth } from './components/IndividualGrowth';
-import { PracticeSamples } from './components/PracticeSamples';
-import { Insights } from './components/Insights';
-import { CTA } from './components/CTA';
+import { HomePage } from './components/HomePage';
 import { Footer } from './components/Footer';
 import { SolutionsPage } from './components/SolutionsPage';
 import { DeckViewerPage } from './components/solutions/DeckViewerPage';
 import { SolutionDetailPage } from './components/solutions/SolutionDetailPage';
+import { TopicIndexPage } from './components/geo/TopicIndexPage';
+import { TopicPage } from './components/geo/TopicPage';
+import { EvidencePage } from './components/geo/EvidencePage';
+import { EvidenceDetailPage } from './components/geo/EvidenceDetailPage';
 import { SitePet } from './components/pet/SitePet';
 import {
   APP_NAVIGATION_EVENT,
@@ -47,6 +45,10 @@ export default function App() {
   const [locationKey, setLocationKey] = useState(getCurrentAppPath);
   const path = window.location.pathname;
   const isSolutionsPage = path === '/solutions' || path === '/solutions/';
+  const isTopicsPage = path === '/topics' || path === '/topics/';
+  const isEvidencePage = path === '/evidence' || path === '/evidence/';
+  const topicMatch = path.match(/^\/topics\/([^/]+)\/?$/);
+  const evidenceMatch = path.match(/^\/evidence\/([^/]+)\/?$/);
   const deckMatch = path.match(/^\/solutions\/([^/]+)\/deck\/?$/);
   const slidevPathMatch = path.match(/^\/solutions\/([^/]+)\/slidev\/?(.*)$/);
   const solutionMatch = path.match(/^\/solutions\/([^/]+)\/?$/);
@@ -112,6 +114,14 @@ export default function App() {
       <Header />
       {isSolutionsPage ? (
         <SolutionsPage />
+      ) : isTopicsPage ? (
+        <TopicIndexPage />
+      ) : topicMatch ? (
+        <TopicPage slug={topicMatch[1]} />
+      ) : isEvidencePage ? (
+        <EvidencePage />
+      ) : evidenceMatch ? (
+        <EvidenceDetailPage slug={evidenceMatch[1]} />
       ) : slidevPathMatch ? (
         <SlidevRedirectPage slug={slidevPathMatch[1]} restPath={slidevPathMatch[2]} />
       ) : deckMatch ? (
@@ -119,15 +129,7 @@ export default function App() {
       ) : solutionMatch ? (
         <SolutionDetailPage slug={solutionMatch[1]} />
       ) : (
-        <main>
-          <Hero />
-          <ServicesOverview />
-          <BusinessService />
-          <IndividualGrowth />
-          <PracticeSamples />
-          <Insights />
-          <CTA />
-        </main>
+        <HomePage />
       )}
       <SitePet />
       <Footer />

@@ -51,6 +51,14 @@ export function ServicesOverview() {
               >
                 {card.cta}
               </a>
+              {card.href ? (
+                <a
+                  href={card.href}
+                  className="ml-3 mt-5 inline-flex min-h-11 items-center rounded-[12px] border border-[#c9d8eb] bg-white/70 px-4 text-[14px] font-medium text-[#55769d] transition hover:bg-white"
+                >
+                  查看服务说明
+                </a>
+              ) : null}
             </article>
           ))}
         </div>

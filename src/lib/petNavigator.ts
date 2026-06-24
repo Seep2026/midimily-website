@@ -74,12 +74,6 @@ const localIntentRules: Array<{
     afterMessage: '这里可以选择企业 AI 落地交流或个体 AI 成长交流。提交前需要你自己确认。',
   },
   {
-    keywords: ['教育机构', '教培', '短视频', '自媒体增长', 'edusocial', '教育增长', '招生增长'],
-    action: { type: 'filter_solutions', audience: 'enterprise', label: '教育机构 AI 增长方向' },
-    beforeMessage: '我先带你看企业 AI 落地方向。',
-    afterMessage: '教育机构和短视频增长适合从内容生产、线索承接、私域运营的小闭环开始。',
-  },
-  {
     keywords: ['所有方案', '服务方案', '方案库', '去方案', '打开方案', '跳转方案', '切换方案', '看看方案', '方案', '看看你们能做什么', '你们能做什么'],
     action: { type: 'filter_solutions', audience: 'all', label: '查看全部方案' },
     beforeMessage: '我带你看全部方案。',
@@ -117,7 +111,7 @@ export function matchLocalPetIntent(rawInput: string): Omit<PetNavigatorResult, 
 function buildLowConfidenceReply(): PetNavigationAction {
   return {
     type: 'reply',
-    message: '我还不太确定你想看哪一块。你可以直接说“企业 AI 落地”“个人 AI 成长”“教育机构增长”或“预约咨询”。',
+    message: '我还不太确定你想看哪一块。你可以直接说“企业 AI 落地”“个人 AI 成长”“AI OPC”或“预约咨询”。',
   };
 }
 

@@ -100,7 +100,7 @@ function normalizeLlmAction(data: Record<string, unknown>): PetNavigationAction 
 
   const message = typeof data.message === 'string' && data.message.trim()
     ? data.message.trim()
-    : '我可以带你看企业 AI 落地、个人 AI 成长、教育机构增长或预约咨询。';
+    : '我可以带你看企业 AI 落地、个人 AI 成长、AI OPC 或预约咨询。';
   return { type: 'reply', message };
 }
 

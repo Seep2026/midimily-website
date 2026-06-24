@@ -1,10 +1,10 @@
-import { navItems } from '../data/homeV2Data';
+import { footerResourceLinks, navItems } from '../data/homeV2Data';
 import redbookMily from '../styles/redbook_mily.png';
 
 export function Footer() {
   return (
     <footer className="border-t border-[#d8e3f0] bg-[#f5f8fd] px-4 pt-14 sm:px-6 md:px-8">
-      <div className="mx-auto grid w-full max-w-[1220px] gap-10 pb-10 md:grid-cols-3">
+      <div className="mx-auto grid w-full max-w-[1220px] gap-10 pb-10 md:grid-cols-4">
         <section>
           <h3 className="text-[24px] text-[#304864]">米地米立</h3>
           <p className="mt-2 text-[13px] text-[#5f7a9d]">企业 AI 落地 · 个体 AI 成长</p>
@@ -14,6 +14,19 @@ export function Footer() {
           <h4 className="text-[15px] text-[#324b68]">导航</h4>
           <ul className="mt-3 grid gap-2 text-[14px] text-[#627b9b]">
             {navItems.map((item) => (
+              <li key={item.href}>
+                <a href={item.href} className="transition-colors hover:text-[#597fae]">
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <nav>
+          <h4 className="text-[15px] text-[#324b68]">延伸阅读</h4>
+          <ul className="mt-3 grid gap-2 text-[13px] text-[#6f86a4]">
+            {footerResourceLinks.map((item) => (
               <li key={item.href}>
                 <a href={item.href} className="transition-colors hover:text-[#597fae]">
                   {item.label}

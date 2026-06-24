@@ -7,9 +7,13 @@ export const siteMeta = {
 export const navItems = [
   { label: '企业服务', href: '/#business' },
   { label: '个体成长', href: '/#individual' },
-  { label: '实践', href: '/#practice' },
   { label: '方案', href: '/solutions' },
   { label: '联系', href: '/#contact' },
+];
+
+export const footerResourceLinks = [
+  { label: 'AI 服务地图', href: '/topics' },
+  { label: '案例与对比', href: '/evidence' },
 ];
 
 export const heroStats = [
@@ -57,6 +61,7 @@ export const serviceOverviewCards = [
     firstStep: '找到一个最值得 AI 改造的真实流程。',
     actions: ['场景诊断', '流程拆解', 'MVP 试跑'],
     cta: '预约 AI 落地诊断',
+    href: '/topics/enterprise-ai-landing',
     gradient: 'from-[#f4f6ff] via-[#f2f7ff] to-[#edf3ff]',
     border: 'border-[#d8e3f7]',
   },
@@ -67,6 +72,7 @@ export const serviceOverviewCards = [
     firstStep: '把一个真实任务变成可复用的 AI 工作流。',
     actions: ['工具掌握', '任务拆解', '作品沉淀'],
     cta: '预约成长路径交流',
+    href: '/topics/personal-ai-growth',
     gradient: 'from-[#f1fbf8] via-[#eff9ff] to-[#edf5ff]',
     border: 'border-[#d3e6e0]',
   },
