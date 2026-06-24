@@ -7,6 +7,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
+const pageAgentVendorDir = path.resolve(rootDir, 'src/vendor/page-agent/upstream');
 
 function slidevDirectoryIndex() {
   const serveSlidevIndex = async (req, res, next) => {
@@ -44,4 +45,28 @@ function slidevDirectoryIndex() {
 
 export default defineConfig({
   plugins: [slidevDirectoryIndex(), react(), tailwindcss()],
+  resolve: {
+    alias: {
+      '@page-agent/core': path.join(pageAgentVendorDir, 'packages/core/src/PageAgentCore.ts'),
+      '@page-agent/llms': path.join(pageAgentVendorDir, 'packages/llms/src/index.ts'),
+      '@page-agent/page-controller': path.join(pageAgentVendorDir, 'packages/page-controller/src/PageController.ts'),
+      'ai-motion': path.join(rootDir, 'src/vendor/page-agent/aiMotionStub.ts'),
+      chalk: path.join(rootDir, 'src/vendor/page-agent/chalkStub.ts'),
+      'zod/v4': path.join(rootDir, 'node_modules/zod/v4/index.js'),
+    },
+  },
+  esbuild: {
+    target: 'esnext',
+    tsconfigRaw: {
+      compilerOptions: {
+        target: 'ESNext',
+        useDefineForClassFields: true,
+      },
+    },
+  },
+  server: {
+    fs: {
+      allow: [rootDir],
+    },
+  },
 });

@@ -20,20 +20,6 @@ export function PetBubble({ message, onClose }) {
         </button>
       </div>
 
-      <div className="mt-3 flex flex-wrap gap-2">
-        <a
-          href="/#business"
-          className="rounded-full border border-[#c9d7ef] bg-[#f3f7ff] px-3 py-1.5 text-[12px] text-[#55739e] transition hover:border-[#adc3e3] hover:bg-white"
-        >
-          了解企业服务
-        </a>
-        <a
-          href="/#individual"
-          className="rounded-full border border-[#d2d8ef] bg-[#f8f6ff] px-3 py-1.5 text-[12px] text-[#60719b] transition hover:border-[#b9c4e4] hover:bg-white"
-        >
-          了解个体成长
-        </a>
-      </div>
     </aside>
   );
 }

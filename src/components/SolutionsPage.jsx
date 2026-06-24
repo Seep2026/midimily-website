@@ -3,8 +3,18 @@ import { solutions, solutionCategoryCards } from '../data/solutionsData';
 import { SolutionCard } from './solutions/SolutionCard';
 import { SolutionCategoryCard } from './solutions/SolutionCategoryCard';
 
+function getInitialAudienceFilter() {
+  const audience = new URLSearchParams(window.location.search).get('audience');
+
+  if (audience === 'enterprise' || audience === 'individual') {
+    return audience;
+  }
+
+  return null;
+}
+
 export function SolutionsPage() {
-  const [activeFilter, setActiveFilter] = useState(null);
+  const [activeFilter, setActiveFilter] = useState(getInitialAudienceFilter);
   const mobileFilters = [
     { type: null, label: '全部' },
     { type: 'enterprise', label: '企业' },
@@ -19,7 +29,16 @@ export function SolutionsPage() {
   }, [activeFilter]);
 
   const handleSelectFilter = (type) => {
-    setActiveFilter((current) => (current === type ? null : type));
+    const nextFilter = activeFilter === type ? null : type;
+    setActiveFilter(nextFilter);
+    const query = nextFilter ? `?audience=${nextFilter}` : '';
+    window.history.replaceState(null, '', `/solutions${query}`);
+  };
+
+  const handleSelectMobileFilter = (type) => {
+    setActiveFilter(type);
+    const query = type ? `?audience=${type}` : '';
+    window.history.replaceState(null, '', `/solutions${query}`);
   };
 
   return (
@@ -35,7 +54,7 @@ export function SolutionsPage() {
               <button
                 key={filter.label}
                 type="button"
-                onClick={() => setActiveFilter(filter.type)}
+                onClick={() => handleSelectMobileFilter(filter.type)}
                 aria-label={filter.type ? `筛选${filter.label}方案` : '显示全部方案'}
                 className={`min-h-10 flex-1 cursor-pointer rounded-full px-3 text-[13px] font-medium transition active:translate-y-[1px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#9db3d7] focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
                   isSelected

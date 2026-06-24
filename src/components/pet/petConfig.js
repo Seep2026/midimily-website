@@ -96,6 +96,8 @@ export function getPetProfile(petId) {
 export const sitePetConfig = {
   storageKey: 'midimily.sitePet.closed',
   sessionPromptKey: 'midimily.sitePet.sessionPrompts',
+  navigatorOpenKey: 'midimily.sitePet.navigatorOpen',
+  navigatorMessagesKey: 'midimily.sitePet.navigatorMessages',
   mobileMediaQuery: '(max-width: 767px)',
   showMobileEntry: true,
   maxAutoPromptsPerVisit: 2,

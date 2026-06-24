@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { ServicesOverview } from './components/ServicesOverview';
@@ -12,6 +12,12 @@ import { SolutionsPage } from './components/SolutionsPage';
 import { DeckViewerPage } from './components/solutions/DeckViewerPage';
 import { SolutionDetailPage } from './components/solutions/SolutionDetailPage';
 import { SitePet } from './components/pet/SitePet';
+import {
+  APP_NAVIGATION_EVENT,
+  getCurrentAppPath,
+  navigateInApp,
+  shouldHandleAppLinkClick,
+} from './lib/appNavigation';
 
 function SlidevRedirectPage({ slug, restPath }) {
   const params = useMemo(() => new URLSearchParams(window.location.search), []);
@@ -38,6 +44,7 @@ function SlidevRedirectPage({ slug, restPath }) {
 }
 
 export default function App() {
+  const [locationKey, setLocationKey] = useState(getCurrentAppPath);
   const path = window.location.pathname;
   const isSolutionsPage = path === '/solutions' || path === '/solutions/';
   const deckMatch = path.match(/^\/solutions\/([^/]+)\/deck\/?$/);
@@ -45,30 +52,60 @@ export default function App() {
   const solutionMatch = path.match(/^\/solutions\/([^/]+)\/?$/);
 
   useEffect(() => {
-    const scrollToHashTarget = () => {
-      const hash = window.location.hash;
-      if (!hash || hash.length <= 1) {
+    const syncLocation = () => setLocationKey(getCurrentAppPath());
+
+    window.addEventListener(APP_NAVIGATION_EVENT, syncLocation);
+    window.addEventListener('popstate', syncLocation);
+    window.addEventListener('hashchange', syncLocation);
+
+    return () => {
+      window.removeEventListener(APP_NAVIGATION_EVENT, syncLocation);
+      window.removeEventListener('popstate', syncLocation);
+      window.removeEventListener('hashchange', syncLocation);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      const target = event.target;
+      const anchor = target instanceof Element ? target.closest('a[href]') : null;
+
+      if (!shouldHandleAppLinkClick(event, anchor)) {
         return;
       }
 
-      const target = document.getElementById(decodeURIComponent(hash.slice(1)));
-      if (!target) {
-        return;
-      }
-
-      const headerOffset = 88;
-      const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
-      window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+      event.preventDefault();
+      navigateInApp(anchor.href);
     };
 
+    document.addEventListener('click', handleDocumentClick, true);
+    return () => document.removeEventListener('click', handleDocumentClick, true);
+  }, []);
+
+  const scrollToHashTarget = useCallback(() => {
+    const hash = window.location.hash;
+    if (!hash || hash.length <= 1) {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      return;
+    }
+
+    const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+    if (!target) {
+      return;
+    }
+
+    const headerOffset = 88;
+    const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+  }, []);
+
+  useEffect(() => {
     const timer = window.setTimeout(scrollToHashTarget, 0);
-    window.addEventListener('hashchange', scrollToHashTarget);
 
     return () => {
       window.clearTimeout(timer);
-      window.removeEventListener('hashchange', scrollToHashTarget);
     };
-  }, []);
+  }, [locationKey, scrollToHashTarget]);
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#fcf8f2] text-[#324967]">

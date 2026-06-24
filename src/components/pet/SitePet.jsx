@@ -1,13 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { PetWidget, codexPetAtlas, usePetController } from '../../vendor/codex-pets-react';
 import { PetBubble } from './PetBubble';
+import { PetNavigatorPanel } from './PetNavigatorPanel';
 import { getPetProfile, getSafeAnimation, sitePetConfig } from './petConfig';
-import { clickPetMessages, initialPetMessage, sectionPetMessages } from './petMessages';
+import { initialPetMessage, sectionPetMessages } from './petMessages';
 import { usePetVisibility } from './usePetVisibility';
-
-function getRandomItem(items) {
-  return items[Math.floor(Math.random() * items.length)];
-}
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -48,12 +45,18 @@ function incrementSessionPromptCount() {
   window.sessionStorage.setItem(sitePetConfig.sessionPromptKey, String(getSessionPromptCount() + 1));
 }
 
+function getStoredNavigatorOpen() {
+  return window.sessionStorage.getItem(sitePetConfig.navigatorOpenKey) === 'true';
+}
+
+const verifiedPetAssetIds = new Set();
+
 export function SitePet() {
   const { expandPet, isClosed, isExpanded, isMobile } = usePetVisibility();
   const [bubbleMessage, setBubbleMessage] = useState('');
+  const [isNavigatorOpen, setIsNavigatorOpen] = useState(getStoredNavigatorOpen);
   const [isContactNearby, setIsContactNearby] = useState(false);
   const [activePetId] = useState(sitePetConfig.activePetId);
-  const [spriteVersion, setSpriteVersion] = useState(() => Date.now());
   const promptedSectionsRef = useRef(new Set());
   const lastSectionPromptAtRef = useRef(0);
   const hideTimerRef = useRef(null);
@@ -74,8 +77,12 @@ export function SitePet() {
         return;
       }
 
+      if (verifiedPetAssetIds.has(activePetProfile.id)) {
+        return;
+      }
+
       try {
-        const petJsonResponse = await fetch(activePetProfile.petJsonPath, { cache: 'no-store' });
+        const petJsonResponse = await fetch(activePetProfile.petJsonPath);
         if (!petJsonResponse.ok) {
           throw new Error(`pet.json missing: ${petJsonResponse.status}`);
         }
@@ -85,9 +92,9 @@ export function SitePet() {
           const image = new window.Image();
           image.onload = resolve;
           image.onerror = () => reject(new Error('spritesheet load failed'));
-          image.src = `${activePetProfile.spritesheetPath}?t=${Date.now()}`;
+          image.src = activePetProfile.spritesheetPath;
         });
-        setSpriteVersion(Date.now());
+        verifiedPetAssetIds.add(activePetProfile.id);
       } catch (error) {
         if (cancelled) {
           return;
@@ -284,6 +291,10 @@ export function SitePet() {
   );
 
   useEffect(() => {
+    window.sessionStorage.setItem(sitePetConfig.navigatorOpenKey, String(isNavigatorOpen));
+  }, [isNavigatorOpen]);
+
+  useEffect(() => {
     if (isClosed || isMobile || !isExpanded || getSessionPromptCount() >= sitePetConfig.maxAutoPromptsPerVisit) {
       return undefined;
     }
@@ -380,7 +391,8 @@ export function SitePet() {
   const handlePetClick = () => {
     if (isMobile && !isExpanded) {
       expandPet();
-      showBubble(initialPetMessage, sitePetConfig.clickBubbleMs);
+      setIsNavigatorOpen(true);
+      setBubbleMessage('');
       return;
     }
 
@@ -395,22 +407,46 @@ export function SitePet() {
       mode: 'once',
       then: defaultAnimation,
     });
-    showBubble(getRandomItem(clickPetMessages), sitePetConfig.clickBubbleMs);
+    setBubbleMessage('');
+    setIsNavigatorOpen((current) => !current);
   };
+
+  const handleGuideActivity = useCallback(
+    (requestedAnimation) => {
+      const safeAnimation = getSafeAnimation(requestedAnimation, activePetProfile, atlasAnimationNames, [
+        'wave',
+        'review',
+        'failed',
+        'idle',
+      ]);
+
+      petDispatch({
+        type: 'animation.play',
+        animation: safeAnimation,
+        mode: 'once',
+        then: defaultAnimation,
+      });
+    },
+    [activePetProfile, atlasAnimationNames, defaultAnimation, petDispatch],
+  );
 
   if (isClosed || (isMobile && !sitePetConfig.showMobileEntry)) {
     return null;
   }
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-40 overflow-hidden" aria-label="米地米立 AI 引导助手">
+    <div
+      className="pointer-events-none fixed inset-0 z-40 overflow-hidden"
+      aria-label="米地米立 AI 引导助手"
+      data-page-agent-ignore="true"
+    >
       {!isMobile && isExpanded ? (
         <div
           className={`pointer-events-none fixed right-5 z-50 ${
             isContactNearby ? 'bottom-[322px]' : 'bottom-[224px]'
           }`}
         >
-          <PetBubble message={bubbleMessage} onClose={() => setBubbleMessage('')} />
+          {isNavigatorOpen ? null : <PetBubble message={bubbleMessage} onClose={() => setBubbleMessage('')} />}
         </div>
       ) : null}
 
@@ -420,7 +456,20 @@ export function SitePet() {
             isContactNearby ? 'bottom-[130px]' : 'bottom-[84px]'
           }`}
         >
-          <PetBubble message={bubbleMessage} onClose={() => setBubbleMessage('')} />
+          {isNavigatorOpen ? null : <PetBubble message={bubbleMessage} onClose={() => setBubbleMessage('')} />}
+        </div>
+      ) : null}
+
+      {isNavigatorOpen ? (
+        <div
+          className={`pointer-events-none fixed right-3 z-50 sm:right-5 ${
+            isMobile ? 'bottom-[86px]' : isContactNearby ? 'bottom-[322px]' : 'bottom-[210px]'
+          }`}
+        >
+          <PetNavigatorPanel
+            onClose={() => setIsNavigatorOpen(false)}
+            onGuideActivity={handleGuideActivity}
+          />
         </div>
       ) : null}
 
@@ -437,7 +486,7 @@ export function SitePet() {
         pin={pet.pin}
         position={pet.position}
         scale={scale}
-        src={`${activePetProfile?.spritesheetPath}?v=${spriteVersion}`}
+        src={activePetProfile?.spritesheetPath}
         zIndex={51}
       />
     </div>

@@ -5,7 +5,15 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default [
-  { ignores: ['dist', 'public/solutions/**/slidev/**', '.agents/**', '.impeccable/**'] },
+  {
+    ignores: [
+      'dist',
+      'public/solutions/**/slidev/**',
+      '.agents/**',
+      '.impeccable/**',
+      'src/vendor/page-agent/upstream/**',
+    ],
+  },
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {

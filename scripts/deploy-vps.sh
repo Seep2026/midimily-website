@@ -58,8 +58,17 @@ if ! command -v node >/dev/null 2>&1; then
   exit 1
 fi
 
+if ! command -v npm >/dev/null 2>&1; then
+  echo "Error: npm is required."
+  exit 1
+fi
+
 echo "==> Fetch latest code"
 git fetch origin "$BRANCH"
+
+echo "==> Reset generated deck artifacts"
+git restore --worktree -- public/solutions
+git clean -fd -- public/solutions
 
 if [[ "$FORCE_RESET" == "1" ]]; then
   echo "==> Force mode enabled: discarding local changes"
@@ -75,20 +84,37 @@ else
   git pull --ff-only origin "$BRANCH"
 fi
 
-if command -v pnpm >/dev/null 2>&1; then
-  echo "==> Using pnpm"
-  pnpm install --frozen-lockfile
-  pnpm deck:build:all
-  pnpm build
-elif command -v npm >/dev/null 2>&1; then
-  echo "==> pnpm not found, fallback to npm"
-  npm ci
-  npm run deck:build:all
-  npm run build
-else
-  echo "Error: neither pnpm nor npm is available."
+if [[ ! -f package-lock.json ]]; then
+  echo "Error: package-lock.json is required for reproducible npm ci builds."
   exit 1
 fi
+
+if [[ -f .env.production ]]; then
+  echo "==> Load .env.production"
+  set -a
+  source .env.production
+  set +a
+elif [[ -f .env.local ]]; then
+  echo "==> Load .env.local"
+  set -a
+  source .env.local
+  set +a
+fi
+
+if [[ -z "${VITE_AI_NAVIGATOR_BASE_URL:-}" || -z "${VITE_AI_NAVIGATOR_API_KEY:-}" ]]; then
+  echo "Error: VITE_AI_NAVIGATOR_BASE_URL and VITE_AI_NAVIGATOR_API_KEY are required for the AI guide."
+  echo "       Put them in .env.production on the VPS or export them before running this script."
+  exit 1
+fi
+
+echo "==> Install dependencies with npm ci"
+npm ci
+
+echo "==> Build decks"
+npm run deck:build:all
+
+echo "==> Build website"
+npm run build
 
 if [[ "$SKIP_NGINX_RELOAD" == "0" ]]; then
   if command -v systemctl >/dev/null 2>&1 && systemctl is-active --quiet nginx; then
