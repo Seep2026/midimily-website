@@ -24,6 +24,20 @@ The site should help visitors understand two service lines:
 
 Success means a visitor can quickly choose a path, read a solution deck, understand the first action, and feel safe enough to start a conversation.
 
+## GEO / EcoGEO Update Principle
+
+Midimily must be maintained as an evidence ecosystem, not only as a set of visual pages. Future content and UI updates should help AI Search Agents, ChatGPT Search, Perplexity, Google AI Overview, Kimi, DeepSeek, and similar crawlers understand, follow, cite, and recommend the site accurately.
+
+When adding or changing public content:
+
+- Keep each service direction anchored by a clear, human-friendly entry page, such as the AI 服务地图, a solution detail page, or a case/comparison page.
+- Do not publish unfinished service lines. Draft topics should not appear in navigation, sitemap, llms.txt, JSON-LD, pet guidance, or public cards until their positioning is final.
+- Every important public page should have a specific title, description, canonical URL, one clear H1, readable first-screen text, FAQ when useful, and links to related solution, case, comparison, or service pages.
+- Preserve the TRACE-style evidence path: navigation entry page, official definition, expert explanation, case or comparison, FAQ, social proof or project proof, and contact CTA.
+- Keep terminology consistent across homepage copy, solution metadata, topic pages, pet responses, llms.txt, sitemap, and JSON-LD.
+- Maintain crawler infrastructure when routes change: update `public/sitemap.xml`, `public/llms.txt`, route metadata, and structured data together.
+- Use natural human-facing labels in the UI. GEO scaffolding terms such as "topic entry" or "evidence page" may guide implementation, but public navigation should use names like "AI 服务地图", "案例与对比", or "服务说明".
+
 ## Brand Personality
 
 Clear, warm, and pragmatic.

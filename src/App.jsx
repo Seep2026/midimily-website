@@ -16,6 +16,7 @@ import {
   navigateInApp,
   shouldHandleAppLinkClick,
 } from './lib/appNavigation';
+import './styles/editorial/production.css';
 
 function SlidevRedirectPage({ slug, restPath }) {
   const params = useMemo(() => new URLSearchParams(window.location.search), []);
@@ -110,7 +111,7 @@ export default function App() {
   }, [locationKey, scrollToHashTarget]);
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#fcf8f2] text-[#324967]">
+    <div className="editorial-token-scope editorial-site-shell min-h-screen overflow-x-hidden">
       <Header />
       {isSolutionsPage ? (
         <SolutionsPage />

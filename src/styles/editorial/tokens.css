@@ -1,0 +1,18 @@
+.editorial-token-scope {
+  --mily-page-background: #fcf8f2;
+  --mily-text-primary: #2e415f;
+  --mily-text-secondary: #405a7c;
+  --mily-text-muted: #526f96;
+  --mily-editorial-accent: #7c92bb;
+  --mily-editorial-note: #344e72;
+  --mily-hairline: #d7e3f0;
+  --mily-link: #344e72;
+  --mily-link-hover: #2e5b94;
+  --mily-focus-ring: #2e5b94;
+  --mily-content-wide: 1180px;
+  --mily-content-measure: 780px;
+  --mily-content-narrow: 620px;
+  --mily-transition-fast: 160ms;
+  --mily-font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", Roboto, "Noto Sans CJK SC", "Noto Sans SC", Arial, sans-serif;
+}

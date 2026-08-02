@@ -1,9 +1,9 @@
-import { Hero } from './Hero';
+import { HomeHero } from './editorial/HomeHero';
+import { EditorialStoryGroup } from './editorial/EditorialStoryGroup';
 import { ServicesOverview } from './ServicesOverview';
 import { BusinessService } from './BusinessService';
 import { IndividualGrowth } from './IndividualGrowth';
 import { PracticeSamples } from './PracticeSamples';
-import { Insights } from './Insights';
 import { CTA } from './CTA';
 import { SeoMetadata } from './SeoMetadata';
 import { siteMeta } from '../data/homeV2Data';
@@ -33,12 +33,14 @@ export function HomePage() {
           }),
         ]}
       />
-      <Hero />
+      <div className="editorial-token-scope home-editorial-core">
+        <HomeHero />
+        <EditorialStoryGroup />
+      </div>
       <ServicesOverview />
       <BusinessService />
       <IndividualGrowth />
       <PracticeSamples />
-      <Insights />
       <CTA />
     </main>
   );

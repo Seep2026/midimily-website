@@ -13,26 +13,26 @@ export function Header() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-[#d8e2f0] bg-[#fbfcff]/88 backdrop-blur-md">
-      <div className="mx-auto flex min-h-[76px] w-full max-w-[1280px] items-center gap-2 px-3 sm:px-4 lg:px-5">
-        <a href="/#hero" className="flex min-w-0 flex-1 items-center gap-2.5">
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-[10px] bg-white/70 sm:h-12 sm:w-12">
+    <header className="editorial-site-header">
+      <div className="editorial-site-header__inner">
+        <a href="/#hero" className="editorial-site-header__brand" aria-label="米地米立首页">
+          <span className="editorial-site-header__mark">
             <img
               src={brandLogo}
               alt=""
               aria-hidden="true"
-              className="h-full w-full object-contain mix-blend-multiply"
+              className="editorial-site-header__logo"
             />
           </span>
-          <span className="min-w-0">
-            <span className="block truncate text-[17px] font-semibold tracking-tight text-[#2d3f5d]">米地米立</span>
-            <span className="mt-0.5 hidden truncate text-[11px] text-[#6d7f98] sm:block">
+          <span className="editorial-site-header__identity">
+            <span className="editorial-site-header__name">米地米立</span>
+            <span className="editorial-site-header__descriptor">
               企业 AI 落地 · 个体 AI 成长
             </span>
           </span>
         </a>
 
-        <nav className="hidden items-center gap-6 text-[14px] text-[#6f809b] lg:flex">
+        <nav className="editorial-site-header__nav" aria-label="主导航">
           {navItems.map((item) => {
             const isActive = isItemActive(item.href);
 
@@ -40,9 +40,8 @@ export function Header() {
               <a
                 key={item.href}
                 href={item.href}
-                className={`transition-colors hover:text-[#5f82b2] ${
-                  isActive ? 'text-[#496b95]' : ''
-                }`}
+                className={isActive ? 'is-active' : undefined}
+                aria-current={isActive ? 'page' : undefined}
               >
                 {item.label}
               </a>
@@ -50,12 +49,12 @@ export function Header() {
           })}
         </nav>
 
-        <div className="flex shrink-0 items-center gap-2 lg:hidden">
-          <details className="relative">
-            <summary className="inline-flex min-h-11 cursor-pointer items-center rounded-[12px] border border-[#d5e0ef] bg-white/88 px-3 text-[12px] text-[#506d92] list-none">
+        <div className="editorial-site-header__mobile">
+          <details className="editorial-site-header__menu">
+            <summary>
               菜单
             </summary>
-            <div className="absolute right-0 mt-2 grid w-[188px] gap-1 rounded-[14px] border border-[#d8e3f2] bg-white p-2 shadow-[0_14px_28px_rgba(96,120,160,0.16)]">
+            <nav className="editorial-site-header__menu-panel" aria-label="移动端导航">
               {navItems.map((item) => {
                 const isActive = isItemActive(item.href);
 
@@ -63,15 +62,14 @@ export function Header() {
                   <a
                     key={item.href}
                     href={item.href}
-                    className={`rounded-[10px] px-3 py-2 text-[13px] transition hover:bg-[#f0f5fb] hover:text-[#496b95] ${
-                      isActive ? 'bg-[#f0f5fb] text-[#496b95]' : 'text-[#617997]'
-                    }`}
+                    className={isActive ? 'is-active' : undefined}
+                    aria-current={isActive ? 'page' : undefined}
                   >
                     {item.label}
                   </a>
                 );
               })}
-            </div>
+            </nav>
           </details>
         </div>
       </div>

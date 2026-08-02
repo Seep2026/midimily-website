@@ -16,43 +16,6 @@ export const footerResourceLinks = [
   { label: '案例与对比', href: '/evidence' },
 ];
 
-export const heroStats = [
-  { value: '26 年复合经验', label: '' },
-  { value: '大厂 + 创业', label: '' },
-  { value: '技术 × 产品 × 运营', label: '' },
-  { value: '持续 AI 实践', label: '' },
-];
-
-export const heroEntryCards = [
-  {
-    tag: '方案入口',
-    title: '精选方案',
-    summary: '先用一组在线简报，看懂 AI 如何落地。',
-    href: '/solutions',
-    cta: '进入方案库',
-    progress: '01',
-    tone: 'library',
-  },
-  {
-    tag: '企业路径',
-    title: '企业落地',
-    summary: '从一个真实流程开始，跑通 AI 小闭环。',
-    href: '#business',
-    cta: '查看企业路径',
-    progress: '02',
-    tone: 'enterprise',
-  },
-  {
-    tag: '成长路径',
-    title: '个体成长',
-    summary: '把 AI 用进学习、工作与作品积累。',
-    href: '#individual',
-    cta: '查看成长路径',
-    progress: '03',
-    tone: 'individual',
-  },
-];
-
 export const serviceOverviewCards = [
   {
     id: 'business',

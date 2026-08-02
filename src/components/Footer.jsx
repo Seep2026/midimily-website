@@ -1,21 +1,24 @@
 import { footerResourceLinks, navItems } from '../data/homeV2Data';
-import redbookMily from '../styles/redbook_mily.png';
 
 export function Footer() {
   return (
-    <footer className="border-t border-[#d8e3f0] bg-[#f5f8fd] px-4 pt-14 sm:px-6 md:px-8">
-      <div className="mx-auto grid w-full max-w-[1220px] gap-10 pb-10 md:grid-cols-4">
-        <section>
-          <h3 className="text-[24px] text-[#304864]">米地米立</h3>
-          <p className="mt-2 text-[13px] text-[#5f7a9d]">企业 AI 落地 · 个体 AI 成长</p>
+    <footer className="editorial-site-footer">
+      <div className="editorial-site-footer__inner">
+        <section className="editorial-site-footer__identity">
+          <h2>深圳市米地咨询有限公司</h2>
+          <p>
+            深圳市宝安区新安街道顺丰路安乐物业大厦 512
+            <br />
+            粤ICP备2026099384号
+          </p>
         </section>
 
-        <nav>
-          <h4 className="text-[15px] text-[#324b68]">导航</h4>
-          <ul className="mt-3 grid gap-2 text-[14px] text-[#627b9b]">
+        <nav className="editorial-site-footer__nav" aria-label="页脚导航">
+          <h3>导航</h3>
+          <ul>
             {navItems.map((item) => (
               <li key={item.href}>
-                <a href={item.href} className="transition-colors hover:text-[#597fae]">
+                <a href={item.href}>
                   {item.label}
                 </a>
               </li>
@@ -23,12 +26,12 @@ export function Footer() {
           </ul>
         </nav>
 
-        <nav>
-          <h4 className="text-[15px] text-[#324b68]">延伸阅读</h4>
-          <ul className="mt-3 grid gap-2 text-[13px] text-[#6f86a4]">
+        <nav className="editorial-site-footer__nav" aria-label="延伸阅读">
+          <h3>延伸阅读</h3>
+          <ul>
             {footerResourceLinks.map((item) => (
               <li key={item.href}>
-                <a href={item.href} className="transition-colors hover:text-[#597fae]">
+                <a href={item.href}>
                   {item.label}
                 </a>
               </li>
@@ -36,29 +39,26 @@ export function Footer() {
           </ul>
         </nav>
 
-        <section>
-          <h4 className="text-[15px] text-[#324b68]">社交媒体</h4>
-          <ul className="mt-3 grid gap-2 text-[14px] text-[#627b9b]">
+        <section className="editorial-site-footer__social">
+          <h3>社交媒体</h3>
+          <ul>
             <li>视频号：米立AI</li>
-            <li className="flex items-center gap-2">
+            <li>
               <span>小红书：</span>
               <a
                 href="https://xhslink.com/m/7J4H4sQL4yB"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="访问米地米立小红书主页"
-                className="inline-flex rounded-md transition-opacity hover:opacity-85"
+                className="editorial-site-footer__social-link"
               >
-                <img src={redbookMily} alt="小红书" className="h-8 w-auto object-contain" />
+                米立 AI
               </a>
             </li>
           </ul>
         </section>
       </div>
 
-      <div className="border-t border-[#d8e3f0] py-4 text-center text-[13px] text-[#7591b4]">
-        © 2026 米地米立 Midimily. All rights reserved.
-      </div>
     </footer>
   );
 }

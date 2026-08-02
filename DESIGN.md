@@ -120,3 +120,16 @@ Current stack:
 - Static solution data in `content/solutions/manifest.json` and `decks/*`.
 
 When changing UI, preserve existing data and deck build flows unless explicitly requested.
+
+### GEO / EcoGEO Maintenance
+
+Treat GEO as part of the site design system. A page is not finished until it is understandable to both a human visitor and an AI search/crawler agent.
+
+For every new or renamed public route:
+
+- Add or update route-level title, description, canonical URL, and JSON-LD.
+- Add the route to `public/sitemap.xml` only when the content is final and meant to be indexed.
+- Add the route to `public/llms.txt` only when it should be recommended as part of the public AI-readable map.
+- Connect the page to at least one relevant entry page, solution detail, case/comparison page, FAQ, or contact CTA.
+- Keep page copy text-based and crawlable. Do not hide the only important explanation inside an iframe, image, deck-only view, or hover-only interaction.
+- Keep public labels friendly to people. Internal GEO concepts should be translated into natural labels such as "AI 服务地图", "方案详情", "案例与对比", or "服务说明".

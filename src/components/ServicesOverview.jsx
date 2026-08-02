@@ -2,63 +2,24 @@ import { serviceOverviewCards } from '../data/homeV2Data';
 
 export function ServicesOverview() {
   return (
-    <section className="relative overflow-hidden bg-[#f8fbff] px-4 py-14 sm:px-6 md:px-8 md:py-20 lg:py-24">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_20%,rgba(140,199,189,0.08),transparent_26%),radial-gradient(circle_at_86%_72%,rgba(143,156,214,0.08),transparent_28%)]" />
-      <div className="relative mx-auto w-full max-w-[1220px]">
-        <div className="max-w-[760px] space-y-3">
-          <h2 className="text-[29px] leading-tight text-[#2e415f] sm:text-[36px] md:text-[40px]">
-            从第一步开始
-          </h2>
-          <p className="text-[16px] leading-relaxed text-[#627896]">
-            先选一个真实场景，跑通一个可复用的小闭环。
-          </p>
-        </div>
+    <section className="editorial-home-section editorial-home-start" aria-labelledby="home-start-title">
+      <div className="editorial-home-section__inner">
+        <header className="editorial-home-section__header">
+          <h2 id="home-start-title">从第一步开始</h2>
+          <p>先选一个真实场景，跑通一个可复用的小闭环。</p>
+        </header>
 
-        <div className="mt-8 grid gap-5 lg:grid-cols-2">
+        <div className="editorial-home-start__paths">
           {serviceOverviewCards.map((card) => (
-            <article
-              key={card.id}
-              className={`cursor-default rounded-[24px] border ${card.border} bg-gradient-to-br ${card.gradient} p-5 shadow-[0_10px_24px_rgba(86,111,148,0.06)] sm:p-6`}
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <span className="inline-flex rounded-full border border-white/60 bg-white/68 px-3 py-1 text-[12px] text-[#5f7da5]">
-                    {card.tag}
-                  </span>
-                  <h3 className="mt-4 text-[24px] leading-tight text-[#304763]">{card.title}</h3>
-                  <p className="mt-3 max-w-[520px] text-[15px] leading-relaxed text-[#5f7493]">
-                    {card.firstStep}
-                  </p>
-                </div>
-                <span className="mt-1 hidden h-2.5 w-2.5 rounded-full bg-[#8cc7bd]/80 shadow-[0_0_0_5px_rgba(140,199,189,0.12)] sm:block" />
+            <article key={card.id}>
+              <p className="editorial-home-start__path">{card.tag}</p>
+              <h3>{card.title}</h3>
+              <p>{card.firstStep}</p>
+              <ul>{card.actions.map((item) => <li key={item}>{item}</li>)}</ul>
+              <div className="editorial-home-start__links">
+                {card.href ? <a href={card.href}>查看服务说明</a> : null}
+                <a href="#contact">{card.cta}</a>
               </div>
-
-              <div className="mt-6 flex flex-wrap gap-2.5">
-                {card.actions.map((item) => (
-                  <span
-                    key={item}
-                    className="inline-flex rounded-full border border-white/70 bg-white/68 px-3 py-2 text-[13px] text-[#4f6c92]"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-
-              <a
-                href="#contact"
-                aria-label={`${card.cta}，前往联系区`}
-                className="mt-5 inline-flex min-h-11 items-center rounded-[12px] bg-[#7c92bb] px-4 text-[14px] font-medium text-white transition active:translate-y-[1px] hover:bg-[#6f86b0] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#9db3d7] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-              >
-                {card.cta}
-              </a>
-              {card.href ? (
-                <a
-                  href={card.href}
-                  className="ml-3 mt-5 inline-flex min-h-11 items-center rounded-[12px] border border-[#c9d8eb] bg-white/70 px-4 text-[14px] font-medium text-[#55769d] transition hover:bg-white"
-                >
-                  查看服务说明
-                </a>
-              ) : null}
             </article>
           ))}
         </div>

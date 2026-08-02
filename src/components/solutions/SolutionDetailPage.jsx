@@ -82,7 +82,7 @@ export function SolutionDetailPage({ slug }) {
   ];
 
   return (
-    <main className="min-h-screen bg-[#fcf8f2] px-4 pb-20 pt-24 text-[#324967] sm:px-6 md:px-8 md:pt-28">
+    <main className="editorial-production-page editorial-solution-detail">
       <SeoMetadata
         title={`${solution.title}｜${solution.category}｜米地米立`}
         description={solution.description}
@@ -111,7 +111,7 @@ export function SolutionDetailPage({ slug }) {
           ]),
         ]}
       />
-      <article className="mx-auto w-full max-w-[1120px]">
+      <article className="editorial-production-page__wide">
         <Breadcrumbs
           items={[
             { name: '首页', path: '/' },
@@ -120,102 +120,78 @@ export function SolutionDetailPage({ slug }) {
           ]}
         />
 
-        <header className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
-          <div>
-            <div className="flex flex-wrap gap-2">
-              <span className="rounded-full border border-[#d3e0f0] bg-[#f4f8fd] px-3 py-1 text-[12px] text-[#5f7da5]">
-                {typeLabel}
-              </span>
+        <header className="editorial-solution-detail__header">
+          <div className="editorial-solution-detail__main">
+            <p className="editorial-solution-detail__meta">
+              <span>{typeLabel}</span>
               {versionDate ? (
-                <span className="rounded-full border border-[#d3e0f0] bg-white/78 px-3 py-1 text-[12px] text-[#6b84a4]">
-                  更新于 {versionDate}
-                </span>
+                <span>更新于 {versionDate}</span>
               ) : null}
-            </div>
-            <h1 className="mt-5 text-[36px] leading-tight text-[#2e415f] sm:text-[44px] md:text-[56px]">
+            </p>
+            <h1>
               {solution.title}
             </h1>
             {solution.subtitle ? (
-              <p className="mt-4 text-[22px] leading-relaxed text-[#4f6d90]">{solution.subtitle}</p>
+              <p className="editorial-solution-detail__subtitle">{solution.subtitle}</p>
             ) : null}
-            <p className="mt-5 max-w-[760px] text-[18px] leading-relaxed text-[#5b7393]">
+            <p className="editorial-solution-detail__description">
               {solution.description}
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <a
-                href={deckUrl}
-                className="inline-flex min-h-11 items-center rounded-[12px] bg-[#7c92bb] px-4 text-[14px] font-medium text-white transition hover:bg-[#6f86b0]"
-              >
-                查看 Web Deck
-              </a>
-              <a
-                href={solution.cta?.href || '/#contact'}
-                className="inline-flex min-h-11 items-center rounded-[12px] border border-[#c9d8eb] bg-white/78 px-4 text-[14px] font-medium text-[#55769d] transition hover:bg-white"
-              >
-                {solution.cta?.label || '预约交流'}
-              </a>
+            <div className="editorial-solution-detail__links">
+              <a href={deckUrl}>查看 Web Deck</a>
+              <a href={solution.cta?.href || '/#contact'}>{solution.cta?.label || '预约交流'}</a>
             </div>
           </div>
           <ShortAnswer>{solution.description}</ShortAnswer>
         </header>
 
-        <section className="mt-10 grid gap-5 lg:grid-cols-2">
-          <div className="rounded-[20px] border border-[#d7e3f0] bg-white/74 p-6">
-            <h2 className="text-[24px] text-[#2e415f]">适合谁</h2>
-            <div className="mt-4">
-              <PillList items={solution.fitFor || solution.audience || []} />
-            </div>
+        <section className="editorial-solution-detail__facts">
+          <div>
+            <h2>适合谁</h2>
+            <PillList items={solution.fitFor || solution.audience || []} />
           </div>
-          <div className="rounded-[20px] border border-[#d7e3f0] bg-white/74 p-6">
-            <h2 className="text-[24px] text-[#2e415f]">关键词</h2>
-            <div className="mt-4">
-              <PillList items={solution.tags || []} tone="green" />
-            </div>
+          <div>
+            <h2>关键词</h2>
+            <PillList items={solution.tags || []} tone="green" />
           </div>
         </section>
 
         {solution.problems?.length ? (
-          <section className="mt-12">
-            <h2 className="text-[28px] leading-tight text-[#2e415f] md:text-[34px]">正在解决的问题</h2>
-            <ul className="mt-5 grid gap-3 md:grid-cols-2">
+          <section className="editorial-solution-detail__section">
+            <h2>正在解决的问题</h2>
+            <ul>
               {solution.problems.map((problem) => (
-                <li key={problem} className="rounded-[16px] border border-[#d7e3f0] bg-white/74 p-4 text-[#587291]">
-                  {problem}
-                </li>
+                <li key={problem}>{problem}</li>
               ))}
             </ul>
           </section>
         ) : null}
 
         {solution.outline?.length ? (
-          <section className="mt-12">
-            <h2 className="text-[28px] leading-tight text-[#2e415f] md:text-[34px]">方法与阅读路径</h2>
-            <ol className="mt-5 grid gap-3">
+          <section className="editorial-solution-detail__section">
+            <h2>方法与阅读路径</h2>
+            <ol>
               {solution.outline.map((item) => (
-                <li key={item} className="rounded-[16px] border border-[#d7e3f0] bg-white/74 p-4 text-[#587291]">
-                  {item}
-                </li>
+                <li key={item}>{item}</li>
               ))}
             </ol>
           </section>
         ) : null}
 
         {slideSummary.length ? (
-          <section className="mt-12">
-            <h2 className="text-[28px] leading-tight text-[#2e415f] md:text-[34px]">Deck 内容提要</h2>
-            <div className="mt-5 grid gap-4">
+          <section className="editorial-solution-detail__section editorial-solution-detail__deck-summary">
+            <h2>Deck 内容提要</h2>
+            <div>
               {slideSummary.map((slide, index) => (
-                <section key={`${slide.title}-${index}`} className="rounded-[18px] border border-[#d7e3f0] bg-white/76 p-6">
-                  <h3 className="text-[22px] leading-tight text-[#314a68]">{slide.title}</h3>
+                <section key={`${slide.title}-${index}`}>
+                  <h3>{slide.title}</h3>
                   {slide.subtitle ? (
-                    <p className="mt-3 text-[16px] leading-relaxed text-[#5f7898]">{slide.subtitle}</p>
+                    <p>{slide.subtitle}</p>
                   ) : null}
                   {slide.points?.length ? (
-                    <ul className="mt-4 grid gap-2">
+                    <ul>
                       {slide.points.map((point) => (
-                        <li key={point} className="text-[15px] leading-relaxed text-[#667f9e]">
-                          {point}
-                        </li>
+                        <li key={point}>{point}</li>
                       ))}
                     </ul>
                   ) : null}
