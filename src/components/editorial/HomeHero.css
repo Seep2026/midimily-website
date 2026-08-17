@@ -56,6 +56,31 @@
   text-wrap: pretty;
 }
 
+.editorial-home-hero__appointment {
+  align-items: center;
+  background: var(--mily-link);
+  border-radius: 999px;
+  color: #fffdf9;
+  display: inline-flex;
+  font-size: 15px;
+  font-weight: 650;
+  margin-top: 28px;
+  min-height: 48px;
+  padding: 0 22px;
+  text-decoration: none;
+  transition: background var(--mily-transition-fast) ease, transform var(--mily-transition-fast) ease;
+}
+
+.editorial-home-hero__appointment:hover {
+  background: var(--mily-link-hover);
+  transform: translateY(-1px);
+}
+
+.editorial-home-hero__appointment:focus-visible {
+  outline: 3px solid var(--mily-focus-ring);
+  outline-offset: 5px;
+}
+
 .editorial-home-hero__paths {
   display: grid;
   grid-template-areas:
@@ -219,6 +244,8 @@
     font-size: 17px;
     line-height: 1.76;
   }
+
+  .editorial-home-hero__appointment { margin-top: 24px; }
 
   .editorial-home-hero__paths {
     padding-top: 48px;

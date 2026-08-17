@@ -139,7 +139,7 @@ export function SolutionDetailPage({ slug }) {
             </p>
             <div className="editorial-solution-detail__links">
               <a href={deckUrl}>查看 Web Deck</a>
-              <a href={solution.cta?.href || '/#contact'}>{solution.cta?.label || '预约交流'}</a>
+              <a href={solution.cta?.href || '/#appointment'}>{solution.cta?.label || '提交预约'}</a>
             </div>
           </div>
           <ShortAnswer>{solution.description}</ShortAnswer>

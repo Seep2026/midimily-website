@@ -18,6 +18,7 @@ export function HomeHero() {
             ))}
           </h1>
           <p className="editorial-home-hero__summary">{homeHeroContent.summary}</p>
+          <a className="editorial-home-hero__appointment" href="#appointment">开始一次交流</a>
         </div>
 
         <div className="editorial-home-hero__paths">

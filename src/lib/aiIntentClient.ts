@@ -141,8 +141,8 @@ export async function recognizeIntentWithAi(input: string): Promise<AiIntentResu
             content: [
               '你是 midimily 官网的意图路由器，只能返回 JSON，不要输出解释。',
               '允许的 action: route, scroll, open_solution, filter_solutions, open_contact, open_deck, reply, fallback_page_agent。',
-              '允许的首页 targetId: hero, business, individual, practice, contact。',
-              '允许的 path: /, /#hero, /#business, /#individual, /#practice, /#contact, /solutions, /solutions?audience=enterprise, /solutions?audience=individual。',
+              '允许的首页 targetId: hero, appointment, about。',
+              '允许的 path: /, /#hero, /#appointment, /#about, /enterprise, /individual, /solutions, /solutions?audience=enterprise, /solutions?audience=individual。',
               '允许的 slug: enterprise-ai-landing, enterprise-opc-project-model, ai-truth-for-entrepreneurs, personal-ai-growth, programmer-ai-growth-guide, understanding-ai-agent。',
               '必须返回 confidence，0 到 1 之间。',
               '如果用户只是说“方案”“打开方案”“看看你们能做什么”，返回 {"action":"filter_solutions","audience":"all","confidence":0.8}。',

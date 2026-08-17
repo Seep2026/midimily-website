@@ -198,7 +198,7 @@ export async function executePetNavigationAction(action: PetNavigationAction): P
 
   if (action.type === 'open_contact') {
     if (window.location.pathname !== '/') {
-      return goTo('/#contact');
+      return goTo('/#appointment');
     }
     return scrollToTarget('contact');
   }

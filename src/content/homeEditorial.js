@@ -1,21 +1,21 @@
 import { getEvidenceBySlug } from '../data/geoContent';
 
 export const homeHeroContent = {
-  title: ['企业的 AI 落地伙伴', '个体的 AI 成长顾问'],
-  summary: '米地米立持续观察 AI 如何进入真实工作与个人成长，并把复杂变化转化为可以开始、验证和复用的具体行动。',
-  editorialNote: '先让一件具体的事情跑通，再讨论更大的智能化。',
+  title: ['不只看趋势。', '先跑一个小闭环。'],
+  summary: '米地咨询从真实业务与真实任务出发，陪企业落地 AI，陪个体建立可复用的学习与工作方法。',
+  editorialNote: 'AI 的价值，不在于替代所有人，而在于让熟悉业务的人更快做出更好的判断。',
   paths: [
     {
       role: 'primary',
       name: '企业 AI 落地',
-      description: '从一个高频任务开始，看见 AI 如何真正进入流程、协作与交付。',
-      href: '/topics/enterprise-ai-landing',
+      description: '从一个真实流程开始，验证 AI 如何进入协作与交付。',
+      href: '/enterprise',
     },
     {
       role: 'secondary',
       name: '个体 AI 成长',
-      description: '从会使用工具，到形成自己的稳定工作流与交付能力。',
-      href: '/topics/personal-ai-growth',
+      description: '从会用工具，到形成可复用的学习与工作方法。',
+      href: '/individual',
     },
   ],
 };

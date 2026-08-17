@@ -13,11 +13,9 @@
 
       <nav class="mily-nav" aria-label="站点导航">
         <a href="/#hero">首页</a>
-        <a href="/#business">企业服务</a>
-        <a href="/#individual">个体成长</a>
-        <a href="/#practice">实践</a>
-        <a href="/solutions">方案</a>
-        <a href="/#contact">联系</a>
+        <a href="/enterprise">企业服务</a>
+        <a href="/individual">个体成长</a>
+        <a href="/#about">关于</a>
       </nav>
     </header>
 
@@ -79,12 +77,12 @@ const isEmbed = (() => {
   return embedValue === '1' || embeddedValue === '1' || embeddedValue === 'true';
 })();
 
-function isContactAnchorHref(rawHref) {
+function isAppointmentAnchorHref(rawHref) {
   if (!rawHref || typeof rawHref !== 'string') {
     return false;
   }
 
-  return rawHref === '#contact' || rawHref === '/#contact' || rawHref.endsWith('#contact');
+  return rawHref === '#appointment' || rawHref === '/#appointment' || rawHref.endsWith('#appointment');
 }
 
 function handleEmbedAnchorClick(event) {
@@ -103,14 +101,14 @@ function handleEmbedAnchorClick(event) {
   }
 
   const rawHref = anchor.getAttribute('href');
-  if (!isContactAnchorHref(rawHref)) {
+  if (!isAppointmentAnchorHref(rawHref)) {
     return;
   }
 
   event.preventDefault();
   event.stopPropagation();
 
-  const targetUrl = `${window.location.origin}/#contact`;
+  const targetUrl = `${window.location.origin}/#appointment`;
   if (window.top && window.top !== window) {
     window.top.location.href = targetUrl;
     return;

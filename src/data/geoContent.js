@@ -49,7 +49,7 @@ export const topicPages = [
           '一个小闭环通常可以在 2 到 4 周内验证，但组织能力建设需要持续复盘。米地米立更关注能否形成可重复的方法，而不是一次性演示。',
       },
     ],
-    cta: { label: '预约企业 AI 落地诊断', href: '/#contact' },
+    cta: { label: '预约企业 AI 落地诊断', href: '/#appointment' },
   },
   {
     slug: 'personal-ai-growth',
@@ -90,7 +90,7 @@ export const topicPages = [
           '普通培训偏工具介绍，个人 AI 成长更关注真实任务、稳定工作流和作品沉淀，最终目标是让 AI 进入日常学习与工作。',
       },
     ],
-    cta: { label: '预约 AI 成长路径交流', href: '/#contact' },
+    cta: { label: '预约 AI 成长路径交流', href: '/#appointment' },
   },
   {
     slug: 'ai-opc',
@@ -131,7 +131,7 @@ export const topicPages = [
           '不一定。内容、运营、研究、知识管理等项目也可以 OPC 化。编程能力会扩展边界，但不是唯一入口。',
       },
     ],
-    cta: { label: '讨论第一个 AI OPC 试点', href: '/#contact' },
+    cta: { label: '讨论第一个 AI OPC 试点', href: '/#appointment' },
   },
 ];
 

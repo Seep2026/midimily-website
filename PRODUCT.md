@@ -15,7 +15,7 @@ Visitors arrive with real uncertainty: what AI can actually change, where to sta
 
 ## Product Purpose
 
-Midimily is a brand and service website for "企业的 AI 落地伙伴，个体的 AI 成长顾问".
+Midimily is a brand and service website for "企业的 AI 落地顾问，个体的 AI 成长伙伴".
 
 The site should help visitors understand two service lines:
 

@@ -1,19 +1,18 @@
 export const siteMeta = {
-  title: '米地米立｜企业的 AI 落地伙伴，个体的 AI 成长顾问',
+  title: '米地米立｜企业的 AI 落地顾问，个体的 AI 成长伙伴',
   description:
     '米地米立帮助企业把 AI 落到真实业务中，也帮助职场人与学生掌握 AI 工具，提升学习、工作与职业竞争力。',
 };
 
 export const navItems = [
-  { label: '企业服务', href: '/#business' },
-  { label: '个体成长', href: '/#individual' },
-  { label: '方案', href: '/solutions' },
-  { label: '联系', href: '/#contact' },
+  { label: '企业服务', href: '/enterprise' },
+  { label: '个体成长', href: '/individual' },
+  { label: '关于', href: '/#about' },
 ];
 
 export const footerResourceLinks = [
-  { label: 'AI 服务地图', href: '/topics' },
-  { label: '案例与对比', href: '/evidence' },
+  { label: '企业服务', href: '/enterprise' },
+  { label: '个体成长', href: '/individual' },
 ];
 
 export const serviceOverviewCards = [

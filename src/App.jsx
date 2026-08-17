@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Header } from './components/Header';
 import { HomePage } from './components/HomePage';
 import { Footer } from './components/Footer';
+import { ServicePage } from './components/ServicePage';
 import { SolutionsPage } from './components/SolutionsPage';
 import { DeckViewerPage } from './components/solutions/DeckViewerPage';
 import { SolutionDetailPage } from './components/solutions/SolutionDetailPage';
@@ -48,6 +49,8 @@ export default function App() {
   const isSolutionsPage = path === '/solutions' || path === '/solutions/';
   const isTopicsPage = path === '/topics' || path === '/topics/';
   const isEvidencePage = path === '/evidence' || path === '/evidence/';
+  const isEnterprisePage = path === '/enterprise' || path === '/enterprise/';
+  const isIndividualPage = path === '/individual' || path === '/individual/';
   const topicMatch = path.match(/^\/topics\/([^/]+)\/?$/);
   const evidenceMatch = path.match(/^\/evidence\/([^/]+)\/?$/);
   const deckMatch = path.match(/^\/solutions\/([^/]+)\/deck\/?$/);
@@ -113,7 +116,11 @@ export default function App() {
   return (
     <div className="editorial-token-scope editorial-site-shell min-h-screen overflow-x-hidden">
       <Header />
-      {isSolutionsPage ? (
+      {isEnterprisePage ? (
+        <ServicePage type="enterprise" />
+      ) : isIndividualPage ? (
+        <ServicePage type="individual" />
+      ) : isSolutionsPage ? (
         <SolutionsPage />
       ) : isTopicsPage ? (
         <TopicIndexPage />

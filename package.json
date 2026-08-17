@@ -6,6 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "appointments:start": "node --env-file-if-exists=.env.local --env-file-if-exists=.env.appointment.local server/appointment-server.mjs",
+    "appointments:ses:check": "node --env-file=.env.local --env-file=.env.appointment.local server/tencent-ses-check.mjs",
+    "appointments:ses:test": "node --env-file=.env.local --env-file=.env.appointment.local server/tencent-ses-smoke.mjs",
+    "appointments:test": "node --test server/appointment.test.mjs src/lib/appointmentRoute.test.mjs",
     "deck:build": "node scripts/build-deck.mjs",
     "deck:build:all": "node scripts/build-all-decks.mjs",
     "deck:publish": "pnpm deck:build:all && pnpm build",
@@ -13,8 +17,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "nodemailer": "^9.0.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "tencentcloud-sdk-nodejs-ses": "^4.1.271",
     "tw-animate-css": "^1.3.8",
     "zod": "^4.4.3"
   },
