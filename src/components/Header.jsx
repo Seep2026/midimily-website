@@ -15,7 +15,7 @@ export function Header() {
   return (
     <header className="editorial-site-header">
       <div className="editorial-site-header__inner">
-        <a href="/#hero" className="editorial-site-header__brand" aria-label="米地米立首页">
+        <a href="/#hero" className="editorial-site-header__brand" aria-label="米地咨询首页">
           <span className="editorial-site-header__mark">
             <img
               src={brandLogo}
@@ -25,7 +25,7 @@ export function Header() {
             />
           </span>
           <span className="editorial-site-header__identity">
-            <span className="editorial-site-header__name">米地米立</span>
+            <span className="editorial-site-header__name">米地咨询</span>
             <span className="editorial-site-header__descriptor">
               企业 AI 落地 · 个体 AI 成长
             </span>

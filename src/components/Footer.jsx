@@ -26,16 +26,15 @@ export function Footer() {
     <footer id="about" className="editorial-site-footer" tabIndex="-1">
       <div className="editorial-site-footer__inner">
         <section className="editorial-site-footer__identity">
-          <p>关于</p>
-          <h2>米地咨询</h2>
-          <p className="editorial-site-footer__statement">
-            <span>企业的 AI 落地顾问</span>
-            <span>个体的 AI 成长伙伴</span>
-          </p>
+          <h3>关于</h3>
           <p>
-            深圳市宝安区新安街道顺丰路安乐物业大厦 512
+            公司：深圳市米地咨询有限公司
             <br />
-            粤ICP备2026099384号-2
+            地址：深圳市宝安区新安街道顺丰路安乐物业大厦 512
+            <br />
+            电话：+86-18902979154
+            <br />
+            网站备案：粤ICP备2026099384号-2
           </p>
         </section>
 

@@ -64,14 +64,10 @@
   max-width: var(--mily-content-wide);
   padding-bottom: 3.5rem;
 }
-.editorial-site-footer h2 { color: var(--mily-text-primary); font-size: 1.75rem; font-weight: 600; margin: 0; }
 .editorial-site-footer h3 { color: var(--mily-text-primary); font-size: 0.84rem; font-weight: 650; margin: 0 0 1rem; }
 .editorial-site-footer p,
 .editorial-site-footer li { color: var(--mily-text-muted); font-size: 0.84rem; line-height: 1.7; }
 .editorial-site-footer__identity p { margin: 0.55rem 0 0; }
-.editorial-site-footer__identity > p:first-child { color: var(--mily-text-muted); font-size: 0.78rem; font-weight: 650; margin: 0 0 0.8rem; }
-.editorial-site-footer__statement { color: var(--mily-text-secondary) !important; font-size: 0.96rem !important; max-width: 280px; }
-.editorial-site-footer__statement span { display: block; }
 .editorial-site-footer ul { display: grid; gap: 0.45rem; list-style: none; margin: 0; padding: 0; }
 .editorial-site-footer a { color: inherit; display: inline-flex; min-height: 44px; align-items: center; }
 .editorial-site-footer a:hover { color: var(--mily-link-hover); text-decoration: underline; text-underline-offset: 0.22em; }
